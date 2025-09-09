@@ -207,33 +207,34 @@
     <form action="맘대로" method="get">
 
         <h5>type = "text"</h5>
-        `grave
-        ~tild
-        !bang
-        @at
-        #hash, sharp
-        $dollar sign
-        %percent sign
-        ^caret
-        &ampersand
-        *asterisk
-        ()parenthesis
-        -dash, hyphen, minus
-        _underscore, underbar
-        +plus sign
-        =equal sign
-        |pipeline, virtical line, virtical
-        /slash
-        \backslash
-        지우는건 backspace
-        []bracket
-        {}brace
-        ''aphostrophe, single quote
-        ""quote
-        ,comma
-        .dot, reference, period
+
+        `grave <br />
+        ~tilde <br />
+        !bang, exclamation mark <br />
+        @at, at sign <br />
+        #hash, sharp <br />
+        $dollar sign <br />
+        %percent sign <br />
+        ^caret <br />
+        &ampersand <br />
+        *asterisk <br />
+        ()parenthesis <br />
+        -dash, hyphen, minus <br />
+        _underscore, underbar <br />
+        +plus sign <br />
+        =equals sign <br />
+        |pipeline, vertical bar, vertical line, vertical <br />
+        /slash <br />
+        \backslash <br />
+        지우는건 backspace <br />
+        []bracket <br />
+        {}brace <br />
+        ''apostrophe, single quote <br />
+        ""quote, double quote, quotation marks <br />
+        ,comma <br />
+        .dot, reference, period <br />
         <less than(lt)
-        >grater than(gt)
+        >greater than(gt)
         ?question mark
 
         <p>
@@ -398,6 +399,168 @@
         <br /><br /><br />
         <input type="submit" value="발루" />
 
+        <h5>type = "range"</h5>
+
+        <p>- 슬라이드바를 이용해서 숫자 쓰는거</p>
+
+        슬라이드바 : <input type="range" name="range" />
+        <!-- 순수 HTML 아니고 자바스크립트 써야하긴 하지만 가격 필터같은거 할 때 -->
+        
+        <input type="reset" value="초기화" />
+        <!-- 같은 폼태그 안에 있는거 다 초기화됨 -->
+        
+        <hr>
+
+    </form>
+
+    <!-- 날짜같은거 입력받고 싶을 때(아고다는 라이브러리같은거 썼음) -->
+        
+    <h4>날짜 및 시간과 관련된 input 요소의 type</h4>
+
+    <br />
+
+    <form action="날짜쓰">
+
+        <h5>type = "date/month/week/time/dateTime-local"</h5>
+
+        date : <input type="date" namd="date" /> <br />
+        <!-- 연도, 월, 일 -->
+
+        month : <input type="month" name="month" /> <br />
+        <!-- 연도, 월 -->
+
+        week : <input type="week" name="week" /> <br />
+        <!-- 연도, 해당 년도에 몇 번째 주 -->
+
+        time : <input type="time" name="time" /> <br />
+        <!-- 오전 / 오후, 시, 분 -->
+
+        dateTime-local : <input type="datetime-local" name="dt" />
+        <!-- 다쓸래! -->
+
+        <br /><br />
+        
+        <!--
+            <input type="submit" />
+        -->
+
+        <!-- input 요소로 안만들고 다른 방식으로 만들 수 있음 -->
+        <!-- button을 하나 만들어 -->
+        <!-- 버튼은 컨텐트 영역에 값이 없으면 납작 짜부라져있음, 안에 반드시 무언가를 넣어줘야함 -->
+        <button type="button">무언가</button>
+        <!-- button도 type 속성을 지정할 수 있음, reset/submit
+        그렇지만 폼태그 안에 있는 버튼요소는 항상 submit이 기본값
+        -->
+        <!-- button요소는 form태그 내부에 위치하고있다면
+        기본값이 defaulttype이 submit -->
+        <!-- form태그 안에서도 그냥 버튼으로 사용하고 싶은 경우가 있음, 그러면 type="button"
+        그러면 submit button이 아니고 그냥 button이 됨 -->
+
+        <!-- button의 컨텐트 영역에 이미지태그같은걸 넣을 수 있음 -->
+        <button style="border: none; background: none">
+            <img src="resources/image/bonobono.jpg" />
+            <!-- 테두리 안예뻐서 없애버림 이안에 뭘넣느냐에 따라 계속 달라지겠지 -->
+        </button>
+
+        <!-- 동그라미는 보기를 여러개 주고, 이중에 하나만 선택할 수 있게 해서 받고싶은 것 -->
+        <!-- 네모네모는 여러개의 선택지를 주고, 여러개를 선택할 수 있게 해서 받고싶은 것 -->
+        <!-- 사용자가 입력하게 할거면 텍스트박스
+        동그라미 네모 이런건 내가 보기를 주는데 같은 그룹 내에서 여러개 고르게 하려면 네모, 하나만 고르게 하려면 동그라미
+        동그라미는 라디오 버튼, 네모네모는 체크박스
+        -->
+        
+        <br />
+
+    </form>
+
+    <hr>
+
+    <h4>radiobutton과 checkbox</h4>
+
+    <form action="checked">
+
+        <h5>radio button (type="radio")</h5>
+
+        <p>
+            - 여러 개의 선택지들 중에서 오로지 한 개만 선택하게 하고싶을 때 <br />
+            - name속성 값이 똑같은 것들끼리 하나의 그룹으로 묶임 <br />
+            - (나중에)요청을 제출 시 현재 선택된(checked) value가 넘어감
+        </p>
+        
+        <!--
+            내가 보여주고 싶은 내용을 라디오버튼 옆에 작성함
+            같은 그룹으로 묶고싶은 라디오버튼은 같은 name 속성값을 작성함
+            그럼 두개가 동시에 해결됨, 같은 name 속성을 가지면 하나씩밖에 선택못하게됨
+            두번째는 이걸 submit은 내가 누르는게 넘어가..?나?
+            key는 location이 넘어가는데 value는 on이 넘어감
+            세개 다 선택해도 마찬가지, 사용자가 뭘 선택했는지 알 수가 없음 다 on이라고 가게됨
+            추가적인 절차를 진행해줘야함
+            input 요소에 내가 checked되었을 때 넘기고 싶은 value 속성을 작성해줌, 안그러면 무조건 on이 넘어감
+        -->
+
+        숙소 위치 평가 : <br />
+        <input type="radio" name="location" value="9" /> 9+ 우수 <br />
+        <input type="radio" name="location" value="8" /> 8+ 좋음 <br />
+        <input type="radio" name="location" value="7" /> 7+ 일반 <br />
+
+        <h5>type="checkbox"</h5>
+        <p><!-- 여러개의 선택지를 주고싶은건 똑같음 -->
+            - 여러 개의 선택지들 중에서(하나가 아니라 니가 고르고싶은거 다골라봐!) 여러 개를 선택 가능하게 하고 싶을때 씀 <br />
+            - (라디오버튼과 마찬가지로) 넘기고자 하는 값을 value속성의 값으로 넣어주어야함
+        </p>
+
+        객실 편의 시설 / 서비스 <br /><br />
+        <input type="checkbox" name="service" value="에어컨" id="에어컨" />
+        <label for="에어컨">에어컨</label>
+        <br />
+        <input type="checkbox" name="service" value="난방" id="난방" />
+        <label for="난방">난방</label>
+        <br />
+        <input type="checkbox" name="service" value="TV" id="TV" />
+        <label for="TV">TV</label>
+
+        <!-- 라디오버튼이랑 마찬가지로 보여주고 싶은 내용은 체크박스 옆에 작성 -->
+        <!-- 값을 보내려면 key값을 의미하는 name 속성이 필요함 -->
+        <!-- 얘도 그냥 두면 전부 on이 넘어감, value 속성값이 필요함 -->
+        <!-- 글자 눌렀을 때 체크되게 하기도 해보자, 이건 체크박스 요소들한테 id 속성을 달아줘야함
+        웬만하면 영어, 그냥 지금은 한글, 이 문서에서 겹치지만 않으면 됨 -->
+        <!-- 클릭 시 넘기고 싶은 친구를 라벨로 감싸줌 -->
+        <!-- 라벨에 for 속성을 추가해서 내가 보낼 요소의 id값을 동일하게 적어줌 -->
+
+        <br /><br /><br />
+
+        <input type="submit" value="선택">
+
+        <br /><br /><br />
+
+    </form>
+
+    <hr>
+
+    <h4>그 외 등등..</h4><!-- 알고있으면 좋고 아님 말고 -->
+
+    <form action="몰랑">
+        <h5>type = "color"</h5>
+        <p>
+            색상을 선택할 수 있는 type <br />
+            골라골라 : <input type="color" />
+        </p><!-- 이건 별로 쓸 일 없을지도 근데 난 맘에든당ㅎ -->
+
+        <h5>type = "file"</h5>
+        <p>
+            첨부파일을 선택할 수 있는 type <br />
+            첨부파일 : <input type="file" />
+        </p><!-- 이건 알차게 쓸 수 있음 -->
+
+        <h5>type = "hidden"</h5>
+        <p>
+            사용자한테는 보여주고싶지 않는 값을, 화면에 노출시키지도 않고 모오오올래
+            넘기고 싶을 때
+        </p>
+        <input type="hidden" value="45843" name="hidden">
+        <!-- 근데 URL에서는 보임ㅋ -->
+
+        <input type="submit">
     </form>
 
 </body>
