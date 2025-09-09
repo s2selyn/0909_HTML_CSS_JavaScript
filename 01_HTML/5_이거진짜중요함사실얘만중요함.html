@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>입력양식 및 폼 관련 태그</title><!-- 당분간은 중요, 나중에 뭔가를 배우면 그 이전까지 중요 -->
+</head>
+<body>
+    <!--
+        당분간 Java에서의 Scanner역할을 대신(화면이 바뀜, 이클립스 콘솔 안하고 이걸 쓰기로 했으니까)
+        화면 출력도 해주고 사용자에게서 입력도 받아야함(그걸 스캐너가 했는데 스캐너를 대신할 친구)
+    -->
+
+    <!--
+        System.out.print("아이디를 입력해주세요 > "); 자바에서 출력문같은걸 써서 띄워줌
+        Scanner sc = new Scanner(System.in); 스캐너를 import
+        String userId = sc.nextLine(); 메소드를 호출해서 입력받고 변수에 담음
+    -->
+
+    <!-- 이 작업을 앞으로 이렇게 대체하겠지, 그냥 안두고 label같은걸 써서 -->
+    <!-- 자바의 스캐너를 대신할 입력파트
+    input요소나 textarea요소를 배울것
+    -->
+    <label>아이디를 입력해주세요 > </label>
+    <input type="text" placeholder="최대 15자 이내로 작성바람" /> <br />
+    <textarea name="" id=""></textarea>
+    <br />
+    <hr />
+
+    <!-- ??? 사용자에게 값을 입력받을 수 있는 곳 -->
+    <h1>입력 양식 관련 태그</h1>
+
+    <h2>input 태그</h2>
+
+    <p>
+        사용자에게 값을 입력받을 수 있는 텍스트상자,
+        체크박스 등을 만들 수 있는
+        태그 <br>
+        type속성으로 지정 가능
+    </p>
+
+    <!-- input만 입력하고 tab 키 > type 자동완성 > text가 디폴트 값 -->
+    아이디 : <input type="text" /> <br />
+
+    <!-- 안보이게 입력받고싶을 때 type 속성을 password -->
+    비밀번호 : <input type="password" /> <br />
+
+    <!-- 선택지 여러개 보기를 주고 여러개 선택할 수 있게 하기 -->
+    먹고싶은거 다 골라보세요 : <br />
+    <input type="checkbox" /> 마이쮸 <input type="checkbox" /> ABC쪼꼬렛 <br />
+
+    <!-- 선택지 중에 하나만 고르게 하고 싶을 때
+    인데 아직은 둘다 찍어짐, 나중에 더 배워야함
+    -->
+    마이쮸 주황색 드실래요? 분홍색 드실래요? <br />
+    <input type="radio" />주황색 <input type="radio" />분홍색 <br />
+
+    <!-- 마지막에 요청을 받을 수 있는 버튼(제출) 만들기 -->
+    <input type="submit" />
+
+    <!-- 여기까지 하고 사용자가 입력해도 input요소의 존재와 개수는 아무런 의미가 있음
+    얘네가 영향을 끼치려면 반드시 Form 태그가 필요함-->
+    <hr />
+    
+    <!-- 사용자가 입력한 값들을 받아서 써야함, 사용자가 submit을 누르면 웹서버로 요청이 들어가게끔 해야함 -->
+    <!-- submit 버튼은 Form 태그 안에 위치해야 요청을 보낼 수 있음(순수 HTML에서) -->
+    <h2>Form 태그 ==> 요 친구 당분간 아주 아주 중요한 친구</h2>
+
+    <p>
+        입력양식들이 들어갈 틀을 의미 <br />
+        form태그 내부에 위치한 submit버튼을 클릭 시 <br />
+        해당 form태그에 작성한(선택한) 사용자가 입력한 값들을 <br />
+        요청을 받아주는 서버로 넘기면서 요청하는 역할을 하는 것이 <br />
+        form 태그 & submit 버튼!
+        <br /><br /><br />
+
+        <!-- form 태그 필수 속성 : action -->
+        form action="" <br />
+        form태그에 action속성은 꼭 써줘야지 꼭 써줘야겠다. <br />
+        <!-- action 속성 안쓰면 이미지 태그 쓰면서 src 속성 안쓰는거랑 똑같음-->
+        
+        method="" <br />
+        method속성은 필요하면 꼭 써줘야겠다. 근데 필요하면 써줘야겠다. <br />
+        <!-- method속성은 필요하면 쓰면 되고 생략 가능 -->
+
+        <!-- action 속성은 당분간 우리 밥줄... 여기 적혀있는 url에 사용자가 입력한 값들을 전달하면서 요청을 보냄 -->
+        * action : 해당 form안에 사용자가 입력한 값들을 전달하면서 요청 보낼
+        URL을 작성 <br />
+
+        * method : 요청 전송 방식 지정하는 속성(GET방식(기본값)/POST방식) <br />
+          > GET방식 : 요청 시 사용자가 입력한 값들이 URL에 노출 <br />
+          > POST방식 : 요청 시 사용자가 입력한 값들이 URL에 안보임 <br />
+
+          form태그 내부에 존재하는 submit버튼을 클릭 시 <br />
+          action속성에 작성한 URL로 <br />
+          method속성에 작성한 요청 방식을 통해 <br />
+          사용자가 input요소에 입력한 값들이 key=value세트로 전달 <br />
+        <!--
+        전통의 개발 방식 : 폼태그는 이걸로 보내는 걸 말함
+        발전한 개발 방식 : 
+        나중에 리액트랑 뭘 배우면 get post 등 여러가지 방식으로 보낼 수 있게 되는데,
+        당분간 그런것들을 배우기 이전에는 get/post 두가지 방식이 있다는 것을 기억
+        ??? 15:07 지금은 서버를 안올려놔서....?
+        -->
+
+    </p>
+
+    <!--
+        System.out.print("검색할 키워드를 입력해주세요 > "); 뷰에서 이런거 함
+        String key = sc.nextLine(); 입력하면 스캐너로 받음
+        controller.findByKeyword(keyword); 컨트롤러에 참조연산자를 붙이고 메소드를 호출하면서 인자값으로
+        form태그에서 이거하는거임!
+    -->
+
+    <!-- ??? -->
+    <form action="findByKeyword" method="get">
+        검색할 키워드 : <input type="text" name="keyword" /> <br />
+        뽀나스로 하나 더 : <input type="text" name="bonus" /> <br />
+        <input type="submit" />
+    </form>
+    <!-- 지금은 요청을 받아서 처리해줄 컨트롤러 역할을 해줄 애가 없음, 요청은 가긴 갔음 -->
+    <!-- 분명히 get 방식으로 보내면 url(http://127.0.0.1:5500/findByKeyword?)에 사용자가 입력한 값이 나와야하는데 안보임 -->
+    <!-- 사용자가 보내는건 반드시 key-value 세트로 가야함, 그래야 컨트롤러도 매개변수에 맞춰서 뽑아서 쓰겠지 -->
+    <!-- 지금 이렇게 하면 value만 보낸거임, name 속성을 적어야함, 이건 input요소에 작성함 -->
+    <!-- http://127.0.0.1:5500/findByKeyword?keyword=찾아줘 -->
+    <!-- findByKeyword 가 action까지 간것임, 그다음에 ? 가 붙음 -->
+    <!-- keyword=찾아줘 라고 나옴, input 요소의 name 속성값이 keyvalue, 사용자가 입력한 것이 같이 나옴 -->
+    
+    <!-- http://127.0.0.1:5500/findByKeyword?keyword=키워드&bonus=뽀나스
+    action 속성값
+    ?
+    key-value가 쌍으로 두개가 넘어감
+    keyword는 첫번째 name속성의 속성값, 그다음은 사용자가 input요소에 입력한 value값
+    bonus는 두번째 name속성의 속성값, 그다음은 사용자가 input요소에 입력한 value값
+    -->
+    <!-- submit 버튼도 form 태그 자식 요소의 위치에 있어야함, 안그러면 눌러봐야 의미없음 -->
+    <!-- key값은 name 요소의 value값이 들어감 -->
+    <!-- ??? 15:27 웹브라우저가 동작하는 방식, 웹서버에 요청을 보내는 방법, 브라우저로 요청을 보내는 방법 -->
+    <!-- 사용자에게 query의 밸류값을 바꿔적으라고 할 수는 없으니 화면적인 요소를 만들어서 보여주는 것 -->
+    <!-- 지금은 메커니즘을 학습하고 있음, findByKeyword는 없으니까 못하는거고 -->
+    
+    <form action="https://search.naver.com/search.naver" method="get">
+        네이버로 검색하기 ㅎㅎ <br />
+        검색할 키워드 : <input type="text" name="query" /> <br />
+        <input type="submit" />
+    </form>
+    <!-- action 부분만 우리 컨트롤러가 받을 수 있도록 하면 되겠다 -->
+    
+    <!-- ??? 15:33 -->
+    <!-- 순수 HTML로 사용자에게 입력을 받을 수 있는 텍스트상자는 input요소나 textarea 두개 -->
+    <!-- 슬랙은 인풋요소처럼 생겼지만 p태그, 이건 웹소켓이라는 특수한 방식을 적용시켜서 이걸 쓰고있음 -->
+    <!-- 일반적인 웹브라우저는 input 요소(한줄)나 textarea(여러줄)
+    그이외의것은 html에 존재하지 않음(있어도 안쓰고있음)
+    아무튼 사용자에게 입력받는다는 의미의 태그는 무조건 input, 그 역할에 맞는 태그
+    쿠팡 검색도 메소드는 없지만 name 속성값이 q, submit 타입 버튼이 있음, 이건 form태그가 감싸고 있음
+    action 속성값 np/search
+    검색해보면 url 내부에
+    1. 인풋요소의 네임속성값 q
+    2. =
+    3. 내가 입력한 검색어
+    메소드는 안적혀있었으니까 get 방식이었겠다
+    테무는 자바스크립트로 만든 듯
+    라쿠텐도, 아마존도 다 input요소 쓰고있네
+    구글은 아니네 힙스터인가^^!
+    요청 보내는건 폼태그 아닐수도 있지만 입력받는건 인풋
+    -->
+
+    <form action="postgo" method="post">
+        요청 시 전달 값 : <input type="text" name="test" />
+        <input type="submit" />
+    </form>
+    <!-- 뒤에 물음표도 안붙고(요청받는 친구가 없는건 똑같음)보내는 키밸류가 보이지 않음 -->
+    <!-- 인터넷에 접속되어 있으면 url에 적혀있는 정보는 누구나 다 볼 수 있음
+    인터넷을 우편망에 비유
+    편지봉투에 적힌건 다 볼수있고
+    택배상자도 위에붙은건 지나가는 사람 다 볼수있고
+    url은 앞에 붙인거임, 누구나 다 볼 수 있음, 위험할 수 있음
+    get/post 쓰는 경우는 다른데 본격적으로 웹개발 할 때 더 알아보자
+    -->
+
+    <h3>form태그 엄청 중요함!! 꼭 잊지말고 !! 다음주에 한 번 더보셈!!</h3>
+
+    <hr />
+
+    <!-- 폼태그랑 세트인 친구들, 알면 좋고 -->
+    
+    <h4>fieldset : 그룹을 묶는 태그</h4>
+    <h4>legend : 묶은 그룹에다가 제목을 붙여주는 태그(없어도 무방, 잘 안붙임)</h4>
+
+    <form action="legend">
+        <!-- 필수끼리, 추가끼리 그룹을 묶고싶다면 폼태그 안에서 fieldset 태그 사용 -->
+
+        <fieldset>
+            <legend>회원가입</legend> <!-- 그룹의 제목 -->
+            필수정보 : 사용자정보 <input type="text"> <br />
+        </fieldset>
+
+        <fieldset>
+            추가정보 : 추천인정보 <input type="text"> <br />
+        </fieldset>
+
+    </form>
+
+    <hr />
+    <!-- input type의 종류(속성)들 써보자 -->
+
+    <h4>text와 관련된 input 요소의 type들</h4>
+
+    <form action="맘대로" method="get">
+
+        <h5>type = "text"</h5>
+        `grave
+        ~tild
+        !bang
+        @at
+        #hash, sharp
+        $dollar sign
+        %percent sign
+        ^caret
+        &ampersand
+        *asterisk
+        ()parenthesis
+        -dash, hyphen, minus
+        _underscore, underbar
+        +plus sign
+        =equal sign
+        |pipeline, virtical line, virtical
+        /slash
+        \backslash
+        지우는건 backspace
+        []bracket
+        {}brace
+        ''aphostrophe, single quote
+        ""quote
+        ,comma
+        .dot, reference, period
+        <less than(lt)
+        >grater than(gt)
+        ?question mark
+
+        <p>
+            - 한 줄 텍스트를 입력할 수 있는 상자(기본값)
+            (input 요소 기본중의 기본, 안적으면 type = "text")
+        </p>
+        아이디 : <input type="text" placeholder="꼭적으셈" required />
+        <!-- 서비스메세지는 placeholder 속성에 원하는 것을 적음, 무언가를 적으면 안보임, 그전까지만 보임 -->
+        <!-- required 속성을 달 수 있음, 이 폼태그 내부에서 필수입력사항이 됨 -->
+        
+        <!-- ???? 16:12 자바에서 이런거 했음
+            while() {
+                if(아이디를 입력을 안했다면?) {
+                    continue;
+                }
+            }
+        -->
+
+        <br /><br />
+
+        <h5>type = "password"</h5>
+
+        <p>- 비밀번호를 입력할 수 있는 텍스트 박스</p>
+        비밀번호 : <input type="password" required placeholder="최대 5글자" maxlength="5" />
+
+        <!-- 컬럼 크기를 정해뒀을 수 있음, 5바이트 넘어가는 밸류를 insert 할 때 문제가 생길 수 있음
+        원래라면 뷰에서 이런걸 했겠지
+            if(비밀번호.length() > 5) {continue;}
+        -->
+        <!-- HTML에 maxlength 속성이 있음, 이걸 적는다고 해서 완전히 막을 수 있는 건 아님(완전히 안전한건 아니고 최소한의 안전장치)
+        HTML 상에서는 5글자 이상 입력이 안되게됨
+        -->
+
+        <br /><br />
+
+        <h5>type="search/url/email"</h5><!-- 텍스트 관련 잘 안쓰긴 하는 삼총사, 알고는 있어야지 언젠간 쓸수도 있음 -->
+
+        <p>
+            - 겉모습은 텍스트상자와 비슷하지만 세분화된 기능을 제공
+        </p>
+
+        검색 : <input type="search" /><!-- x 버튼 생겨서 누르면 지울 수 있음 -->
+        <br />
+        URL : <input type="url" /><!-- 주소처럼 적어야 요청을 보낼 수 있음 -->
+        <br />
+        EMAIL : <input type="email" /><!-- @을 포함한 완전한 이메일 형태로 적어야 요청을 보낼 수 있음 -->
+
+        <br /><br />
+
+        <!--
+          required : 필수 입력사항일 경우
+          placeholder : 입력을 유도하는 꾸밈요소(내가 원하는대로 입력하도록)
+          maxlength : 작성할 수 있는 최대길이
+
+          name : 요청 시 key값 지정, 의미를 부여해서 짓는게 좋음
+          (form태그 내부에 input요소에는 반드시 name속성을 달자 꼭!!!)
+
+          value : input요소에 실제 입력된 값
+        -->
+
+        <br /><br />
+
+        <input type="submit" />
+
+    </form>
+
+    <h4>textarea</h4>
+
+    <!-- input 요소의 아쉬운 점 : 한 줄 밖에 못 씀, 여러줄 쓸 수 없음 -->
+    <p>
+        - 텍스트 상자인데 여러 줄을 쓸 수 있음
+    </p>
+
+    <!--
+        앞에서 했던 것들 다시 생각
+        
+        System.out.println("게시글 작성 서비스입니다~~");
+
+        System.out.print("제목을 입력하셈 > ");
+        String boardTitle = sc.nextLine();
+
+        System.out.print("내용을 입력하셈 > ");
+        String boardContent = sc.nextLine();
+
+        이거 받은것들 가지고 컨트롤러 참조해서 메소드 호출하면서 매개변수로 넘겨줌
+        bc.insertBoard(boardTitle, boardContent);
+
+        이거랑 똑같은 상황이라고 가정
+        이게 앞으로 뷰임, 여기서 이런거 하고싶음, 여기서 나중에 컨트롤러한테 이렇게 요청 보내야함
+    -->
+
+    <!-- 요청 보낼거면 form 태그가 있어야지 -->
+    <!-- action에 콘트롤러 주소 넣을거임, 아직 모름, 다다음주쯤 할거니까 기다료라 -->
+    <form action="콘트롤러주소">
+
+        <!-- 좀 성의있게 해볼까? 필드셋이랑 레전드도 달아줌 -->
+        <fieldset>
+            <legend>게시글 작성 사비스입니다</legend>
+
+            <!-- 알려줘야 사용자가 쓰겠지 -->
+            제목 : <input type="text" name="boardTitle" size="50"/> <br />
+            내용 : <br /><!-- 게시글 입력은 보통 한줄만 쓰게 하지 않겠지, 한줄만 쓰면 섭섭하잖아, 섭섭하지 않게 해줘야지, 인심좀 써야지, input 대신에 textarea -->
+            <textarea
+              name="boardContent"
+              cols="90" rows="30"
+              style="resize: none"
+            ></textarea>
+            <!-- 여기서 지정하는 거 아니고 CSS에서 스타일 먹이는거에여 너무 답답해서 그지같으니까 해봤어여 -->
+            <br />
+            
+            <!-- 이렇게 한다고 컨트롤러에 요청 보낼 수 없음! -->
+            <!-- 요청하려면 submit 타입의 버튼이 있어야함 -->
+            <input type="submit" value="글작성" />
+            <!-- 제출이라는 글자가 마음에 안드네요, 글 작성이라고 바꾸고 싶다, 여기에 속성을 하나 더 써줌
+            value 속성에 작성
+            -->
+
+        </fieldset>
+
+    </form>
+
+    <hr>
+
+    <h4>숫자와 관련된 input요소의 type</h4>
+
+    <form action="number">
+
+        <!--
+            자바에서 또 이런 경우가 있었음
+            System.out.print("나이를 입력하시오 > ");
+            int age = sc.nextInt(); 메소드로 입력 받아서 int형 변수에 담음
+            사용자가 문자를 입력할 수 있으니까 try-catch 해서 input type mismatch로 잡아서 또 올려보냄
+            이런 상황을 합리적으로 해결할 수 있는 방법! number
+        -->
+
+        <h5>type = "number"</h5>
+
+        나이 : <input type="number" name="age" />
+        <!-- 공백이나 특수문자는 아예 쓰지도 못함, 물론 이런다고 무조건 막을 수 있는 건 아님(완전히 안전한 것은 아니고) 최소한의 노력으로 효율적으로 사용자에게 알려줄 수 있음, 너는 여기에 숫자를 입력해야한다~ -->
+        <!-- 제출 하기 전에 증감 버튼이 생김 -->
+
+        <p>
+            - 숫자값만 입력할 수 있는 텍스트 상자 <br />
+            - 스핀박스(위 / 아래 화살표 버튼)<!-- 나이보다 주문 수량 이런거 할 때 씀 -->
+        </p>
+
+        수량 : <input type="number" name="amount" step="5" value="0" min="0" max="20" />
+        <!--
+        기본값같은거 넣고싶을 수 있지, ??? 이런건 다 value 속성에 넣음
+        placeholder는 사용자가 포커싱을 하면 사라지는 내용이고
+        value 속성에 넣는 값은 진짜 이 값이 사용자가 입력한 것 처럼 들어감
+        스핀박스 한번에 올라가는 값의 범위를 정할 수 있음
+        -->
+
+        <!--
+          value : value값
+          min : 최소값
+          max : 최대값
+          step : 증가하거나 감소할 수 있는 값의 크기
+        -->
+
+        <br /><br /><br />
+        <input type="submit" value="발루" />
+
+    </form>
+
+</body>
+</html>
