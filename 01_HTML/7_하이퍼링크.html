@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>앵커태그</title>
+</head>
+<body>
+    <!--
+        하이퍼링크가 달려있는 텍스트를 하이퍼텍스트라고 하는데 하이퍼링크가 중요
+        하이퍼링크가 하이퍼텍스트만의 전유물을 아님, 엑셀이나 워드에서 URL을 집어넣으면 파란색으로 바뀌면서 넘어가는 그게 다 하이퍼링크가 달린것
+
+        HyperLink
+        비선형적인 구조로 웹문서에서 또 다른 문서로 이동할 수 있게끔
+        연결시켜주는 기능
+
+        웹은 비선형적인 구조라는 것이 중요, 그물망이니까
+        원래대로라면 내가 순차적인 접근을 통해서 이동해야하는데(타고가야하는데)
+        하이퍼링크를 이용하면 한번에 이동할 수 있음
+        텍스트나 이미지를 클릭하거나 페이지 내부에서도 이동가능
+        하이퍼링크를 사용하기 위해서 HTML에서 사용하는 방법 : a 태그
+    -->
+
+    <h1>a태그를 이용한 하이퍼링크</h1>
+    <a href="6_영역관련태그.html">영역이당</a>
+    <!-- href : hyper reference, 참조할 문서, 어디로 연결하고싶은지 경로를 작성 -->
+    <!-- a 태그를 클릭하면 이동됨 -->
+
+    <!-- 내거에서도 이동 가능하고 -->
+    <!-- 현재 인터넷이 연결된 상황이라면 서비스하고있는 웹페이지로 링크 가능 -->
+    <a href="http://www.google.com">네이버로~</a><!-- 낚시 ㅎ -->
+    <!-- 낚시 안당하려면 a태그는 브라우저에서 왼쪽 하단에 어디로 가는지 띄워줌, 여기로 가는거구나 하고 브라우저상에서 보여줌
+    요새는 낚시당하기 힘들지, 이걸 깨우치고 나면 a태그가 세상천지에 얼마나 많은지.. 모든게 다 a태그로 이루어져있음 -->
+    <!-- 네이버의 메인페이지도 전부 a태그로 감싸져있군 -->
+
+    <!-- a태그에 자주 사용하는 속성
+    ul요소의 자식요소로 li를 넣고 a 태그를 달아보자
+    ul>li 이렇게 작성하고 탭하면 자동완성
+    ul>li*2 하면 자식요소 두개만들어짐
+
+    li요소로 자식요소로 a요소도 넣고싶다면 또써
+    ul>li>a*2 : 이건 ul의 자식요소로 li하나에 a요소 2개
+
+    li요소도 두개 a요소도 각 li요소의 자식으로 넣고싶은건디? 괄호로 묶기
+    ul>(li>a)*2
+    -->
+    <ul id="list">
+        <li><a href="http://www.naver.com" target="_self">네이버로</a></li>
+        <li><a href="http://www.google.com" target="_blank">구글로</a></li>
+    </ul>
+    <!-- target 속성에 둘중에 하나 적을 수 있음, _self / _blank
+    self는 기존 창에서 이동하는 속성
+    blank는 새 탭을 열면서 이동하는 속성
+    상황에 맞게 쓰고싶은걸 잘 골라서 쓰자
+    -->
+
+    <!-- 텍스트가 아니고 이미지 클릭하면 넘어가는거도 a태그로 할수있고 a태그로 많이하기도 함 -->
+
+    <!-- 단풍개화시기 알려주는 주소로 이동하게 만들어보자 -->
+    <h3>이미지 클릭해서 링크 연결해보기</h3>
+
+    <a
+        target="_blank"
+        href="https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=0&ie=utf8&query=%EB%8B%A8%ED%92%8D%EA%B0%9C%ED%99%94%EC%8B%9C%EA%B8%B0&ackey=g3eczk3i"
+    >
+        <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjEwMjdfMTM3%2FMDAxNjY2ODU2Mjk0NTI1.XGLlb7qgdX2fEzI4DhRkHxcDdiD3954mWCzm704SwM0g.ffAr4tsidMjTo1KQKn_mV0GofsBO4m3sYR2tvrzLqjwg.JPEG.braincoach_%2F%25C0%25FC%25B1%25B9_%25B4%25DC%25C7%25B3%25B0%25B3%25C8%25AD%25BD%25C3%25B1%25E2%252C_%25B4%25DC%25C7%25B3%25B8%25ED%25BC%25D2.jpg&type=sc960_832"
+             alt="단풍이다단풍"
+        />
+    </a>
+    <!-- a태그는 컨텐트 영역에 아무것도 없으면 안보임 -->
+    <!-- 이미지 그냥 갖다쓰면 안되지만 교육용ㅎ -->
+
+    <br /><br /><br />
+
+    <!-- a태그처럼 안보이게 style 넣어서 만들어보자
+    id 작성해서 # + id + {} -->
+    <style>
+        #btn{
+            text-decoration: none;
+            display: block;
+            width: 180px;
+            height: 60px;
+            background-color: rgb(83, 42, 42);
+            border: 1px solid rgb(134, 71, 71);
+            border-radius: 15px;
+            :hover {
+                text-decoration: underline;
+                background-color: rgb(139, 100, 100);
+            }
+        }
+    </style>
+
+    <a href="2_표관련태그.html" target="_blank" id="btn">
+        <div>표관련태그 보러가깅</div>
+    </a>
+    <!-- a태그 특 : 항상 underline이 가있음 -->
+
+    <!-- 화면 따라다니다가 누르면 화면 최상단으로 올려주는 이런것도 a태그로 만들어줌 -->
+
+    <h4>한 페이지 내에서 점프점프 시키기</h4>
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    <a href="#list"> 위로가기 </a>
+    <!-- #은 이 페이지 새로고침과 비슷한 역할, 최상단으로 올리는 역할
+    특정 위치로 보내고 싶다면 보내고 싶은 위치의 요소에 id 속성을 넣음
+    그리고 id 속성값을 href에 작성하면 그 id를 가진 요소의 위치로 이동하게 만들어진다
+    -->
+
+    <!-- ??? 11:22 실제로 잡은 구조에 스타일을 입히는 CSS를 하러가자! 이거해야 화면이 이뻐짐
+    CSS하고 레이아웃 잡기(디스플레이 요소), 하루 사생대회 하고 그다음 자바스크립트로 넘어가자 -->
+
+</body>
+</html>
