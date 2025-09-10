@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>글꼴을 변경 해보자</title>
+    <!-- link 태그로 가져옴 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap" rel="stylesheet">
+    <style>
+        /* font-family 스타일 적용 */
+        #ff1 {
+            font-family: 궁서체;
+        }
+
+        #ff2 {
+            font-family: 돋움체;
+        }
+
+        #ff3 {
+            font-family: 승철체; /* 없는거 쓰면 반영안됨 */
+        }
+        /* 폰트는 컴퓨터에 깔리는 프로그램이라서 내걸로 만들어도 다른사람이 폰트 없으면 안나올 수 있음 */
+        /* 보통 웹개발 할때는 운영체제 내장 폰트를 쓰는게 아니라 웹폰트를 씀 */
+
+        /* asterisk는 전체 요소에 반영 */
+        #ff3 {
+        font-family: "Nanum Pen Script", cursive;
+        font-weight: 400;
+        font-style: normal;
+        }
+
+        /* font-size 적용해보기 */
+        /* 기본은 16px */
+        #fs1 {
+            font-size: 22px;
+        }
+
+        /* 글꼴마다 기본 글자 크기가 있음, 이걸 배율로 기본 글꼴의 크기를 조절할 수 있음 */
+        #fs2 {
+            font-size: 3em;
+        }
+
+        /* % 써서 애매하게도 조절가능 */
+        #fs3 {
+            font-size: 112%;
+        }
+
+        #fw1 {
+            font-weight: bold;
+        }
+
+        #fw2 {
+            font-weight: bolder;
+        }
+
+        #fw3 {
+            font-weight: lighter;
+        }
+
+    </style>
+
+</head>
+<body>
+    
+    <!-- 이것도 원래 font-size로 스타일 부여해서 글자 크기 조절해야함, 글자 크게 쓰겠다고 h1을 쓰는게 아니고 -->
+    <h1>글꼴 관련 스타일 속성</h1>
+
+    <h3>font-family : 글꼴을 지정할 때 사용</h3>
+
+    <pre>
+        [ 표현법 ]
+        선택자 {
+            font-family : 바꾸고싶은글꼴명;
+        }
+    </pre>
+
+    <!-- p#ff${글꼴테스트$}*3 -->
+    <p id="ff1">글꼴테스트1</p>
+    <p id="ff2">글꼴테스트2</p>
+    <p id="ff3">글꼴테스트3</p>
+
+    <h3>* 외부 웹 폰트 사용법</h3>
+
+    <!-- 뭘 쓸 지 모르겠다면 Noto Sans 쓰면 됨, 얘가 표준이라고 보면 된다. 깔끔함 그 자체 -->
+    <!-- 로고는 세리프 나머지는 산세리프 -->
+    <!-- 제일 유명한 거 helvetica(근데 유료) -->
+    <!-- 유튜브 영편이나 웹에서 쓸거없고 모르겠으면 만만한 노토산스 -->
+    <!-- 귀여운거 절대금지, 회사는 싫어함, 오늘은 맘대로 쓰는 날이니까 걍 써보자 -->
+    <p>
+        웹 폰트 제공 사이트
+        <a href="http://fonts.google.com" target="_blank">구글웹폰트</a>
+    </p>
+    <!-- 폰트 골라서 get font > get embed code 클릭해서 copy -->
+    
+    <hr />
+
+    <h3>font-size : 글꼴의 크기를 조절할 때 사용</h3>
+
+    <pre>
+        [ 표현법 ]
+
+        선택자 {
+            font-size : 크기에 해당하는 숫자(단위 : px / em / %);
+        }
+    </pre>
+    <!-- 단위는 여러개, 폰트마다 기본 사이즈가 있어서 배율(em), %로 바꾸거나, 픽셀단위로 지정 -->
+
+    <!-- ul>li#fs${사이즈테스트}*3 -->
+    <ul>
+        <li id="fs1">사이즈테스트</li>
+        <li id="fs2">사이즈테스트</li>
+        <li id="fs3">사이즈테스트</li>
+    </ul>
+
+    <hr />
+    
+    <h3>font-weight : 글꼴의 두께를 표현할 때 사용</h3>
+
+    <pre>
+        [ 표현법 ]
+        선택자 {
+            font-weight : normal / bold / bolder / lighter
+                         / 100 ~ 900
+        }
+    </pre>
+    <!-- normal이 default, 400이고 숫자로 표현하면 100부터 900까지 부여가능 -->
+
+    <ul>
+        <!-- li#fw$*3 -->
+        <li id="fw1">굵은 글꼴로 변경</li><!-- bold는 폰트를 바꾸는 것(폰트 만드는 사람이 레귤러만 만들었다면 bolder를 해도 반영이 안됨) -->
+        <li id="fw2">원래 굵기보다 더 굵게</li><!-- bolder는 원래 굵기보다 더 굵게 바꾸는 것(폰트 만드는 사람이 만들어놓은 900짜리로 변경됨) -->
+        <li id="fw3">원래 굵기보다 더 얇게</li><!-- 이것도 폰트 만드는 사람이 lighter 만들어뒀어야함 -->
+    </ul>
+
+    <hr />
+
+    <h3>font-style : 기울이고 싶을 때 사용</h3>
+
+    <pre>
+        [ 표현법 ]
+        선택자 {
+            font-style : normal / italic / oblique;
+        }
+
+        -> italic : 기울임 글꼴, oblique : 원래 폰트를 기울임
+    </pre>
+    <!-- normal이 기본, italic과 oblique 둘 다 기울임 -->
+    <!-- oblique도 폰트 제공자가 oblique 버전을 만들어놨어야 쓸 수 있음 -->
+
+    <ul>
+        <li style="font-style: italic">italic</li>
+        <li style="font-style: oblique">oblique</li>
+    </ul>
+    <!-- 지금 기본폰트는 반영 되고있음, 웹에서 가져다쓰면 반영안될수도있음 -->
+
+</body>
+</html>

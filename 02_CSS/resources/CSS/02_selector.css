@@ -67,3 +67,132 @@ class선택자를 활용해서 써야지! 일단 기본선택자를 활용해서
 .div-class[name~="name3"] {
     background-color: mediumpurple;
 }
+
+/* 2. 자식선택자와 후손선택자 */
+/* - 자식선택자 a>b: a요소의 자식들 중 b요소만을 선택 */
+
+/* id속성값이 test1인 요소의 자식들 중에서 h4요소만 선택 */
+/* 일단 id선택자를 먼저 써야함 # + id속성값 */
+/* 자식요소를 선택하고싶은거니까 > */
+/* 자식요소 많은데 그중에서 h4 선택하고싶은거니까 h4 */
+#test1>h4 {
+    color:rgb(35, 99, 200);
+}
+
+/* test1 후손들 중 div의 자식인 ul의 자식인 li만 고르고싶음 */
+/* 후손선택자 a b : a요소의 후손(모든하위요소)들 중 b요소 선택 */
+/* 아이디가 test1인 후손 중의 li 라고 작성하면?
+div가 가지고 있는 모든 후손요소가 선택됨, 이렇게 말고
+div의 자식인 ul의 자식 중에 li둘만 고르고 싶은데용
+> 이걸 여러번 중첩해서 갈 수 있음
+*/
+#test1 li {
+    background-color: firebrick;
+}
+
+/* id속성값이 test1인 요소의 자식들 중 ul요소의 자식들 중 li요소를 선택 */
+/* 중첩해서 자식요소를 선택한 것에서 자식요소를 선택 */
+#test1 > ul > li {
+    color: white;
+}
+
+/* 선택자는 이렇게 여러개의 선택자를 혼합해서 사용함 */
+/* html은 화면이라서 엄청 자주 바뀌는 부분(중요하다고 생각한다면 하루에도 세번씩 바꿀 수 있음) */
+/* id를 달아서 id선택자로 스타일을 부여했다면? */
+#title {
+    background-color: green;
+}
+
+/* first-child, last-child : 가상선택자 */
+#test1 > h4:first-child {
+    color:rgb(141, 11, 44);
+}
+
+/* 이건 지금 적용안됨, 뭔가 잘못한듯, last-child 말고 last-of-type이면 원하는게 바뀌긴함 */
+#test1 > h4:last-child {
+    color:rgb(78, 90, 10);
+}
+
+#test1 > h4:nth-child(3) {
+    background-color: black;
+}
+
+/* a + b : a요소 뒤에 있는 b요소 딱 하나만 선택 */
+
+/* id속성값이 test2인 요소 뒤에있는 div요소 딱 하나만 선택 */
+#test2 + div {
+    background-color: lightpink;
+}
+
+/* + 는 진짜 딱 바로뒤에있는걸 고르니까 이건안됨 */
+/* #test2 + ul {
+    color: red;
+}
+*/
+
+/* 이렇게 해야함, 바로 앞에 있는 요소를 기준점으로 잡아줘야함 */
+div + ul {
+    color: red;
+}
+
+/* a ~ b : a요소 뒤에 있는 모든 b요소 선택 */
+#test2 ~ ul {
+    color : rosybrown;
+}
+/* 단점은 이 아래에 있는 ul이 전부 선택되어 적용될것임 */
+
+/* 반응 선택자 */
+/* 일단 클래스 선택자로 스타일 부여 먼저 해보자 */
+.area {
+    width: 100px;
+    height: 100px;
+    background-color: palevioletred;
+}
+
+/* 클릭하고 있는 동안이 active */
+#active-test:active {
+    background-color: purple;
+    cursor: pointer;
+}
+
+/* 호버도 해보자, 요소의 경계 안으로 들어가면 선택(hover)되는 것 */
+#hover-test:hover {
+    background-color: orangered;
+    cursor: pointer;
+}
+
+/* 5. 상태 선택자 */
+/* 체크박스 체크됐을 때 네모 키우고 싶다면 이렇게 */
+input[type="checkbox"]:checked {
+    width: 20px;
+    height: 20px;
+    /* 체크됐을 때 폰트 키우고 싶다면 이렇게? 아님ㅋ 선택을 체크박스로 해서 부여했잖앙, 글자는 라벨거(컨텐트)임 */
+    font-size: 20px;
+}
+
+/* 라벨의 컨텐트를 선택해서 글자 크기를 키워야함, 어떻게 선택해?
+체크박스를 체크했을 때 체크한 것만 글자 크기를 키우고싶음
+체크박스를 체크했을 때 바로 뒤에 있는 라벨 하나를 키우고싶은것으로 작성
+*/
+input[type="checkbox"]:checked + label {
+    font-size: 20px;
+}
+
+/* 그냥 이렇게 하면 항상 보라색 */
+/* #input-el {
+    background-color: purple;
+}
+*/
+
+/* 이렇게 해야 focus 되면 보라보라! */
+#input-el:focus {
+    background-color: purple;
+}
+
+button:enabled {
+    background-color: yellowgreen;
+}
+
+button:disabled {
+    background-color: rgb(223, 124, 144);
+}
