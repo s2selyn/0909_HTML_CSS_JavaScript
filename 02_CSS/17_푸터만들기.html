@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>푸터다 푸터</title>
+
+    <!-- body에 footer 태그 만들고 스타일 부여하기 -->
+    <style>
+        div,
+        footer,
+        p {
+            /* border: 1px solid red; 다했으면 얘만 지우면 됨 */
+            box-sizing: border-box;
+        }
+
+        /* 16에서 만든 푸터영역은 가로 1000, 세로 160, 여기에 맞춰서 만들기 */
+        footer {
+            width: 1000px;
+            height: 160px;
+        }
+        /* 따로 작업해서 다 만든 다음에 한꺼번에 붙여넣는 식으로 작업할것임 */
+
+        /* 틀 역할 하는 친구부터 크기를 지정하는 작업부터 하고 내용을 작업함 */
+
+        /* ---------- 이 밑에거만 나중에 들고가야지 ---------- */
+        /* footer를 두개로 나누었음 */
+        #footer_1, #footer_2 {
+            width: 100%; /* 부모요소 길이만큼 */
+        }
+
+        #footer_1 {
+            height: 20%;
+            background: orangered;
+        }
+
+        #footer_2 {
+            height: 80%;
+        }
+
+        /* 나중에 갖다붙이러 갈건데 거기에도 a태그가 있을 수 있음 */
+        /* footer_1의 자식요소 a태그만 선택 */
+        #footer_1 > a {
+            text-decoration: none;
+            color: black;
+            margin: 33px;
+
+            /* 글자 수직정렬 하고싶다 */
+            vertical-align: middle;
+
+            /* 호버효과도 주고싶다 */
+            &:hover {
+                color: yellowgreen;
+            }
+        }
+
+        /* p 태그에 대한 세부스타일 설정 */
+        /* footer_2의 자식요소인 p 태그만 선택 */
+        #footer_2 > p{
+            width: 100%;
+            margin: 0; /* 0을 주면 있던걸 없애줌 */
+            background-color: khaki;
+            font-family: "궁서체";
+        }
+        
+        /* 안쪽 p 태그에 대한 세로길이를 지정 안해줘서 튀어나오고 그런다.. 부모에 대한 비율로 height 지정 */
+        #p_1 {
+            height: 80%;
+
+            /* content 스타일도 부여 */
+            /* 글자크기 기본값 16이라서 그거보다 작게가야함 */
+            font-size: 14px;
+
+            /* 딱 붙은 거 떼주고싶음 */
+            padding-top: 5px;
+            padding-left: 4px;
+        }
+
+        #p_2 {
+            height: 20%;
+
+            /* p_1에 padding 넣었더니 크기 커져서 밀려났음, 글자크기 줄여줌 */
+            font-size: 11px;
+
+            /* 얘도 패딩 채워주기, 통일성 */
+            padding-left: 4px;
+        }
+    </style>
+</head>
+<body>
+    <footer>
+        <!-- 웹디자인 저작권때문에 함부로 갖다쓰면 안된다요, 그래서 학원거 보면서 함 -->
+        <!-- div 두개로 나눠서 작업해뒀네요? 우리도 따라해보기 -->
+        <!-- #footer_$*2 -->
+        <div id="footer_1">
+            <!-- a 태그에 넣을 게 없을 때는 보통 #을 넣어둠, 만들어서 넣어놔도 되고 -->
+            <!-- 와 a 태그 파란글자에 밑줄 참을 수 없군, 스타일 바꾸려고 CSS 배웠으니까 작성하러 ㄱ -->
+            <!-- 파란색 참아도 누르면 보라색까진 못참겠네요 -->
+            <a href="#">이용약관</a> |
+            <a href="#">개인정보 처리방침</a> |
+            <a href="#">강사 구인</a>
+        </div>
+
+        <!-- 이 안에도 왠지 세개로 나눠놓은 것 같다, 까보니 진짜임
+        각 친구들의 여백도 있고 스타일도 달라보임, 이러려면 나눠서 작업해야함
+        두개만 해보자, 우리 footer_2 div 안도 2개로 나눠야함(뭘로 나눌지는 선택의 영역)
+        학원은 p로 구분했음(문단), KH 따라가기 해보려는데 스타일을 인라인으로 준 것을 발견ㅋㅋ 급했나봄
+        -->
+        <div id="footer_2">
+            <!-- p#p_$*2 -->
+            <p id="p_1">
+                강남점 1관 : 서울특별시 강남구 테헤란로14길 6 남도빌딩 2F, 3F, 4F, 5F, 6F <br />
+                강남점 2관 : 서울특별시 강남구 테헤란로10길 9 그랑프리 빌딩 4F, 5F, 7F <br />
+                종로점 : 서울특별시 중구 남대문로 120 그레이츠 청계(구 대일빌딩) 2F, 3F <br />
+                부산점 : 부산 부산진구 중앙대로 627 삼비빌딩 2F, 12F
+            </p>
+            <p id="p_2">
+                Copyright © 2025 KH JongNo A-Class All Right Reserved
+            </p>
+            <!-- 써놓으니까 튀어나옴, p태그는 기본 스타일이 있음, margin이 부여되어 있다, 이거 지워주러 위로 ㄱ -->
+        </div>
+    </footer>    
+</body>
+</html>

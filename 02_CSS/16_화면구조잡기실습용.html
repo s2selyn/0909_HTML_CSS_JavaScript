@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>아주 보기 좋습니다</title>
+    <style>
+        /* 시작할 때 선 그어놓고 시작하고 나중에 지우기 */
+        div,
+        header,
+        main,
+        footer,
+        nav {
+            border: 1px solid red;
+            box-sizing: border-box;
+        }
+
+        #wrap {
+            width: 1000px;
+            height: 800px;
+            margin: auto;
+
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            flex: 2;
+            display: flex;
+        }
+
+        footer {
+            flex: 2;
+        }
+
+        main {
+            flex: 5.5;
+            display: flex;
+        }
+
+        nav {
+            flex: 0.5;
+        }
+
+        /* 안에꺼 만들 때 flex말고 다른거 해서 직접 정렬 지정해서 해보자 */
+        /* header 안의 자식요소는 가로로 배치할거니까 header에 display 속성 부여(main도) */
+        /* 자식요소는 id를 이용해서 하나씩 선택해서 부여해보자 */
+        /* 내부 요소들 너비 비율 설정 */
+        #header_1 {
+            flex: 2;
+        }
+
+        #header_2 {
+            flex: 6.5;
+        }
+
+        #header_3 {
+            flex: 1.5;
+        }
+
+        #content_1 {
+            flex: 1.5;
+        }
+
+        #content_2 {
+            flex: 6;
+        }
+
+        #content_3 {
+            flex: 2.5;
+        }
+
+        /* 구조잡기 했으니 내용넣기 하러 내려감 */
+    </style>
+</head>
+<body>
+    <!-- + 로 연결, Emmet 문법도 공식문서가 있음, 공식문서에 + 쓰라고 되어있다네요(근데 생략가능ㅎ) -->
+    <!-- #wrap>(header>#header_$*3)+nav+(main>#content_$*3)+footer -->
+    <div id="wrap">
+        <header>
+            <div id="header_1"></div>
+            <div id="header_2">
+                <!-- 요기에 검색창 하나 넣어주자, 얘 크기는 650에 160 -->
+            </div>
+            <div id="header_3"></div>
+        </header>
+        <nav></nav>
+        <main>
+            <div id="content_1"></div>
+            <div id="content_2"></div>
+            <div id="content_3"></div>
+        </main>
+        <footer>
+            <!-- footer 만들 때 여기에 작업하는 게 아님! 17_푸터만들기.html 생성해서 거기서 ㄱ -->
+        </footer>
+    </div>
+
+</body>
+</html>
