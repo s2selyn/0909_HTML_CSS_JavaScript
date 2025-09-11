@@ -115,20 +115,37 @@
         }
 
         #z-1 {
-            background: lightgoldenrodyellow;
+            background: rgb(215, 169, 255);
             top: 100px;
             left: 100px;
+            z-index: 1;
         }
 
+        /* z-index에 정수값을 입력함, 숫자가 높으면 앞으로 튀어나옴 */
+        /* 아무 숫자나 상관없는데 쌓다보면 애매하게 올라가니까 작은 값으로? ㅎㅎ 1단위가 나을지도 */
+        /* 자주쓰게됨, 다른값이 얼마인지도 찾아봐야하고 */
+
         #z-2 {
-            background: palegoldenrod;
+            background: rgb(218, 145, 236);
             top: 50px;
             left: 50px;
+            z-index: 20000;
         }
 
         #z-3 {
-            background: goldenrod;
+            background: rgb(97, 32, 218);
         }
+
+        .float-test {
+            width: 100px;
+            height: 100px;
+            border: 1px solid white;
+            float: left;
+        }
+        /* 둥둥 띄우기, left / right 지정 가능 */
+        /* 조심해야할것들, 아래에 다른 요소를 추가하면? 아래로 가지 않고 옆에 다음요소가 붙어버림
+        떠있는걸 해제해줘야 다음것이 제대로 아래로 내려감
+        */
     </style>
 </head>
 <body>
@@ -186,6 +203,31 @@
     </div>
 
     <br /><br /><br />
+
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+
+    <h3>float</h3>
+
+    <p>
+        페이지 내의 요소를 화면으로부터 띄워서 왼쪽 오른쪽으로 배치할 수 있는 속성
+    </p>
+
+    <!-- 선택지 3개, flex를 쓰거나, inline-block을 쓰거나, float로 띄우거나
+    flex가 제일 좋고 권장하는 방법
+    나머지는 사용한다고 안되는건 아니고
+    -->
+
+    <!-- .float-test{$}*5 -->
+    <div class="float-test">1</div>
+    <div class="float-test">2</div>
+    <div class="float-test">3</div>
+    <div class="float-test">4</div>
+    <div class="float-test">5</div>
+
+    <!-- float 해제하는법, 아무 태그나 써도 되는데 보통 줄바꿈 요소 -->
+    <br clear="both" />
+
+    <div>안녕하세요</div>
     
 </body>
 </html>
