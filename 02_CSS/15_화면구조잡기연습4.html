@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>화면 구조잡기 연습해야징</title>
+    <!-- 1. 시멘틱 or div -->
+    <!-- 2. display 속성 직접 or flex -->
+    <!-- 1은 시멘틱 2는 flex로 해보자 -->
+    <!-- flex하면 길이 생각 안해도 돼서 좋긴 한데 공부하는거니까 어려운것도 해봐야지
+    일단 여기까지만 flex하고 다음 파일에 ㄱ -->
+
+    <style>
+        div,
+        header,
+        main,
+        footer {
+            border: 1px solid red;
+            box-sizing: border-box;
+        }
+
+        /* 배치계획
+        header, footer는 20씩, main은 60
+        header의 자식은 20, 50, 30
+        main의 자식은 15, 50, 35
+        */
+        /* 전체를 감싸는 친구부터 */
+        #wrap {
+            width: 1000px;
+            height: 800px;
+            margin: auto;
+
+            /* 부모요소에 flex 부여해서 나누기로 했음 */
+            display: flex;
+            /* 다 왼쪽에 붙어버림 */
+
+            flex-direction: column;
+            /* 이렇게 해야 바로 아래 자식 요소를 세로로 배치 */
+        }
+
+        /* header, footer 영역 */
+        /* 세로길이를 부모요소의 20%로 줄거에요 */
+        header {
+            flex: 2;
+            display: flex;
+        }
+
+        footer {
+            flex: 2;
+        }
+
+        /* header, footer가 2씩 가져갔으니까 남은 6을 main에게 준다 */
+        main {
+            flex: 6;
+            display: flex;
+        }
+
+        /* wrap 안의 세개 다했음 */
+
+        /* header 안의 div 요소 세개 할 차례인데, div니까 한줄씩 차지해서 세로로 쭈루룩 나열됨
+        가로로 붙여서 나란히 하고싶음, 부모인 header태그의 display 속성을 flex로 부여
+        2 : 5 : 3으로 나눌것이고요
+        */
+        #header_1 {
+            flex: 2;
+        }
+
+        #header_2 {
+            flex: 5;
+        }
+
+        #header_3 {
+            flex: 3;
+        }
+        /* header의 자식요소 끝 */
+
+        /* main의 자식요소 가로배치 하고싶으니까 main에서 display 속성 flex로 작성 */
+        /* 1.5 : 5 : 3.5 (또는 15 : 50 : 35) */
+        #content_1 {
+            flex: 1.5;
+        }
+
+        #content_2 {
+            flex: 5;
+        }
+
+        #content_3 {
+            flex: 3.5;
+        }
+
+        /* 재미 추구를 위한 진화 시도 */
+        /*
+        nav bar가 들어갈 영역 추가해보기
+
+        전체 요소의 가로 길이는 1000px, 세로 길이는 800px
+
+        header와 footer는 부모요소 길이의 20%인 세로길이
+        nav bar는 부모요소의 5%인 세로길이
+        main은 부모요소의 55%인 세로길이
+
+        header의 첫번째 자식영역은 부모의 20% 가로길이
+        header의 두번째 자식영역은 부모의 65% 가로길이
+        header의 세번째 자식영역은 부모의 15% 가로길이
+
+        content의 첫번째 자식영역은 부모의 15% 가로길이
+        content의 두번째 자식영역은 부모의 60% 가로길이
+        content의 세번째 자식영역은 부모의 25% 가로길이
+
+        아까에서 nav bar 역할을 할 div 요소 하나 늘어남
+        = 총 11개
+        */
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <!-- 이번엔 header도 세개, main도 세개로 나눌것임 -->
+        <header>
+            <!-- #header_$*3 -->
+            <div id="header_1"></div>
+            <div id="header_2"></div>
+            <div id="header_3"></div>
+        </header>
+        <main>
+            <!-- #content_$*3 -->
+            <div id="content_1"></div>
+            <div id="content_2"></div>
+            <div id="content_3"></div>
+        </main>
+        <footer></footer>
+    </div>
+    <!-- 미리 계획했다면 이렇게 한번에 가능 #wrap>(header>#header_$*3)(main>#content_$*3) -->
+</body>
+</html>

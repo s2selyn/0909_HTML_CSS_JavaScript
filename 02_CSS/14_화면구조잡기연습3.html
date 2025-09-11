@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>구조를 잡아보자</title>
+
+    <style>
+        div,
+        main,
+        header,
+        footer {
+            border: 1px solid red;
+            box-sizing: border-box;
+        }
+
+        #wrap {
+            width: 1000px;
+            height: 800px;
+            margin: auto;
+            display: flex;
+            /* 세로로 배치하기 */
+            flex-direction: column;
+        }
+
+        /* 후손 다 생각하는게 아니고 바로 아래의 자식요소 먼저 생각함 */
+        /* 주석을 적어주고 유지보수가 용이하도록 해주자 */
+
+        /* header, footer 영역 */
+        header {
+            flex: 2;
+        }
+
+        footer {
+            flex: 2;
+        }
+
+        /* main 영역 */
+        main {
+            flex: 6;
+            /* header, footer가 2씩 총 4를 가져갔으므로 6이 남음 */
+
+            /* 바깥쪽 레이아웃 잡았당, 그 다음 main의 자식요소에 대한 스타일 부여 */
+            /* 얘네는 div요소니까 어떻게 배치되어있나요? 블럭요소로 한줄씩
+            우리는 옆으로 붙게 배치하려고 했음, 안의 div들을 옆으로 배치할 수 있게 속성 추가로 진행해야함
+            가로로 배치하고싶으면 부모요소인 main에게 가로방향으로 자식요소를 정렬할 수 있도록 display 속성을 flex로 부여함
+            */
+            display: flex;
+            /* 세로는 따로 관리 안해도 flex했기때문에 부모길이만큼 차지했음 */
+        }
+        
+        /* 두개 자식요소의 가로를 따로따로 지정하고싶으니까 id로 선택해야함 */
+        /* main의 내부 영역 */
+        #content_1 {
+            flex: 7;
+        }
+
+        #content_2 {
+            flex: 3;
+        }
+
+        /* 레이아웃 잡을 때는 밖에 큰것부터 안으로 들어가면서, 내용 채울 때는 안에 작은것부터 */
+
+        /* 그냥 이렇게만 하니까 심심쓰, header 영역을 3등분하고, content 영역도 3등분을 해보자 */
+        /* 이 페이지를 7개의 영역으로 구분해보자 */
+        /*
+        전체를 감싸는 요소 하나
+        안에 크게 세개로 나누는 요소 3개
+        헤더 안쪽에 세개로 나눌 요소 3개
+        메인 안쪽에 세개로 나눌 요소 3개
+        = 총 10개의 요소로 화면 나누기
+        */
+
+    </style>
+</head>
+<body>
+    <!--
+    전체를 먼저 감싸는 요소 하나 : div 하나 확정
+    3개로 나누기 : 1. 여기를 div요소를 쓸 지 시멘틱 태그를 쓸 지 정해야함(시멘틱 태그 쓰기로 결정)
+    가운데 요소에 2개의 요소 추가 : 2. 이 안의 자식요소들에 display를 부여할 지, 부모요소에 flex를 부여할 지(부모요소에 flex로 배치하기)
+    = 총 6개
+
+    wrap의 자식들이 flex를 쓰면 가로로 들어가니까 세로로 바꿔주는 속성 부여가 필요함
+    display: flex;를 작성한 후에
+    flex-direction: column;
+    -->
+    <div id="wrap">
+        <header></header>
+        <main>
+            <!-- #content_$*2 생성해서 각각 스타일 속성 부여할거니까 id로 -->
+            <div id="content_1"></div>
+            <div id="content_2"></div>
+        </main>
+        <footer></footer>
+    </div>
+</body>
+</html>
