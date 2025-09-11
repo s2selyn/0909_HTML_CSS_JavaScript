@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>1번이다 1번</title>
+    <style>
+
+        body {
+            background-color: gray;
+        }
+
+        .size-test {
+            border: 10px solid lemonchiffon;
+        }
+
+        #test1 {
+            width: 400px;
+            height: 200px;
+        }
+
+        /* 가변길이는 부모요소의 영향을 받음(창 크기에 따라 늘어나고 줄어들고) */
+        #test2 {
+            width: 40%;
+            height: 200px;
+        }
+
+        /* div 요소의 배경으로 넣기 위한 배경색 만들어두기 */
+        .red {
+            background: red;
+        }
+
+        .blue {
+            background: blue;
+        }
+
+        .green {
+            background: green;
+        }
+
+        .yellow {
+            background: yellow;
+        }
+
+        .pink {
+            background: pink;
+        }
+
+        /* 클래스속성 부여하기 위한 스타일 만들어두기 */
+        .nemo {
+            width: 150px;
+            height: 150px;
+            border: 1px solid black;
+        }
+        /* border 색상 지정 안하면 기본색은 black */
+
+        .inline {
+            display: inline;
+            /* 여기까지 작성하고 보면 컨텐트 영역이 없으니까 border만 남아서 까만 border만 합쳐져서 네모처럼 보임 */
+            /* content 1, 2, 3, 4, 5 각각 추가하면 보이긴 함 */
+        }
+
+        /* inline 요소와 block 요소의 장점을 다 쓸 수 있음 */
+        .inline-block {
+            display: inline-block;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- 화면에 요소를 배치할 때 구상(생각)해야함, 구조잡을때 필요한 친구들 공부하기 -->
+    <!-- 앞의것들은 생각안해도되고 정리해뒀다가 필요할때 찾아보기만 하면 됨 -->
+    <!-- 디스플레이 속성 관련해서 블럭 인라인 플렉스 히든 등 -->
+
+    <!--
+        블럭요소  : 한 줄 단위로 영역이 잡힘
+        인라인요소: content크기만큼만 영역이 잡힘
+    -->
+
+    <h1>레이아웃 관련 스타일</h1>
+
+    <h3>width, height</h3>
+
+    <p>content영역의 크기를 조절하는 속성</p>
+    <!-- padding이나 border를 만들었을 때, content 영역만 조절하니까 가변길이를 속성으로 부여한다면 조심해야함 -->
+    
+    <p>고정길이</p>
+    <div id="test1" class="size-test"></div>
+    <h4>가변길이</h4>
+    <div id="test2" class="size-test"></div>
+
+    <hr />
+
+    <h3>display : 화면 배치 방법 변경</h3>
+
+    <p>
+        블럭요소 또는 인라인요소의 배치속성을 바꿔줄 수 있음
+    </p>
+    <!-- CSS는 선택자랑 display를 잘 알아두자 -->
+
+    <pre>
+        [ 표현법 ]
+        선택자 {
+            display: inline / block / inline-block / hidden(안보이게)
+                  / flex(유연하게, 편하게) / table-cell ... 종류가 많음
+        }
+    </pre>
+    <!-- block, inline-block, hidden, flex 네 개 정도 자주 사용함 -->
+
+    <p>div 기본</p>
+    <!-- .nemo*5 생성 후에 style 태그에서 만들어놓은 색상이름을 클래스 속성값에 추가 -->
+    <div class="nemo red"></div>
+    <div class="nemo blue"></div>
+    <div class="nemo green"></div>
+    <div class="nemo yellow"></div>
+    <div class="nemo pink"></div>
+    <!-- div는 block 요소니까 하나의 요소가 한 줄씩 영역을 차지하니까 붙어있는 요소지만 아래로 내려가버림 -->
+    <!-- 옆의 공간을 낭비하게 되니까 display 속성으로 옆으로 나란히 붙여서 배치하게 바꿔보자 -->
+    
+    <hr />
+
+    <!-- div 요소 다섯개를 inline 요소로 변경해보기, class 속성값에 inline 추가 -->
+    <p>div : inline</p>
+
+    <div class="nemo inline red">1</div>
+    <div class="nemo inline blue">2</div>
+    <div class="nemo inline green">3</div>
+    <div class="nemo inline yellow">4</div>
+    <div class="nemo inline pink">5</div>
+
+    <br />
+    <strong>display : inline == width, height속성 적용 X</strong>
+    <!-- 딱 content 크기만큼만 들어감 -->
+    <!-- 우리가 하고싶은건 이게아님 -->
+
+    <hr />
+
+    <!-- 클래스 속성을 inline-block으로 추가 -->
+    <div class="nemo inline-block red"></div
+    ><div class="nemo inline-block blue"></div><!--
+    --><div class="nemo inline-block green"></div>
+    <div class="nemo inline-block yellow"></div>
+    <div class="nemo inline-block pink"></div>
+    <!-- 마참내 우리가 원하던 한줄나열 -->
+    <!-- 어 근데 block 요소는 따닥따닥 붙어있었는데 얘는 한칸씩? 조금 떨어져있음, 이건 공백(space) 한 칸 -->
+    <!-- 요소 쓸 때 작성한 공백문자들이 HTML이니까 공백이 아무리 많아도 한칸으로 인식되어서 -->
+    <!-- inline-block에 공백 들어간 걸 없애고 요소를 붙이고싶으면 공백문자를 없애면됨,
+    보통 작업자들이 없애는 방법,
+    닫는 div태그의 마지막 >를 떼서 그 다음 여는 태그 앞에 붙임 -->
+    <!-- 아니면 주석으로 이어버리기 -->
+
+</body>
+</html>

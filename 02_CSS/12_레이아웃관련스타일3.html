@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>3번이다 3번~~~</title>
+    <style>
+
+        /* 눈이 아파서 다크모드작업! */
+        body {
+            background-color: black;
+            color: white;
+        }
+
+        /* 클래스 선택자를 이용해서 공통속성 */
+        .vis-test {
+            width: 150px;
+            height: 150px;
+            border-radius: 75px;
+        }
+
+        #vis1 {
+            background: red;
+        }
+        /* background-color 라고 안써도 됩니다요 */
+
+        #vis2 {
+            background: orange;
+
+            /* 있긴 있는데 안보이게 하기, 근데 공간은 차지하고 있음 */
+            /* visibility: hidden; 안보임! 공간을 차지함*/
+
+            /* 요소가 있음, 공간도 안보이게 됨 */
+            /* 안보임! 공간도 차지안함 */
+            display: none;
+
+            /* 압도적으로 display: none; 을 많이 사용함 */
+            /* 마우스 커서 올렸을 때나 클릭했을 때 그냥은 보이지 않던 하위메뉴가 노출되는 형태 */
+            /* 클릭 시 display의 속성값이 바뀌도록 (block)설정해서 구현할 수 있음 */
+        }
+
+        /* 웹브라우저에서의 시각효과는 전부 CSS */
+
+        #vis3 {
+            background: green;
+        }
+
+        #sinholight {
+            border: 1px solid white;
+            width: 150px;
+        }
+
+        .outer {
+            border: 1px solid white;
+            position: relative; /* 얘가 이제 자식요소들의 기준점 */
+
+            /*
+                1단계 : 기준이 될 요소에 position: relative;
+                2단계 : 이동시킬 요소에 position: absolute;
+                3단계 : 이동시킬 요소를 얼마나 이동할건지 기술
+            */
+
+        }
+
+        .position {
+            border: 1px solid yellow;
+        }
+
+        #p-1 {
+            width: 300px;
+            height: 300px;
+            background: aqua;
+        }
+
+        #p-2 {
+            width: 200px;
+            height: 200px;
+            background: aquamarine;
+            position: absolute; /* 기준점을 기준으로 배치하겠음 */
+            /* 여기까지 그냥두면 기준점부터 어디에서 시작할지를 정해주지 않아서 이상한데 가있음 */
+
+            top: 50px; /* 기준점에서부터 위에서 얼마나 떨어진 곳에 배치할것인지 */
+            left: 70px; /* 기준점에서부터 왼쪽에서 얼마나 떨어진 곳에 배치할건지 */
+
+            /* 그냥 끝내기 아쉬우니 변화구, 기울일 수 있음 */
+            transform: rotate(10deg);
+        }
+
+        #p-3 {
+            width: 100px;
+            height: 100px;
+            background: deepskyblue;
+            /* 얘도 부모요소를 기준으로 잡아두었기 때문에 거기에 맞추기 위해서는 position 속성부여
+            값은 absolute */
+            position: absolute;
+            top: 100px;
+            left: 30px;
+
+            /* 얘도 기울여보자, 돌려돌려, 음수로 넣으면 왼쪽으로 */
+            transform: rotate(-10deg);
+        }
+
+        #lg {
+            position: fixed;
+            top: 20px;
+            right: 70px;
+            width: 200px;
+            height: 600px;
+            background: lightpink;
+        }
+
+        .z-test {
+            width: 150px;
+            height: 150px;
+            border: 1px solid white;
+            position: absolute;
+        }
+
+        #z-1 {
+            background: lightgoldenrodyellow;
+            top: 100px;
+            left: 100px;
+        }
+
+        #z-2 {
+            background: palegoldenrod;
+            top: 50px;
+            left: 50px;
+        }
+
+        #z-3 {
+            background: goldenrod;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>배치 관련 스타일</h1>
+
+    <h3>visibility</h3>
+
+    <div id="sinholight">
+
+        <!-- .vis-test#vis$*3 -->
+        <div class="vis-test" id="vis1"></div>
+        <div class="vis-test" id="vis2"></div>
+        <div class="vis-test" id="vis3"></div>
+
+    </div>
+
+    <hr />
+
+    <h3>position : 절대위치와 상대위치</h3>
+
+    <!-- .outer>.position#p-${$번 요소}*3 -->
+    <div class="outer">
+        <div class="position" id="p-1">1번 요소</div>
+        <div class="position" id="p-2">2번 요소</div>
+        <div class="position" id="p-3">3번 요소</div>
+    </div>
+
+    <!--
+    블럭요소라서 한줄씩 차지하고있는데 겹치도록 배치해보고싶다
+    첫째는 그대로 두고 첫째 안에 넣어보자
+    이동시킬건데, 그러려면 기준점을 잡아줘야함, 보통은 감싸고 있는 부모요소로 기준점을 잡음
+    부모요소에 position 속성을 먼저 부여함, 이거 안잡으면 body가 기준이 되어버림
+    배치시키고싶은게 p-2 요소니까 이 친구에게도 position 속성을 부여함
+    -->
+
+    <!-- 아까 background image fixed 해둔것처럼 스크롤해도 계속 나를 따라오는 녀석 -->
+    <div id="lg">나를 따라와</div>
+
+    <hr />
+
+    <!-- HTML상에서 아랫줄에 작성되어 있으면 화면상에서 앞으로 튀어나오는 것으로 쌓인 배치가 됨 -->
+    <!-- 이걸 바꿀 수 있는 속성도 해보자 : z-index -->
+    <h3>z-index</h3>
+
+    <p>
+        페이지안에 요소들을 위로 쌓는 속성(z축을 조절)
+    </p>
+
+    <!-- .outer>.z-test#z-${요소$}*3 -->
+    <div class="outer">
+        <div class="z-test" id="z-1">요소1</div>
+        <div class="z-test" id="z-2">요소2</div>
+        <div class="z-test" id="z-3">요소3</div>
+    </div>
+
+    <br /><br /><br />
+    
+</body>
+</html>
