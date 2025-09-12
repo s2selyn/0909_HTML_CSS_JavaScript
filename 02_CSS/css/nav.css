@@ -95,6 +95,7 @@
 #navbar > li > ul a {
     font-size: 11px;
 }
+
 #navbar > li > ul a:hover {
     background: rgba(205, 241, 255, 0.86);
     font-size: 14px;

@@ -27,7 +27,7 @@
         }
 
         #wrap {
-            width: 1000px;
+            width: 1200px;
             height: 800px;
             margin: auto;
 
@@ -79,11 +79,26 @@
 
         #content_3 {
             flex: 2.5;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         #header_1 {
             background-image: url("resources/herb.jfif");
-            background-size: auto;
+            background-size: 100%;
+        }
+
+        #content_3 > a {
+            text-decoration-line: none;
+            color: green;
+            background-color: rgb(255, 255, 116);
+            display: block;
+            text-align: center;
+
+            &:hover {
+                font-size: 17px;
+            }
         }
 
         /* 구조잡기 했으니 내용넣기 하러 내려감 */

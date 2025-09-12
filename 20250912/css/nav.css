@@ -9,25 +9,25 @@ li {
 nav {
     width: 1200px;
     height: 40px;
+
+    padding: 0;
+    margin: 0;
 }
 
-/* -------------------------------------------------- */
-
-/* ul, li는 블럭요소라 아래로 쭉 들어가고 margin, padding이 전부 들어있음
-바깥쪽 ul요소에 스타일을 입히자(자식요소는 부모요소의 스타일을 상속받음)
-*/
 #navbar {
     /* ul요소는 margin / 왼쪽에 padding이 존재해서 다 없애기!! */
-    margin: 0;
-    padding: 0;
+    margin: 0 auto;
+    padding: 0 auto;
     list-style: none;
     height: 100%;
-
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
     /* display: flex; */
     /* 이거만 써도 바로 옆으로 배치시켜줌, 이건 너무 편한 방법이니까 어렵게 해보자 */
 }
 
-/* navbar의 자식요소인 li인소도 부모의 세로길이에 맞추고 가로길이도 지정해주는 작업을 해보자 */
+/* navbar의 자식요소인 li요소도 부모의 세로길이에 맞추고 가로길이도 지정해주는 작업을 해보자 */
 #navbar > li {
     height: 100%;
 
@@ -61,6 +61,20 @@ nav {
     /* vertical-align: middle; */
     /* 블럭요소는 줄간격 속성을 사용함 */
     line-height: 40px;
+
+    /* 파일을 합치면 문제가 되는 부분 해결 */
+    /* 맨 처음에 19번 파일에서 네비게이션바 만들었음
+    작업 다 하고 나서 19번 파일의 navbar 태그는 20번 합체 파일에 넣고
+    19번 파일의 style 태그는 nav.css 파일을 따로 만들어서 넣고
+    20번 합체 파일과 nav.css 파일을 연결함
+    그러고 나서 20번을 열면 문제가 생기는데
+    navbar 내부의 부모요소(li)와 navbar 내부의 자식요소(ul)
+    가운데에 div 요소가 들어가서(???)
+    경계를 거쳐서 지나가야 navbar 내부의 자식 요소로 넘어가게됨
+    커서가 넘어가는 그 사이에는 navebar 내부의 부모요소에 hover하지 않는 상태가 된다
+    */
+    position: relative;
+    transform: scale(1);
 }
 
 /* 하위메뉴는 평상시에 안보이다가 커서 올라가면 보여줘야함 */
@@ -106,6 +120,7 @@ nav {
 #navbar > li > ul a {
     font-size: 11px;
 }
+
 #navbar > li > ul a:hover {
     background: rgba(0, 128, 0, 0.25);
     font-size: 14px;

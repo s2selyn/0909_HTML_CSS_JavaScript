@@ -83,6 +83,10 @@ form {
 /* focus 하면 까만색으로 바뀌는것도 다르게 스타일 부여하자 */
 #search-form input:focus {
     outline: 4px dotted yellowgreen;
+
+}
+#search-form input:hover {
+    outline: 4px dotted yellowgreen;
 }
 
 /* 버튼.. 버튼이라도 살려줘 */
