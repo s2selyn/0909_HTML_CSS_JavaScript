@@ -1,0 +1,61 @@
+#footer_1,
+#footer_2 {
+    width: 100%; /* 부모요소 길이만큼 */
+}
+
+#footer_1 {
+    height: 20%;
+    background: rgb(55, 7, 87);
+}
+
+#footer_2 {
+    height: 80%;
+}
+
+/* 나중에 갖다붙이러 갈건데 거기에도 a태그가 있을 수 있음 */
+/* footer_1의 자식요소 a태그만 선택 */
+#footer_1 > a {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    margin: 33px;
+
+    /* 글자 수직정렬 하고싶다 */
+    vertical-align: middle;
+
+    /* 호버효과도 주고싶다 */
+    &:hover {
+        color: yellowgreen;
+    }
+}
+
+/* p 태그에 대한 세부스타일 설정 */
+/* footer_2의 자식요소인 p 태그만 선택 */
+#footer_2 > p{
+    width: 100%;
+    margin: 0; /* 0을 주면 있던걸 없애줌 */
+    background-color: rgb(160, 139, 180);
+    font-family: "궁서체";
+}
+
+/* 안쪽 p 태그에 대한 세로길이를 지정 안해줘서 튀어나오고 그런다.. 부모에 대한 비율로 height 지정 */
+#p_1 {
+    height: 80%;
+
+    /* content 스타일도 부여 */
+    /* 글자크기 기본값 16이라서 그거보다 작게가야함 */
+    font-size: 14px;
+
+    /* 딱 붙은 거 떼주고싶음 */
+    padding-top: 5px;
+    padding-left: 4px;
+}
+
+#p_2 {
+    height: 20%;
+
+    /* p_1에 padding 넣었더니 크기 커져서 밀려났음, 글자크기 줄여줌 */
+    font-size: 11px;
+
+    /* 얘도 패딩 채워주기, 통일성 */
+    padding-left: 4px;
+}

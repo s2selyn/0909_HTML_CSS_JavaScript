@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>아주 보기 좋습니다</title>
+
+    <!-- 17번 파일의 스타일태그는 css파일로 분리하고, footer 태그는 복사해와서 이 파일 아래에 바꿔치기 -->
+    <link rel="stylesheet" href="css/footer.css">
+
+    <!-- 18번 파일의 스타일태그는 css파일로 분리하고, div 요소 복사해와서 이 파일에 바꿔치기 -->
+    <link rel="stylesheet" href="css/search.css"> 
+
+    <!-- 19번 파일의 스타일태그는 css파일로 분리하고, navbar 요소 복사해와서 이 파일에 바꿔치기 -->
+    <link rel="stylesheet" href="css/nav.css">
+    
+    <style>
+        /* 시작할 때 선 그어놓고 시작하고 나중에 지우기 */
+        div,
+        header,
+        main,
+        footer,
+        p,
+        ul,
+        li,
+        nav {
+            /* border: 1px solid red; 이건 이제 필요없음! 다 합쳤으니 주석처리 */
+            box-sizing: border-box;
+        }
+
+        #wrap {
+            width: 1000px;
+            height: 800px;
+            margin: auto;
+
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            flex: 2;
+            display: flex;
+        }
+
+        footer {
+            flex: 2;
+        }
+
+        main {
+            flex: 5.5;
+            display: flex;
+        }
+
+        nav {
+            flex: 0.5;
+        }
+
+        /* 안에꺼 만들 때 flex말고 다른거 해서 직접 정렬 지정해서 해보자 */
+        /* header 안의 자식요소는 가로로 배치할거니까 header에 display 속성 부여(main도) */
+        /* 자식요소는 id를 이용해서 하나씩 선택해서 부여해보자 */
+        /* 내부 요소들 너비 비율 설정 */
+        #header_1 {
+            flex: 2;
+        }
+
+        #header_2 {
+            flex: 6.5;
+        }
+
+        #header_3 {
+            flex: 1.5;
+        }
+
+        #content_1 {
+            flex: 1.5;
+        }
+
+        #content_2 {
+            flex: 6;
+        }
+
+        #content_3 {
+            flex: 2.5;
+        }
+
+        /* 구조잡기 했으니 내용넣기 하러 내려감 */
+    </style>
+</head>
+<body>
+    <!-- + 로 연결, Emmet 문법도 공식문서가 있음, 공식문서에 + 쓰라고 되어있다네요(근데 생략가능ㅎ) -->
+    <!-- #wrap>(header>#header_$*3)+nav+(main>#content_$*3)+footer -->
+    <div id="wrap">
+        <header>
+            <div id="header_1"></div>
+
+            <!-- 요기에 검색창 하나 넣어주자, 얘 크기는 650에 160 -->
+            <div id="header_2">
+
+                <!-- form 태그가 있어야 입력받고 요청 보내기 가능 -->
+                <!-- action에 적을 게 없는데? #은 또 잘 적는게 아니라네요 -->
+                <!-- 적는 양식이 있음, 나랏돈 사업이라면 뒤가 .do로 끝남(나랏돈 사업이 제일 크다)
+                한국국토정보공사 구경했더니 .do로 끝나는거 보인다
+                통계청은 .es네요 역시 통계청...!
+                법무부 .do
+                나랏돈 시장이 제일 큼, 돈이 많이 들어감(일반 회사에서 수주받아서 하겠지)
+                신식이냐 구닥다리냐에 따라서 다르게 붙기도 하고
+                kh는 .kh로군요
+                개발 기술, 환경에 따라 붙을수도 있고 안붙을수도 있음
+                붙여보기도 하고 안붙여보기도 하고 다해보자
+                최종프로젝트에서는 .kh 날려야함
+                -->
+                <form action="search.kh" method="get" id="search-form">
+                    <!-- 두개 있어야함, input + submit
+                    얘네 스타일이 달라야하니 들어갈 영역을 div로 나눠야 따로 스타일 부여 가능 -->
+                    <div id="search-text">
+                        <!-- input 요소 넣을 곳 -->
+                        <input type="text" name="query" />
+                        <!-- 그냥은 넘길 수 없고 name 속성과 속성값이 있어야함 -->
+                    </div>
+                    <div id="search-btn">
+                        <!-- submit button 요소 넣을 곳 -->
+                        <input type="submit" value="검색" />
+                        <!-- 버튼 안에 표시될 내용 바꾸기는 value 속성과 속성값 -->
+                    </div>
+                </form>
+            </div>
+            
+            <div id="header_3"></div>
+        </header>
+
+        <!-- navbar도 다른 파일에서 작업하고 바꿔치기 -->
+        <nav>
+
+            <!-- div or li 뭘로 만들어도 상관없음, li로 해보자 -->
+
+            <!-- Top, Bottom, Outer에 커서 올리면 또 보이는 리스트도 구성하고싶음 -->
+            <ul id="navbar">
+                <li>
+                    <a href="#">Top</a>
+                    <!-- ul>(li>a)*4 -->
+                    <ul>
+                        <li><a href="#">셔츠/블라우스</a></li>
+                        <li><a href="#">나시</a></li>
+                        <li><a href="#">티셔츠</a></li>
+                        <li><a href="#">맨투맨/후드</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">Bottom</a>
+                    <!-- ul>(li>a)*2 -->
+                    <ul>
+                        <li><a href="#">스커트</a></li>
+                        <li><a href="#">팬츠</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Dress</a></li>
+                <li>
+                    <a href="#">Outer</a>
+                    <!-- ul>(li>a)*4 -->
+                    <ul>
+                        <li><a href="#">점퍼/자켓</a></li>
+                        <li><a href="#">코트</a></li>
+                        <li><a href="#">패딩</a></li>
+                        <li><a href="#">조끼</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        
+        <main>
+            <div id="content_1"></div>
+            <div id="content_2"></div>
+            <div id="content_3"></div>
+        </main>
+        <!-- footer 만들 때 여기에 작업하는 게 아님! 17_푸터만들기.html 생성해서 거기서 ㄱ -->
+        <footer>
+            <!-- 웹디자인 저작권때문에 함부로 갖다쓰면 안된다요, 그래서 학원거 보면서 함 -->
+            <!-- div 두개로 나눠서 작업해뒀네요? 우리도 따라해보기 -->
+            <!-- #footer_$*2 -->
+            <div id="footer_1">
+                <!-- a 태그에 넣을 게 없을 때는 보통 #을 넣어둠, 만들어서 넣어놔도 되고 -->
+                <!-- 와 a 태그 파란글자에 밑줄 참을 수 없군, 스타일 바꾸려고 CSS 배웠으니까 작성하러 ㄱ -->
+                <!-- 파란색 참아도 누르면 보라색까진 못참겠네요 -->
+                <a href="#">이용약관</a> |
+                <a href="#">개인정보 처리방침</a> |
+                <a href="#">강사 구인</a>
+            </div>
+
+            <!-- 이 안에도 왠지 세개로 나눠놓은 것 같다, 까보니 진짜임
+            각 친구들의 여백도 있고 스타일도 달라보임, 이러려면 나눠서 작업해야함
+            두개만 해보자, 우리 footer_2 div 안도 2개로 나눠야함(뭘로 나눌지는 선택의 영역)
+            학원은 p로 구분했음(문단), KH 따라가기 해보려는데 스타일을 인라인으로 준 것을 발견ㅋㅋ 급했나봄
+            -->
+            <div id="footer_2">
+                <!-- p#p_$*2 -->
+                <p id="p_1">
+                    강남점 1관 : 서울특별시 강남구 테헤란로14길 6 남도빌딩 2F, 3F, 4F, 5F, 6F <br />
+                    강남점 2관 : 서울특별시 강남구 테헤란로10길 9 그랑프리 빌딩 4F, 5F, 7F <br />
+                    종로점 : 서울특별시 중구 남대문로 120 그레이츠 청계(구 대일빌딩) 2F, 3F <br />
+                    부산점 : 부산 부산진구 중앙대로 627 삼비빌딩 2F, 12F
+                </p>
+                <p id="p_2">
+                    Copyright © 2025 KH JongNo A-Class All Right Reserved
+                </p>
+                <!-- 써놓으니까 튀어나옴, p태그는 기본 스타일이 있음, margin이 부여되어 있다, 이거 지워주러 위로 ㄱ -->
+            </div>
+        </footer>
+    </div>
+
+</body>
+</html>
