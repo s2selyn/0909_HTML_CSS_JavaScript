@@ -1,0 +1,99 @@
+div,
+form {
+    /* border: 1px solid red; */
+    box-sizing: border-box;
+}
+
+#header_2 {
+    width: 650px;
+    height: 160px;
+
+    /* 여기에서 flex로 부여하면 폼태그를 예쁘게 가운데 정렬할 수 있는데 flex 없이 어떻게 할까 */
+    /* #search-form 에서 작성 */
+    /* position: relative; 부모요소가 기준이 되도록 작성 */
+}
+
+/* ---------- 요 밑에 있는것만 나중에 들고갈 예정 ---------- */
+
+/* 위에 있는데 이거 가져가야해서 떼서분리했음 */
+#header_2 {
+    position: relative;
+}
+
+/* 항상 바깥쪽 친구들 크기지정 작업부터 */
+/* form 태그 사이즈부터 생각 */
+#search-form {
+    width: 65%;
+    height: 25%;
+
+    /* 부모에게 relative를 부여하고 아래처럼 작성하면 정가운데로 온다 */
+    position: absolute; /* 상대적으로 지정 */
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    margin: auto;
+
+    /* 폼태그 안에서 div를 블럭요소로 쓰고싶은게 아니라 가로로 배치하고싶음 */
+    /*
+    방법 3개있음
+    1. form 태그의 display 속성을 flex로 display: flex; 이건 쉬우니까 안해본걸로 하러
+    2. form 태그 안의 div를 inline 요소로
+    3. form 태그 안의 요소를 float로
+    */
+}
+
+/* form 태그 안의 div를 inline 요소로, 근데 이러려면 뗐다 붙이기 해야함 */
+/* float로 띄워버리기 이걸로 가보자 */
+/* 검색창 form태그 내부 div속성 */
+#search-form > div {
+    height: 100%;
+    float: left;
+}
+/* 이 아래에 올 다른 요소가 없어서 clear 생략도 가능함 */
+
+/* div 요소 두개 가로길이 설정 */
+/* input 요소 80, button은 나머지 20, id로 선택 */
+#search-text {
+    width: 80%;
+}
+
+#search-btn {
+    width: 20%;
+}
+/* 틀을 다 잡았으니 안쪽에 있는 친구들의 스타일 입히기 */
+
+/* input 요소 스타일 바꾸기, id 달아서 선택하면 좋겠지만 안써본거 해보기 */
+/* 태그선택자로 선택하면 나중에 옮겨갔을 때 다른 input요소들이 선택될것임, 후손 요소 선택자 써보자 */
+#search-form input {
+    width: 100%;
+    height: 100%;
+
+    /* input의 컨텐트 영역의 크기가 100을 먹으니까 튀어나오게 됨, box-sizing 써먹기 */
+    box-sizing: border-box;
+
+    /* input 요소들의 border 바꿔주기 */
+    border: 2px solid green;
+    background-color: rgb(177, 255, 177);
+    border-radius: 5px;
+
+    vertical-align: middle;
+}
+
+/* focus 하면 까만색으로 바뀌는것도 다르게 스타일 부여하자 */
+#search-form input:focus {
+    outline: 4px dotted yellowgreen;
+}
+
+/* 버튼.. 버튼이라도 살려줘 */
+#search-form input[type="submit"] {
+    color: green;
+    font-weight: 800;
+    font-size: 20px;
+    background-image: url("resources/image/tuna.png");
+    background-size: cover;
+
+    &:hover {
+        cursor: pointer;
+    }
+}

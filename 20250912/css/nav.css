@@ -1,0 +1,112 @@
+nav,
+ul,
+li {
+    /* border: 1px solid red; */
+    box-sizing: border-box;
+}
+
+/* 가로 1000px 세로 40px */
+nav {
+    width: 1200px;
+    height: 40px;
+}
+
+/* -------------------------------------------------- */
+
+/* ul, li는 블럭요소라 아래로 쭉 들어가고 margin, padding이 전부 들어있음
+바깥쪽 ul요소에 스타일을 입히자(자식요소는 부모요소의 스타일을 상속받음)
+*/
+#navbar {
+    /* ul요소는 margin / 왼쪽에 padding이 존재해서 다 없애기!! */
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    height: 100%;
+
+    /* display: flex; */
+    /* 이거만 써도 바로 옆으로 배치시켜줌, 이건 너무 편한 방법이니까 어렵게 해보자 */
+}
+
+/* navbar의 자식요소인 li인소도 부모의 세로길이에 맞추고 가로길이도 지정해주는 작업을 해보자 */
+#navbar > li {
+    height: 100%;
+
+    /* 9:33 무슨방법? */
+    float: left;
+
+    /* dress는 자식요소가 없어서 잘 맞는데 나머지는 튀어나온다, 가로길이 지정 */
+    width: 16%;
+
+    /* 글자 가운데정렬 시켜주고싶다 */
+    text-align: center;
+}
+
+/* a 태그의 파란색과 밑줄을 버틸 수 없다 싹 처리해주고싶음, li 아래의 a태그도 선택해야함 -> 후손선택자 사용 */
+#navbar a {
+    text-decoration: none;
+    color: green;
+    font-weight: 900;
+
+    /* 보통 버튼에 마우스가 올라가도 리스트 띄우는데 컨텐트만 영역을 가지니까 마우스를 좀 가까이 가야하는게 불편함
+    a 태그가 인라인 요소라 자기 영역만큼 가지는 것을 변경해서 부모요소만큼 가지게 해주자
+    */
+    width: 100%;
+    height: 100%; /* a태그 인라인 요소라서 가로세로 안먹음 */
+    /* 블럭요소로 변경 */
+    display: block;
+
+    /* 블럭요소로 바꾸니 세로 기준이 안맞음 글자가 위에 붙음 */
+    /* 어제 footer에서 a태그 가운데 할때는 vertical-align: middle;로 했는데 이건 인라인 요소에만 쓸 수 있음
+    여기서는 못씀 */
+    /* vertical-align: middle; */
+    /* 블럭요소는 줄간격 속성을 사용함 */
+    line-height: 40px;
+}
+
+/* 하위메뉴는 평상시에 안보이다가 커서 올라가면 보여줘야함 */
+/* 평소에는 안보이다가 커서가 올라가면 펼쳐지게 1 */
+/* navbar 자식요소인 li요소의 ul요소를 숨겨야함 */
+#navbar > li > ul {
+    /* 똥글뱅이도 안보이게 해줘 */
+    list-style: none;
+    
+    /* 패딩도 날려줘 */
+    padding-left: 0;
+
+    /* display 속성, visiblity를 hidden / none을 배웠음 */
+    /* 숨기고 공간도 차지하면 안되니까? */
+    display: none;
+
+    border: 1px solid green;
+    border-radius: 15px;
+}
+
+/* hover했을 때 li요소를 선택하고 싶은 게 아니라 ul요소를 선택하고싶음 */
+/* 평소에는 안보이다가 커서가 올라가면 펼쳐지게 2 */
+/* display가 none이라 안보이니까 그걸 다시 block으로 바꿔줌 */
+#navbar > li > a:hover + ul {
+    display: block;
+
+    /* a태그에 커서가 있는 동안은 보이는데, 선택하려니 바로 없어짐 */
+    /* 선택자가 a에 hover하면 나오게 되어있으니까 당연히 벗어나면 display none이 되어 사라짐 */
+}
+
+/* a태그 호버했을 때 나온 ul 요소에도 커서가 올라가면 유지되도록 */
+/* 자바스크립트 배우면 쉽게 할 수 있는데 CSS만 가지고 해야하다보니 조금 그렇군요 */
+/* 평소에는 안보이다가 커서가 올라가면 펼쳐지게 3 */
+#navbar > li > ul:hover {
+    display: block;
+}
+
+#navbar a:hover {
+    /* 뭐에 커서있는지 티내주기 */
+    font-size: 17px;
+}
+
+#navbar > li > ul a {
+    font-size: 11px;
+}
+#navbar > li > ul a:hover {
+    background: rgba(0, 128, 0, 0.25);
+    font-size: 14px;
+}

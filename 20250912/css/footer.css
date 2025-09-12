@@ -1,0 +1,80 @@
+div,
+footer,
+p {
+    /* border: 1px solid red; 다했으면 얘만 지우면 됨 */
+    box-sizing: border-box;
+}
+
+/* 16에서 만든 푸터영역은 가로 1000, 세로 160, 여기에 맞춰서 만들기 */
+footer {
+    width: 1000px;
+    height: 160px;
+}
+/* 따로 작업해서 다 만든 다음에 한꺼번에 붙여넣는 식으로 작업할것임 */
+
+/* 틀 역할 하는 친구부터 크기를 지정하는 작업부터 하고 내용을 작업함 */
+
+/* ---------- 이 밑에거만 나중에 들고가야지 ---------- */
+/* footer를 두개로 나누었음 */
+#footer_1,
+#footer_2 {
+    width: 100%; /* 부모요소 길이만큼 */
+}
+
+#footer_1 {
+    height: 20%;
+    background: green;
+    color: white;
+    vertical-align: middle;
+}
+
+#footer_2 {
+    height: 80%;
+}
+
+/* 나중에 갖다붙이러 갈건데 거기에도 a태그가 있을 수 있음 */
+/* footer_1의 자식요소 a태그만 선택 */
+#footer_1 > a {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    margin: 33px;
+
+    /* 글자 수직정렬 하고싶다 */
+    vertical-align: middle;
+
+    /* 호버효과도 주고싶다 */
+    &:hover {
+        color: yellowgreen;
+    }
+}
+
+/* p 태그에 대한 세부스타일 설정 */
+/* footer_2의 자식요소인 p 태그만 선택 */
+#footer_2 > p{
+    width: 100%;
+    margin: 0; /* 0을 주면 있던걸 없애줌 */
+    background-color: rgb(146, 202, 174);
+}
+
+/* 안쪽 p 태그에 대한 세로길이를 지정 안해줘서 튀어나오고 그런다.. 부모에 대한 비율로 height 지정 */
+#p_1 {
+    height: 80%;
+
+    /* content 스타일도 부여 */
+    /* 글자크기 기본값 16이라서 그거보다 작게가야함 */
+    font-size: 14px;
+
+    /* 딱 붙은 거 떼주고싶음 */
+    padding-top: 5px;
+    padding-left: 4px;
+}
+
+#p_2 {
+    height: 20%;
+
+    /* p_1에 padding 넣었더니 크기 커져서 밀려났음, 글자크기 줄여줌 */
+    font-size: 11px;
+
+    /* 얘도 패딩 채워주기, 통일성 */
+    padding-left: 4px;
+}
