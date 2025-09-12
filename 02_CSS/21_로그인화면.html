@@ -75,10 +75,65 @@
 
         #content_2 {
             flex: 6;
+            display: flex;
+
+            /* 자식요소 가운데정렬 */
+            align-items: center;
+            justify-content: center;
         }
 
         #content_3 {
             flex: 2.5;
+        }
+
+        #login-area {
+            width: 380px;
+            height: 350px;
+            border-radius: 20px;
+            box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.14);
+
+            /* 아이디 비번 버튼 3개 요소 만들거고 자식요소 세로로 들어가도록 지정 */
+            display: flex;
+            flex-direction: column;
+
+            justify-content: space-evenly;
+            align-items: center;
+        }
+
+        /* login 입력창 꾸미기 */
+        #login-input input {
+            border-radius: 10px;
+            border: none;
+            box-shadow: 1px 1px 1px lightgrey;
+
+            &:focus {
+                outline: 1px solid lightgrey
+            }
+        }
+
+        /* 로그인 버튼에 버튼 못생겼으니 바꾸기 */
+        #login-btn button {
+            /* 크기조정 */
+            width: 200px;
+
+            /* 배경색 없앰 */
+            background: green;
+
+            /* 모서리깎기 */
+            border-radius: 10px;
+
+            /* 테두리색 */
+            border: 1px solid grey;
+
+            &:hover {
+                cursor: pointer;
+                background: rgb(32, 221, 158);
+            }
+        }
+
+        #input-id input,
+        #input-pwd input {
+            background: rgb(255, 255, 116);
         }
 
         /* 구조잡기 했으니 내용넣기 하러 내려감 */
@@ -167,10 +222,32 @@
         
         <main>
             <div id="content_1"></div>
-            <div id="content_2"></div>
-            <div id="content_3">
-                <a href="21_로그인화면.html">로그인하러가기</a>
+            <div id="content_2">
+
+                <!-- 로그인화면 작업 -->
+                <!-- 브라우저 개발자도구 켜서 미리 해볼수도 있음, 확인하면서 테스트 가능 -->
+                <!-- 속성 바꾸기도 딸깍해서 바꿔가면서 적용해볼수있음 오.. 좋다 -->
+                <div id="login-area">
+
+                    <!-- #login-input+#login-btn 로 div 요소 두개 -->
+                    <div id="login-input">
+                        <div id="input-id">
+                            <!-- 아이디입력영역이라는 표시 + 실제 입력할 수 있는 input요소 들어가야함 -->
+                            <p>아이디</p>
+                            <div><input type="text"></div>
+                        </div>
+                        <div id="input-pwd">
+                            <p>비밀번호</p>
+                            <div><input type="password"></div>
+                        </div>
+                    </div>
+                    <div id="login-btn">
+                        <button>로그인</button>
+                    </div>
+                </div>
+
             </div>
+            <div id="content_3"></div>
         </main>
         <!-- footer 만들 때 여기에 작업하는 게 아님! 17_푸터만들기.html 생성해서 거기서 ㄱ -->
         <footer>
