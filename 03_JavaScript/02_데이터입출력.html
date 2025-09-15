@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>입출력하잣</title>
+
+    <!-- 미리 div 여러개 만들거라서 선택자 이용해서 넣을 스타일 먼저 작성 -->
+    <style>
+        .area {
+            width: 500px;
+            height: 200px;
+            border: 1px black;
+        }
+    </style>
+</head>
+<body>
+
+    <!--
+        자바스크립트를 써보자
+
+        자바스크립트의 사용 목적(왜? 어디다? 쓸건지)
+
+        1. (화면상에있는)HTML요소의 조작
+        2. AJAX ==> 서버개발 이후(당장말고 나중에 2 ~ 3주 지나야 가능)
+        3. 데이터 입 / 출력
+
+        1은 끝날때까지 할거고 3을 이번 문서에서 해보자
+    -->
+
+    <pre>
+        HTML요소의 조작이란 뭘까??
+    </pre>
+
+    <!-- 브라우저상에서 다크모드, 라이트모드 바꾸기 이런거 어떻게함? 시각적인 효과 바꾸는거니까 CSS로 하겠지?
+    전체 영역(body)의 background, content 컬러 등이 바뀐다, body의 속성이 바뀌는거겠지
+    -->
+    <button onclick="darkMode();">다크모드</button> <br />
+    <button onclick="lightMode();">라이트모드</button>
+    <!-- JS로 body요소의 속성(요소가 가지고 있는 속성의 값)을 바꿔줌, 이걸 HTML요소를 조작한다고 표현 -->
+
+    <script>
+        const bodyEl = document.querySelector('body'); // 문서에서 body 요소를 querySelector를 이용해서 선택함
+
+        function darkMode() {
+            bodyEl.style.background = "black";
+            bodyEl.style.color = "white";
+        };
+
+        function lightMode() {
+            bodyEl.style.background = "white";
+            bodyEl.style.color = "black";
+        };
+    </script>
+
+    <hr />
+
+    <!--
+        자바스크립트를 사용할 때 꼭 알아두어야 하는 객체 두 가지
+
+        1. window : 브라우저 창이 하나 열릴때마다 하나씩 생성되는 객체(JS에 내장되어있음)
+        브라우저 창 안에 모든 요소들의 최상위 객체 == extends Object(자바로 따지면)
+        브라우저를 열면 탭을 열때마다 객체 하나
+
+        앞에 개요에서 window.alert으로 호출했음, 어차피 최상위객체라 생략가능
+        => window.alert(); => alert();
+        => window.console.log(); => console.log();
+        (모든곳에 적용되기 때문에 생략이 가능)
+
+        2. document : 웹문서(HTML)마다 하나씩 만들어지는 객체(요소 선택, 접근할 때 document. 으로 했음)
+                      현재 이 문서에 대한 정보를 가지고 있음(document. 하면 내가 이 문서에서 정보를 찾아오겠다는 의미)
+    -->
+
+    <h2>1. 데이터를 출력하는 방법</h2>
+
+    <pre>
+        <!-- 네가지 있는데 두가지 벌써 해봄 -->
+        1) window.alert('알림창에 출력할 문구');
+
+        2) window.conlole.log('콘솔창에 출력할 문구');
+
+        3) *document.write('문서에 출력할 문구');
+        <!-- 아마 직접 하진 않을텐데 리액트가 이런식으로 동작해서 한번 써보고 넘어감 -->
+
+        4) 요소객체.innerHTML / innerText = '해당 요소에 출력할문구';
+        <!-- innerHTML 또는 innerText 속성에 접근해서 대입 -->
+    </pre>
+
+    <h3>3) document.write('문서에 출력할 문구')</h3>
+    <!-- document 객체에 접근해서 메소드 호출하면서 문서에 출력할 문구를 인자로 전달 -->
+    
+    <!-- 버튼을 클릭했을때! -->
+    <button onclick="documentWrite();">문서에 출력이라는건 뭘까?</button>
+    <!-- 이렇게만 작성하면 클릭해도 아무일도 일어나지않음, 개발자도구 열어서 콘솔창 확인
+    Uncaught ReferenceError: documentWrite is not defined
+    at HTMLButtonElement.onclick
+
+    이런 함수가 없어서 못찾으니까 아무일도 안일어남
+    script 태그에서 정의
+    -->
+
+    <script>
+
+        // 함수를 정의하려면 fuction이라는 키워드를 사용, 한칸띄우고 함수이름, 소괄호 열고닫기, 함수 스코프 만들어주기(중괄호 열고닫기)
+        // 함수 블록 안에 실행시키고 싶은 코드 작성
+        function documentWrite() {
+            // alert("요정도?"); --> 1번 방법
+            // alert는 p 태그랑 버튼 포함한 div 요소가 하나 z축 부여해서 뜬것, 브라우저 제조사에서 스타일을 입혀준것
+
+            // console.log("로그로그"); --> 2번 방법
+
+            // document.write("하하하하하 이게뭔데 하하하하하"); --> 3번 방법
+            // body 영역에 인자로 채우는 것, 버튼을 누르기 전에 html 요소가 있을텐데, 이 안의 body에는 우리가 작업한것이 들어있을 텐데,
+            // 이걸 덮어쓰기 해버리는 메소드, 인자로 전달한 것만 남게 됨
+        }
+
+        // 아무래도 브라우저 개발은 어렵지만 요새는 기반이 잡혀있음
+        // chromium projects, 오픈소스, 모든 개발자들이 참여함, 이걸 베이스로 고쳐서 만들 수 있음
+        // 원하면 브라우저 소스코드같은걸 전부 볼 수 있다
+        // 운영체제 위에서 도는데 사용자와의 상호작용을 하기 위해서 만들어두니까 벌써 어렵군요
+    </script>
+
+</body>
+</html>
