@@ -479,7 +479,7 @@
 
     <hr />
 
-    <h3>4) 선택한input요소객체.value; ☆★ㅁ★☆★☆★☆★☆</h3>
+    <h3>4) 선택한input요소객체.value; ☆★★☆★☆★☆★☆</h3>
 
     <input type="text" id="input-text"> <br />
 
@@ -496,13 +496,17 @@
             // 이걸 얻어야 글자수든 한영이든 체크하겠지
             // input요소에 적은 값을 얻고싶은거니까 먼저 input요소에 접근부터 해야 함, 얘한테만 접근하려면 id가 있어야함
             const inputEl = document.querySelector("#input-text");
-            console.log(inputEl);
+            // console.log(inputEl);
             // input요소 그 자체가 필요한것은 아니지만 어쨌든 잘 나오긴 함
 
             // 아무튼 input요소에 적은 값을 갖고싶은데, 이건 input요소의 무슨 속성값으로 들어갈까?
+            // console.dir(inputEl);
+            // input요소가 가지고 있는 value 속성의 value로 들어가있음!
+
+            // 사용자가 input요소에 입력한 값을 내가 사용해야겠다면? 변수명(객체명)을 쓰고 참조연산자 + 속성명
+            console.log(inputEl.value);
         };
-
-
+        
     </script>
 
 </body>
