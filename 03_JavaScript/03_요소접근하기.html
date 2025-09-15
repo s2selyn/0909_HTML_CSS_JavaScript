@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>여섯가지방법</title>
+
+    <style>
+
+        .area {
+            width: 350px;
+            height: 150px;
+            border: 1px solid lavenderblush;
+        }
+
+    </style>
+
+</head>
+<body>
+    
+    <h1>HTML요소 접근해봅시당</h1>
+
+    <h3>1) 아이디 속성값을 이용해서 접근하기</h3>
+
+    <!-- 나중에 리액트 쓸 거 생각하면 안하고싶은데 순수 자바스크립트 쓰는 회사도 있음
+    사람인에서 웹, 백엔드/서버개발 선택해서 공고 구경
+    아무튼 중견기업들은 개발보다 기존거 유지보수하는게 중요할수도, 그럼 옛날문법이 굉장히 많이 필요할수도 있음
+    어떤곳을 갈지 모르니까 다 배웁시다
+    -->
+
+    <div id="area1" class="area"></div>
+    <button onclick="selectById();">아이디로 접근하기</button>
+
+    <script>
+
+        // 이벤트 붙이는것도 가장 권장하는 방법은
+        /*
+        btn1.addEventListener('click',() => {
+
+        }) 이거지만 리액트에서는 이렇게 하지 않음
+        */
+
+        // 나중에 프로젝트 할때는 button에 onclick 속성을 작성해서 "fn1()" 대입하고
+        /*
+        스크립트에서 function fn1() {} 이렇게 작성함
+        */
+        // 프로젝트할때는 또 다른거 해야하지만 아무튼 이런저런거 해보자
+        // 낯선 문법이 많군요...
+
+        function selectById() {
+
+            // 버튼을 클릭했을 때 메소드를 호출하고 아이디 속성값을 이용해서 요소에 접근!
+            // div 요소에 접근할것임, id 속성값으로 할건데
+            // 이건 왜 안해봤지? 한번해보자
+            // console.log(document);
+            // 구경해보니까 알 수 있는 것들이 있음, 찍어보면서 하자
+
+            // document.getElementById('접근할 요소의 아이디 속성값');
+            // 아이디 속성값을 이용해서 객체에 접근하는 방법
+
+            // 보통은 변수를 선언해서 변수에 대입해서 사용했음
+            // 요소객체라고 부른다.(Element Object)
+
+            // 아무튼 저 위에 div 요소를 선택해보자
+            // document 참조해서 getElementById 메소드 호출하면서 id 속성값을 인자로 전달
+            const area1 = document.getElementById("area1");
+            // 기본 베이스는 변수니까 변수에 대입
+
+            // 모범시민이니까 출력해봐야함
+            console.log(area1);
+            // 자바 콘솔에 printStackTrace랑 똑같이 이유랑 위치 알려준다
+            console.dir(area1); // div가 가지는 속성과 값을 dir가 보여준다
+            // 자바스크립트는 전부다 property-value로 만들어진 언어로, 속성과 값의 모음이 객체
+            // 조금 특이한건 함수가 값으로 취급된다는 정도
+
+            // property(속성) : value(값)
+            // 속성이 공간이고 값이 값이니까 해야할일이 명확해짐, 개발자가 해야할 일은 변수(공간)에 값을 대입하고 빼오는 일이니까
+            // 속성값 get / 속성값 set <- 선택한 요소의 속성 가지고 해야할 일
+            // 속성은 결국 특정 객체에 값을 저장하기 위한 공간이니까
+            // 알아야할게 하나뿐, 그럼 속성에 어떻게 접근해?
+            // 속성에 접근하는 방법? ==> 선택된요소객체.속성명
+            // JS는 객체명을 쓴다 점을 찍는다 속성명을 쓴다, 끝!
+
+            // div의 id 속성값을 갖고싶다면? 객체의 변수명을 쓴다, 점을 찍는다, 내가 get 하고싶은 속성명을 적는다
+            console.log(area1.id);
+            // 이러면 id property의 value를 get해온것!
+
+            // 속성값을 바꾸고싶다(set) 하고싶다면?
+            // 좌항은 접근한것, 대입연산자를 통해 우항의 값을 대입
+            area1.innerHTML = "아이디로 접근성공! <br>"; // set하기
+            console.log(area1.innerHTML); // get하기
+            // 대입연산자 있냐없냐로 구분
+
+            // 자바에서 배운 if, else-if, else, switch, for, while 다 똑같이 쓸 수 있음
+            // 아직 모르는건 변수 앞에 적는게 뭔지(const)뿐
+
+            // 선택된 div요소의 style속성을 변경
+            // style도 객체로 이루어진것이고 열어보면 property로 이루어져있음
+            // CSS 하고와서 스타일 속성에서 본것들 있다
+            // div 요소 backgroundColor를 바꿔야겠다면? 요소객체 접근
+            // style에 접근(얘도 또다른 객체임)
+            // style 객체가 여러가지 property가지고 있으니 이중에 원하는 property -> backgroundColor
+            area1.style.backgroundColor = "lightpink";
+            // 주소가 참조해 주소가 참조해 property이름
+
+            // 이렇게 스타일을 추가할 수 있음
+            area1.style.color = "skyblue";
+            // JS로 스타일을 변경하면 어디로 들어감? 인라인방식으로 들어감, 우선순위가 굉장히 높아짐
+            // 그래서 실제로 JS로 이런식으로 바꾸지는 않음, 이렇게 부여하면 빼기 힘들어지니까 잘 하지 않음
+
+            // 개발자도구로 확인 시 인라인방식으로 스타일이 부여된 것을 확인
+            // 뺄거면 내가 다시 none을 대입해줘야함, 최악이군
+
+            area1.style = "color: green";
+            // 이것도 아래의 HTML 만들면서 스타일 부여하는거랑 똑같은것임
+            // <div class="area" style="background: yellowgreen"></div>
+
+        }
+        
+    </script>
+
+    <br /><br /><br />
+
+    <hr />
+
+    <div id="colorDiv" class="area" style="background: yellowgreen"></div>
+
+    <button id="color-btn">다음 시간은 실습시간</button>
+    <!-- HTML에서도 요소의 속성을 적고 요소의 속성에 값을 대입해줌 -->
+
+    <!--
+        버튼을 클릭할 때 마다
+        div요소
+        ==> 1번 오케이
+        색상이 변경되도록
+        ==> 2번 오케이
+        일곱빛깔 돌리기 ==> 자바했을 때 조건문을 떠올리기
+    -->
+
+    <script>
+
+        const colorBtn = document.querySelector("#color-btn");
+     
+        colorBtn.onclick = function() {
+
+            const colorDiv = document.querySelector("#colorDiv");
+            // console.log(colorDiv); 여기까지 하면 버튼을 클릭할때마다 div요소가 선택된것
+
+            // 요소의 스타일에 배경색 property에 값을 대입해서 색을 바꾸는 것
+            // 색깔 바꾸기
+            // colorDiv.style.backgroundColor = "yellow"; 여기까지 하면 오늘 배운걸로 할수있음
+            
+            // 일곱빛깔 돌리기는 자바의 조건문 생각해야 할 수 있음
+            // if(colorDiv.style.backgroundColor)
+            // colorDiv.style.backgroundColor = "greenyellow";
+            // 이렇게 하면 클릭했을 때 노랑을 거쳐서 greenyellow로 순식간에 바뀜
+
+            // yellowgreen이면 yellow로 바꾸고, yellow면 greenyellow로 바꾸고싶은거니까 if문을 씀
+            // console.log(colorDiv.style.backgroundColor); 이걸 확인하면 텍스트로 들어가있는거 볼수있음
+            if(colorDiv.style.backgroundColor == "yellowgreen") {
+                colorDiv.style.backgroundColor = "yellow";
+            } else if(colorDiv.style.backgroundColor == "yellow") {
+                colorDiv.style.backgroundColor = "lightyellow";
+            } else if(colorDiv.style.backgroundColor == "lightyellow") {
+                colorDiv.style.backgroundColor = "gold";
+            } else if(colorDiv.style.backgroundColor == "gold") {
+                colorDiv.style.backgroundColor = "beige";
+            } else if(colorDiv.style.backgroundColor == "beige") {
+                colorDiv.style.backgroundColor = "greenyellow";
+            } else {
+                colorDiv.style.backgroundColor = "yellowgreen";
+            }
+
+            // 조건은 값과 값의 비교, 성공했을 때는 값의 대입(HTML요소의 조작)
+            // 동등비교니까 switch도 가능했겠다
+
+        }
+
+    </script>
+
+    <hr />
+
+    <h3> 2) 태그명으로 접근하는 방법</h3>
+
+    <!-- ul>li{목록$}*5 -->
+    <ul>
+        <li>목록1</li>
+        <li>목록2</li>
+        <li>목록3</li>
+        <li>목록4</li>
+        <li>목록5</li>
+    </ul>
+
+    <!-- li라는 태그명을 선택해서 요소를 조작해보자, 잘 쓰진 않음(화면 전체의 요소를 선택하기 때문), 그래도 알아둬야지 -->
+    
+    <button onclick="tag();">태그명으로 접근하기</button>
+
+    <script>
+
+        function tag() {
+
+            // document.getElementsByTagName('태그명');
+            // getElementById랑은 s와 TagName 부분이 다름
+            // getElementById는 한개의 요소만 선택해서 들어오게됨
+            // 태그명을 tagName으로 선택한다면 동일한 이름의 태그가 다 선택되어야 하고 똑같은 이름의 태그는 얼마든지 존재할 수 있음
+            // 요소'들'을 태그명으로 선택하겠다는 의미로 메소드 이름도 Element's'로 작성되어있음
+            // Id와는 다르게 전부 Elements로 되어있다
+            const array = document.getElementsByTagName("li");
+            // 반환형이 collection이라고 나와있는데 배열이라고 생각
+
+            console.log(array);
+            // prototype이 보이는데 자바로 따지면 상속개념
+            // 자바스크립트에서 상속은 prototype으로 구현되어 있음
+            // 익숙한 대괄호와 순서(index), 배열의 요소가 들어있음
+            // 0번 index가 목록1, 1번 index가 목록2, ... 순서대로 차곡차곡 요소들이 들어옴
+
+            // console.log(typeof array); object로 나온다
+            // ??? 17:45 자바스크립트에서도 배열이 object 타입?
+
+            console.log(array.length);
+            // 선택된 여러 개의 요소객체들이 배열 형태로 담겨서 반환
+            // 자바스크립트에서의 배열은 [] 로 표현
+
+            // 배열의 첫번째 요소, 0번 인덱스에 있는 요소의 backgroundColor를 바꾸고싶다면?
+            // backgroundColor의 값을 대입해서 바꾸어주어야하는데 요소(배열부터)를 찾아가야함
+            // 배열의 첫번째 요소에 가고싶음 -> [0]
+            // 얘가 객체니까 얘가 가진 property에 가고싶은거고, style에 감
+            // 세부속성으로 참조해서 backgroundColor를 찾아감
+            array[0].style.backgroundColor = "rgb(60, 180, 120)";
+
+            // 완전히 다른 친군데 문법은 비슷함
+
+        };
+
+    </script>
+
+</body>
+</html>
