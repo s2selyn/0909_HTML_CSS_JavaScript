@@ -8,7 +8,7 @@
         .area {
             width: 500px;
             height: 200px;
-            border: 1px black;
+            border: 1px solid black;
         }
     </style>
 </head>
@@ -110,13 +110,141 @@
             // document.write("하하하하하 이게뭔데 하하하하하"); --> 3번 방법
             // body 영역에 인자로 채우는 것, 버튼을 누르기 전에 html 요소가 있을텐데, 이 안의 body에는 우리가 작업한것이 들어있을 텐데,
             // 이걸 덮어쓰기 해버리는 메소드, 인자로 전달한 것만 남게 됨
+            // document.write("<strong>강하게!!</strong>쓸 수 도있음");
+
+            // 문자열로 table 요소를 만들어서 document.write의 인자로 대입해줌
+            const table =
+            '<table border="1">' +
+            "<tr>" +
+            "<td>하하</td>" +
+            "<td>이 데이터가 DB에서 조회해온 값이라면?</td>" +
+            "</tr>" +
+            "</table>";
+
+            // 화면에 출력할 문자열에 HTML태그가 존재할 경우
+            // 동적인 요소로 만들어줌
+            document.write(table);
+
+            // 화면상에 테이블이 만들어짐, 처음에는 없다가 버튼을 클릭했을 때(사용자의 동작이나 특정 상황에 의해서) 만들어진 요소
+            // 이런 요소를 동적인 요소다 라고 표현
+            // 12:06 이렇게 body요소를 바꿔서 출력
         }
 
         // 아무래도 브라우저 개발은 어렵지만 요새는 기반이 잡혀있음
         // chromium projects, 오픈소스, 모든 개발자들이 참여함, 이걸 베이스로 고쳐서 만들 수 있음
         // 원하면 브라우저 소스코드같은걸 전부 볼 수 있다
         // 운영체제 위에서 도는데 사용자와의 상호작용을 하기 위해서 만들어두니까 벌써 어렵군요
-    </script>
+        </script>
 
+        <hr />
+
+        <!-- ??? -->
+        <h3>4) 요소객체.innerHTML / innerText = '요소에 출력할 내용'</h3>
+
+        <!-- id, class -->
+        <!-- #area1.area -->
+        <div id="area1" class="area">
+            innerHTML / innerText <br />
+            자바스크립트에서 특정 요소(Element)가 가지고 있는 값(Content영역)을
+            가지고 온다거나(자바에서 getter 쓰는 방법) <br />
+            또는 값(Content)를 변경하려고 할 때(자바에서 setter 쓰는 방법), <b>innerHTML, innerText</b>
+            라는 속성을 이용 <br />
+        
+            => 가지고 올때 : 요소객체.innerHTML / innerText <br />
+            => 변경할 때 : 요소객체.innerHTML / innerText = '변경할 값';
+        </div>
+
+        <button id="btn1">나를 눌러랏</button>
+
+        <script>
+            // 버튼을 클릭했을 때 만들어놓은 div 요소 안에 출력되는 내용 바꿔보기
+
+            // 가장 먼저 버튼 요소에 접근하는 과정이 필요, 클릭했을 때(클릭했다면) 다른 일을 하고싶은거니까
+            // 1. 먼저 필요한 요소에 접근
+            // 문서에서 요소에 접근할때는 document 객체를 이용, 문서에 들어가있는 모든 정보를 객체의 형태, tree 구조로 가지고있음(html, head, body, h1, div 등)
+            // 가지고 있는 메소드를 호출
+            // getQuerySelector는 CSS에서 배운 선택자를 이용해서 선택
+            // 지금 id 속성을 가지고 접근할거니까 id선택자(#) 사용
+            const btnEl = document.querySelector("#btn1");
+            // 접근한 친구를 변수로 받음, 선언은 const로 하고 변수명을 적어준 다음 대입연산자로 대입
+            // console.log(btnEl);
+            // 브라우저의 개발자도구 열어서 확인하면 버튼요소 볼수있음!
+            // 변수로 document 객체의 button 요소에 접근할수있게되었다
+
+            // 이벤트를 붙일 방법이 많이 있음
+
+            // 2. 선택된 버튼 요소의 이벤트 속성에 함수 대입
+            btnEl.onclick = function() {
+
+                // alert("버튼 클릭함");
+                // 클릭할때마다 onclick 속성에 대입된 function의 코드블럭이 위에서부터 순차적으로 동작
+                // 이게 하고싶었던게 아니라 div 요소에 출력되는 내용을 바꾸고싶었던것
+                // 여기까지는 버튼을 클릭했을때에 도달한것
+
+                // 제일 처음 해야 할 일은 div 요소에 접근을 먼저
+                // 1. div요소에 접근
+                // document 객체를 써야함, 요소를 얻어내고싶은거니까 get(getter), getElement(아까는 querySelector)
+                const divEl = document.getElementById("area1");
+                // id로 접근하는거니까 id 속성값만 매개변수로 넣음
+
+                // 접근이 잘 됐나 확인해보고싶으면 콘솔창에 출력해보기
+                // console.log(divEl);
+                // div 요소가 선택되었군!
+
+                // 콘솔에 로그찍는거 말고 dir 해보자(directory 약자임)
+                console.dir(divEl);
+                // property와 value가 나온다
+                // 해당 값의 디렉토리 구조를 볼 때 사용함(객체의 속성들의 정보)
+
+                // 객체지향 프로그래밍이란??
+
+                // 현실세계에 존재하는 개체(Entity)를 추상화(모델링)하여 속성과 행위를 가진 객체로 만들어 상호작용 ~~
+                // 중요한건 속성과 행위를 가진 객체로 만들어 이부분
+                // 오늘 중요한것도 여기!
+                // 이중에서도 속성을 가지고 얘기해보자, 자바에서는 속성을 위해 필드를 만들어서 값을 getter / setter로 대입해서 사용
+                // JS에서의 element object는 요소 객체, 요소객체를 선택하면?
+                // document.getElementById로 객체의 주소값을 받아온거겠지
+                // JS객체도 속성과 행위를 가지고 있겠지, 행위는 자바랑 똑같이 메소드인데
+                // 속성을 뭐라고 함? JS는 속성을 property라고 함
+                // JS의 모든 객체는 property와 value의 합, 이걸 여러개 모아놓은것을 객체라고 하지
+                // 객체지향에서 말하는 속성을 JS에서는 property라고 하는 것
+                // 객체지향에서 상위개념(명세)은 속성과 행위
+                // 자바는 속성을 필드로 구현 / JS는 속성을 property로 구현
+                // 어렵게 생각할게 아니고 컴퓨터에서 값을 저장하기 위한 공간 == 속성
+                // 아무튼 JS에서 객체가 가질 수 있는 속성의 값을 property 이름으로 저장
+                // tagName이라는 property에 DIV라는 이름이 들어있어서 DIV 요소로 인식됨
+                // id속성값으로 선택했는데, id가 area1이라는건 어떻게 하느냐? id 속성에 "area1"이라는 값이 들어있어서 이걸 보고 선택
+                // 뭐가 많고 대부분 null이지만 아무튼 객체가 가질 수 있는 속성들
+
+                // 선택한 요소의 속성값을 get하고 싶다.
+                // . 를 찍고 접근할 수 있음
+
+                // div 요소의 id 속성값을 알아내고싶다면?
+                console.log("div요소의 id값 : " + divEl.id);
+                // 자바와 JS는 상관없는 언어지만 어떤 느낌인지 비교해보면 이해하기 좋다
+                // 접근제한자가 public인 필드는 getter / setter 없이 바로 참조해서 가능했음, 이거랑 비슷함
+                console.log("div요소의 클래스값 : " + divEl.className);
+
+                // div가 content에 출력해주는 값들도 div의 속성으로 관리하고있다면?
+                // 이 친구의 innerHTML / innerText가 이 때 필요함
+
+                console.log('------------------------------');
+                // 일반적으로 많이 사용하는 것은 innerHTML 속성
+                console.log(divEl.innerHTML); // 태그 포함
+                // content 내용이 출력됨, 이것도 요소의 값으로 관리되고 있는것
+                console.log(divEl.innerText); // 태그 미포함
+                // innerHTML은 태그도 텍스트로 가지고 있고, innerText는 태그 없이 텍스트만
+
+                // 요소가 가지고있는 content값을 get하는 방법
+
+                // set하는건 어떻게함?
+                // 자바였다면?
+
+                divEl.innerHTML = "<b>innerHTML속성 값 변경! </b>";
+                // JS는 자신의 모든 데이터를 속성과 속성값으로 관리하니까
+                // 모든 속성에 접근해서 set 해줄 수 있다
+                divEl.style.color = "orangered"; // content color도 값으로 가지고 있기 때문에 조작가능!
+            }
+        </script>
 </body>
 </html>
