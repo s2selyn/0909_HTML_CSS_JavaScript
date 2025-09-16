@@ -227,9 +227,46 @@
         <p>값이 숫자라면 => 숫자입니다 / 아니라면 => 숫자가 아닙니다
             를 alert으로 출력해주세요.
         </p>
-        <input id="question" type="text"> <button id="answer">정답은?!?!</button>
+        <input type="text" id="num" /> <button onclick="quiz()">정답은?!?!</button>
 
     </fieldset>
+
+    <script>
+
+        function quiz() {
+
+            const num = document.getElementById("num");
+            // console.log(num); // 굿 ~
+
+            const value = num.value;
+            // console.log(value);
+
+            console.log(Number("sdf"));
+            // NaN은 falsy값이라서 조건식에 들어가면 false로 취급됨
+
+            // 방법이 이것뿐인것도 아님..
+            // 사용자가 input 요소에 7 이라고 입력했다고 가정
+            // value == '7'
+            console.log(value / value);
+            // 그럼 이게 1로 나올거고, 숫자가 아닌걸 입력하면 NaN이 나온다
+            // 조건식을 value / value 라고 작성하면
+            // 숫자일 경우에 숫자 / 숫자 -> 숫자가 나오니까 숫자는 true일거고, 숫자가 아니라면 숫자가 아닌것들끼리 연산이니까 NaN이고 이건 falsy로 취급되니까 false
+            // '7' / '7' == 1
+
+            console.log(value * 0);
+            // 이걸 이용하면 0과 비교해서 조건식 작성이 가능하겠지
+
+            // isNaN(숫자) : NaN이라면(숫자가 아니면) true
+            //               NaN이 아니라면(숫자라면) false
+            if(value / value) { // value가 숫자라면? isNaN이라는 함수가 있음
+                alert("숫자입니다");
+            } else {
+                alert("숫자아닙니다");
+            }
+
+        }
+
+    </script>
 
     <!-- 내가 실습해본거
     <script>
