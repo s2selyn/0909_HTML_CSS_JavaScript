@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>우산챙기세요~~</title>
+
+    <style>
+
+        .area {
+            width: 300px;
+            border: 1px solid gainsboro;
+        }
+
+        .big {
+            height: 500px;
+        }
+
+        .small {
+            height: 300px;
+        }
+
+    </style>
+
+</head>
+<body>
+    
+    <h1>자바스크립트 쓸 때 알찬 메소드들</h1>
+
+    <!-- 자바의 String, 오라클의 문자열과 같음 -->
+
+    <h3>* 문자열과 관련된 메소드</h3>
+
+    <!-- 요새는 앞단에서 클라이언트 자원 처리는 앞단에서 하는 경향도 생김, 옛날에는 뒷단에서 처리해서 가져오자 했는데
+    특히 뭔가 할때는 앞단에서 다 처리해서 넘겨야함
+    신입은 또 자바스크립트부터 시키기도 해서 이런거 알아둬야 좋음
+    -->
+
+    <button onclick="stringMethod();">문자열 메소드 호출</button>
+    <div id="area1" class="area big"></div>
+
+    <script>
+
+        function stringMethod() {
+
+            const str = "Hello World!";
+            // 공부하고싶은거 + Hello World로 검색하면 처음에 뭐 공부할지 나옴
+
+            const area = document.getElementById("area1");
+
+            area.innerHTML = `str : ${str} <br>
+                              문자열의 길이 : ${str.length} <br>
+                              toUpperCase : ${str.toUpperCase()} <br>
+                              toLowerCase : ${str.toLowerCase()} <br>
+                              l의 위치 : ${str.indexOf("l")} <br>
+                              뒤에서부터 l의 위치 : ${str.lastIndexOf("l")} <br>
+                              없는거 찾으면 : ${str.indexOf("a")} <br>
+                              substring(시작인덱스) : ${str.substring(3)} <br>
+                              substring(begin, end) : ${str.substring(0, 4)} <br>`;
+
+            // string은 property에 length를 가지고 있음, 객체 + . + 속성명으로 getter의 역할을 수행시킬 수 있음
+            // 무슨 언어를 쓰든지 문자열을 다루면 indexOf를 기억해두고 쓸 것
+            // 사용시 주의사항은 없는거 찾으면 뭘 돌려주는지(반환값) 여기선 -1을 돌려주네요
+            // indexOf 짝지 substring, substring 사용법은 항상 두가지
+
+            const str2 = "중국집, 돈까스, 제육, 김치찌개";
+            // 문자열을 나눠서 쓰고싶은 경우가 있음 -> split 기억하기
+            const lunchMenu = str2.split(",");
+
+            area.innerHTML += `점심메뉴 : ${str2} <br>
+                               스플릿또 : ${lunchMenu} <br>
+                               런치메뉴 타입 : ${typeof lunchMenu} <br>
+                               랜덤값 : ${Math.random()}`;
+            // Math == 자바에서 쓰던것과 동일하게 사용
+
+            // 이건 똑같아보이는데, 중요한건..? lunchMenu의 type이 string이 아니고 object
+            // 자바에서 임의난수는 Math의 random을 호출했음
+            // 자바스크립트에서는? 옹 똑같네용
+            // 자바의 Math로 쓰던거 여기도 똑같이 다 있음
+
+        };
+
+
+    </script>
+
+    <hr />
+
+    <h3>산술연산 해보기</h3>
+
+    <button id="math-btn">연산하기</button>
+    <div id="area2" class="area big"></div>
+
+    <input type="text" id="price" placeholder="가격을 입력하세요." />
+
+    <script>
+
+        document.querySelector("#math-btn").onclick = function() {
+
+            const area = document.querySelector("#area2");
+
+            area.innerHTML = `7 + 7 : ${7 + 7} <br>
+                              7 + '7' : ${7 + "7"} <br>
+                              7 + 7 + '7' : ${7 + 7 + "7"} <br>`;
+            // ${} 안에 변수만 들어가는게 아니고 연산식이 들어갈수도 있다
+            // 문자열과 숫자의 더하기는 자바의 String + int와 같음, 앞이든 뒤든 그렇게 더해져버림
+            // 7 + 7 를 먼저 수행해서 14에다가 문자열 7을 더해버림, 147이 출력됨
+            // number형이 string형으로 변환이 이루어짐
+
+            // input 요소로 사용자에게 값을 입력받아서 쓰고 싶으면 쟤의 아이디를 이용해서 요소를 가져오겠지?
+            const input = document.querySelector("#price");
+
+            // input 요소에 입력한 값은 value 속성에 들어가있음
+            const price = input.value;
+            // 사용자가 입력한거에 내가 천원 더해야지~ 생각하고 이럴수있겠지
+            console.log(price);
+            // 근데 입력한 숫자에 1000이 계산되는게 아니라 붙어버림, 문자열로 보여줌
+
+            // input 요소의 value 속성에 들어가는것까진 알겠음
+            console.dir(input);
+            // 까보면 "55555" 이렇게 문자열 형태로 들어가있기때문에 get 해오면 문자열
+
+            // input요소의 value property는 자료형이 string이기 때문에
+            // 숫자값이라고 하더라도 산술연산이 의도와는 다르게 이루어질 수 있음
+
+            // 숫자로 다루고싶으면 강제로 string을 number로 바꿔줘야함, 세가지방법
+            // 강제형변환(string ==> number)
+            // Number(string)
+            // parseInt(string)
+            // parseFloat(string)
+
+            const intValue = 2;
+            const stringValue = "3";
+
+            // 23
+            area.innerHTML += `2 + 3 : ${intValue + stringValue} <br>
+                               Number : ${intValue + Number(stringValue)} <br>
+                               parseInt : ${intValue + parseInt(stringValue)} <br>
+                               parseFloat : ${intValue + parseFloat(stringValue)} <br>`;
+            // 2와 3을 덧셈해서 5를 얻고싶은디요 하면 세가지 방법이 있는데
+            // Number() 이걸 Number 생성자라고 부름
+            // 덧셈 하기 전에 전부 number 타입으로 바꿔서 5를 얻을 수 있다 오오오
+            // 근데 하나면 될 것 같은데 왜 세개나 있지...?
+            // 이런 일이 종종 일어나는데 상황에 따라 취사선택해줘야함
+
+            // parseInt vs parseFloat
+
+            const floatValue = "1.23";
+            // 더하기 연산을 하려는데 소수점이 있음, 문자열이니까 더하려면 계산이 안되겠지
+            // number 타입으로 바꿔서 계산하도록 해야하는 상황이라서
+            area.innerHTML += `${intValue + Number(floatValue)} <br>
+                               ${intValue + parseInt(floatValue)} <br>
+                               ${intValue + parseFloat(floatValue)} <br>`;
+            // Number와 parseFloat는 값이 똑같이 3.23 나옴
+            // ??? 14:50 parseInt는 소수점 아래를 버림처리하고 1만 남아서 앞의 2와 합쳐져서 3
+
+            // Number vs parseInt
+
+            console.log(Number(price)); // 1000원 ==> NaN(Not a Number)
+            // 바꾸려고 보니 원이 포함됨, 숫자가 아닌 녀석이 포함되면 NaN을 반환
+            console.log(parseInt(price)); // 1000원 : 1000(숫자인부분만)
+            // 얘는 숫자가 아닌 부분을 제외하고 숫자만 반환
+
+            // 앞단에서 숫자를 다루는 경우가 많이 있음
+            // 보기 편하라고 3자리씩 자르거나 할 때 쉼표가 들어가니 문자열, 실제로 사용할때는 숫자로 바꿔서 사용해야하니 이런애들이 필요함
+
+            // 나머지 산술연산
+            area.innerHTML += `7 - "7" : ${7 - "7"} <br>
+                               7 X "7" : ${7 * "7"} <br>
+                               7 ÷ "7" : ${7 / "7"} <br>
+                               'a' - 7 : ${"a" - 7} <br>`;
+            // 이건 또 문자열 7(string)이 전부 number로 변환되어 연산됨...
+            // 주의점은 연산하는 대상이 number로 변환할 수 있는 친구여야함, 변환할수없는친구로 이런걸 해버린다면? NaN 나옴
+            // string타입값이 number타입으로 변환된 후 산술연산 진행
+            // 단, 이때 문자열이 반드시 숫자로 존재해야함!
+            // 숫자가 아닌 문자가 포함될 경우 NaN
+
+        };
+
+    </script>
+
+    <hr />
+
+    <h3>실 습 시 간</h3>
+
+    <h4>덧셈 / 뺄셈 계산기</h4>
+    첫 번째 정수 : <input type="number" id="num1" /> <br />
+    두 번째 정수 : <input type="number" id="num2" /> <br />
+    결과 출력 : <label id="result"></label> <br />
+    <button onclick="plus();">더하기버튼</button> <br />
+    <button onclick="minus();">빼기버튼</button>
+
+    <script>
+
+        // 15:40 풀이 확인!
+
+        // const array = document.getElementsByClassName("cal");
+        // console.log(array);
+
+        function plus() {
+
+            const num1 = document.getElementById("num1");
+            const num2 = document.getElementById("num2");
+            // console.log(num1, num2);
+
+            const result = Number(num1.value) + Number(num2.value);
+            // console.log(result);
+
+            document.getElementById("result").innerHTML = result;
+
+        };
+
+        function minus() {
+
+            const num1 = document.querySelector("#num1").value;
+            const num2 = document.querySelector("#num2").value;
+            document.querySelector("#result").innerHTML = num1 - num2;
+
+        };
+
+    </script>
+
+    <hr />
+
+    <fieldset>
+
+        <legend>두 번째 문제</legend>
+        <p>input요소에 값을 입력한 뒤 버튼을 클릭했을 때
+            숫자인지 아닌지 출력하기</p>
+        <p>값이 숫자라면 => 숫자입니다 / 아니라면 => 숫자가 아닙니다
+            를 alert으로 출력해주세요.
+        </p>
+        <input id="question" type="text"> <button id="answer">정답은?!?!</button>
+
+    </fieldset>
+
+    <!-- 내가 실습해본거
+    <script>
+
+        document.querySelector("#plus").onclick = function() {
+
+            const input1 = document.getElementById("int1");
+            const input2 = document.getElementById("int2");
+
+            // console.log(input1.value);
+            // console.log(input2.value);
+
+            const result = document.querySelector("#result");
+            result.innerHTML = parseInt(input1.value) + parseInt(input2.value);
+            // console.log(result);
+
+        };
+
+        document.querySelector("#minus").onclick = function() {
+
+            const input1 = document.querySelector("#int1");
+            const input2 = document.querySelector("#int2");
+
+            const result = document.getElementById("result");
+            result.innerHTML = parseInt(input1.value) - parseInt(input2.value);
+
+        };
+
+        // 접근은 하는데 조건식을 해결못함
+        document.getElementById("answer").onclick = function() {
+
+            const input = document.querySelector("#question");
+
+            // console.log(input);
+
+            console.dir(input.value);
+
+            if(Number(input.value) != NaN) {
+                alert("숫자입니다");
+            } else {
+                alert("숫자가 아닙니다");
+            }
+
+        };
+
+    </script>
+    -->
+
+</body>
+</html>
