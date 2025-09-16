@@ -213,7 +213,7 @@
             // 0번 index가 목록1, 1번 index가 목록2, ... 순서대로 차곡차곡 요소들이 들어옴
 
             // console.log(typeof array); object로 나온다
-            // ??? 17:45 자바스크립트에서도 배열이 object 타입?
+            // 자바스크립트에서도 배열이 object 타입
 
             console.log(array.length);
             // 선택된 여러 개의 요소객체들이 배열 형태로 담겨서 반환
@@ -228,7 +228,232 @@
 
             // 완전히 다른 친군데 문법은 비슷함
 
+            array[1].style.backgroundColor = "rgb(60, 180, 150)";
+            array[2].style.backgroundColor = "rgb(60, 180, 180)";
+            array[3].style.backgroundColor = "rgb(60, 180, 210)";
+            array[4].style.backgroundColor = "rgb(60, 180, 240)";
+            
+            // 반복문 돌릴 수 있겠다!
+            let redColor = 100;
+            for(let i = 0; i < array.length; i++) {
+                array[i].style.backgroundColor = `rgb(${redColor}, 180, 180)`;
+                redColor += 30;
+            }
+            // 코드를 사용하다보면 문자열 사이에 변수값을 넣어야하는 경우가 생김
+            // + 실수할 수 있으니 자바스크립트에서 쉽게 쓰는 법 -> 백틱문법
+            // 원래는 따옴표나 쌍따옴표로 감싸는데 이걸 ` <- 이 기호로 감싸줌
+            // 이 안에 변수를 더하기로 넣어주던걸 $로 쓸 수 있음
+
         };
+
+    </script>
+
+    <!-- 아무래도 태그명은 문서 내에 같은 요소가 많을 수 있으니 잘 사용하지 않게 됨 -->
+
+    <hr />
+
+    <h3>3) name속성값으로 요소객체 접근해보기</h3>
+    <!-- name 속성 어떨 때 썼더라? form 태그 안의 input요소일 때 key-value로 submit 해야하는데 key의 역할로 name 속성 -->
+    
+    <form action="요청받아줄서버" method="GET">
+    <!-- form 태그의 속성 중 action에 URL(이것도 맞긴한데 지금은 서버)
+    method는 두개 있었음, get이랑...?
+    -->
+        <fieldset>
+
+            <legend>메뉴</legend>
+
+            <!-- input:checkbox*5 -->
+            <!-- 같은 그룹의 checkbox는 같은 name 속성값으로 묶어줌 -->
+            <!-- checkbox는 빈 태그라서 닫는게 없고 옆에 내용이랑 연관이 없으니 속성이 필요함
+            나중에 submit을 만들어서 체크한것을 넘겨주도록 해야하는데 속성 없으면 on이 전달됨
+            -->
+            <input type="checkbox" name="menu" value="아메리카노" />아메리카노
+            <input type="checkbox" name="menu" value="콜드브루" />콜드브루
+            <input type="checkbox" name="menu" value="라떼" />라떼
+            <input type="checkbox" name="menu" value="딸기라떼" />딸기라떼
+            <input type="checkbox" name="menu" value="말차라떼" />말차라떼
+
+            <button type="submit">버튼</button>
+
+        </fieldset>
+
+    </form>
+
+    <button id="menu-btn">버튼버튼이예용</button>
+    <!-- 이 버튼을 선택하면 체크박스에서 뭘 선택했는지 alert 띄우고싶음 -->
+
+    <!-- 일단 script 태그가 있어야 JS 코드를 쓰겠다... -->
+    <script>
+
+        // 버튼을 클릭했을 때 뭔가를 하고싶은거니까 먼저 해야할 일?
+        // 제일 먼저 버튼에 접근해야함, 특정 버튼에 접근하고 싶으니 id 속성 부여
+        // 그다음에 document 객체를 이용해서 메소드 호출 -> querySelector
+        const btnEl = document.querySelector("#menu-btn");
+
+        // 요소에 접근해서 onclick 했었는데 오늘은 메소드로 해보자 -> addEventListener
+        // 인자 두개 : 첫번째로 이벤트 속성 두번째로 익명함수를 넣는 자리
+        btnEl.addEventListener('click', function() {
+            // btnEl에서 click이 발생하면 function을 호출하겠다는 뜻이 됨
+
+            // name속성값을 이용해서 요소객체들 접근하기
+            // document.getElementsByName('name속성값');
+            const menus = document.getElementsByName("menu");
+            // console.log(menus);
+            // 이걸로 개발자도구 콘솔 확인하면 잘 선택된거 볼 수 있음
+            // 다섯개를 선택했는데, 첫번째 input요소(checkbox)에 가고싶다면?
+            // console.log(menus[0]);
+
+            // 실제로 필요한건 이 요소의 value 속성값, get 하고싶다면? 참조해서 value(속성 이름)
+            // console.log(menus[0].value);
+
+            // 이건 체크박스, 라디오버튼 동일한부분 -> checked 속성
+            // console.log(menus[0].checked);
+            // check 안하고 찍으면 false, check 하고 찍으면 true -> 체크박스(라디오버튼)가 가진 checked 속성을 보면 체크여부를 알 수 있다
+
+            // 마침 checked가 boolean 타입이 반환된다
+            // 만약에 버튼을 클릭했을 때 아메리카노 체크박스가
+            // 체크된 상태라면 alert창을 띄우겠다.
+            // checkbox가 checked상태면 alert를 띄우고 싶으니 조건문
+            // if(menus[0].checked) {
+            //     alert("아메리카노 췤");
+            // }
+
+            // 버튼 클릭 시
+            // 체크가 된 체크박스의 value속성값을
+            // 순차적으로 나열하여
+            // alert창에 출력하시오.
+
+            // 선택하신 메뉴는 아메리카노 라떼 입니다.
+            // 선택하신 메뉴는 아메리카노 말차라떼 입니다.
+
+            let checkMenu = "";
+            /*
+            if(menus[0].checked) {
+                checkMenu += " " + menus[0].value;
+                // alert("선택하신 메뉴는 아메리카노 입니다.");
+            }
+
+            if(menus[1].checked) {
+                checkMenu += " " + menus[1].value;
+                // alert("선택하신 메뉴는 콜드브루 입니다.");
+            }
+
+            if(menus[2].checked) {
+                checkMenu += " " + menus[2].value;
+            }
+            */
+
+            // 해보니 중복이니까 반복해보자 -> for
+            for(let i = 0; i < menus.length; i++) {
+
+                if(menus[i].checked) {
+                    checkMenu += " " + menus[i].value;
+                }
+
+            }
+            // 자바에서는 이렇게 사용
+
+            // 자바스크립트에서는 배열로 필터나 map, 함수 사용으로 작업하는걸 권장
+            // 쓸내용도 줄어들고 편하고
+            // 자바처럼 안하고 이렇게 할건데 천천히
+            const array = [...menus];
+
+            const selected = array.filter((e) => e.checked).map((m) => m.value);
+            console.log(`선택한 메뉴들 ${selected}`);
+
+            // alert(`선택하신 메뉴는 ${selected}입니다.`);
+
+            /*
+            내가 하다만거
+            const menus = document.getElementsByName("menu");
+            for(let i = 0; i < menus.length; i++) {
+
+                if(menus[i].checked) {
+
+                    let checkedMenu = menus[i].value;
+
+                    let message = `선택하신 메뉴는 ${checkedMenu} 입니다.`;
+                    alert(message);
+                    
+                }
+
+            }
+            */
+
+            // 하나라도 체크됐을때만 하고싶다면? -> if
+            if(checkMenu != "") { // checkMenu가 초기값과 다르다면 뭔가 하나 생긴것일테니까
+                alert(`선택하신 메뉴는 ${selected}입니다.`);
+            }
+            // 자바스크립트는 if 조건문 안에 checkMenu만 작성해도 동작함
+            // true / false만 들어가는 자리 아니었던가?
+            // 아무거나 넣어도 alert 띄우는 동작은 함...!? 0.0을 넣으면 동작 안하고 "0.0"은 동작함.. 뭐야이거
+            
+            // 자바스크립트의 논리값
+
+            // 자바의 논리값 == true / false
+
+            // 자바스크립트는 모든 값이 논리값으로 쓰일 수 있음
+            // true / false 로 최종변경된다
+
+            // 1, 2, 3, 4, 5, 'a', 'b' 전부 논리값으로 쓰일 수 있음.. 복잡해.. 뭐가 true고 뭐가 false?
+            // 이건 정해져있음
+            // Falsy(거짓같이 보이는 값) 빼고는 전부 true
+            // 0, 0.0, '', "" (빈 문자열), null, undifined, NaN (not a number) <- 얘네는 false 취급, 나머지는 다 true
+
+            console.log(+"a"); // NaN이 출력됨
+            console.log('b' + "a" + + "a" + "a"); // baNaNa가 출력됨, 두번째 a가 +와 만나 NaN 으로 변한 것을 문자열로 연결해버림
+            // 피연산자가 숫자면 숫자끼리 더하기, 피연자가 문자가 하나라도 있으면 문자로 연결
+            // 객체끼리 연결하면 toString 결과를 더하고
+            // 아무튼 연산자 하나가 다양한 역할을 수행해버림
+            console.log(99999999999999999999);
+            // javascript meme
+
+        });
+
+    </script>
+
+    <hr />
+
+    <h4>4) 클래스 속성명으로 요소객체들 접근하기</h4>
+
+    <!-- .test+p.test+ul.test>li*3>pre.test -->
+    <!-- 클래스 속성값이 test인 친구들을 만들어잇 -->
+    <div class="test"></div>
+    <p class="test"></p>
+    <ul class="test">
+        <li>
+            <pre class="test"></pre>
+        </li>
+        <li>
+            <pre class="test"></pre>
+        </li>
+        <li>
+            <pre class="test"></pre>
+        </li>
+    </ul>
+
+    <button onclick="accessClass();">class속성으로 선택하기</button>
+
+    <script>
+
+        function accessClass() {
+
+            // document.getElementsByClassName('클래스속성값')
+            console.log(document.getElementsByClassName("test"));
+
+            // querySelector로 선택하면 어떻게 될까?
+            // const tests = document.querySelector(".test");
+            const tests = document.querySelectorAll(".test");
+
+            console.log(tests);
+
+            // getElementsByClassName은 test를 클래스 속성으로 가진것을 모두 선택하는데
+            // querySelector는 하나밖에 선택하지 못함
+            // 여러개를 선택할때는 querySelector를 사용할 수 없음(제일 위의 요소 하나만 선택.. 이거 어제 들은것같음)
+            // 여러개를 선택해야 할 때에는 querySelectorAll를 사용
+            
+        }
 
     </script>
 
