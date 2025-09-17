@@ -2,8 +2,174 @@
 <html lang="en">
 <head>
     <title>써보자써보자하게요</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        div {
+            box-sizing: border-box;
+        }
+
+        #wrap {
+            width: 1200px;
+            height: 400px;
+            margin: auto;
+            box-shadow: 1px 1px 1px lightgrey;
+        }
+
+        .card {
+            width: 230px;
+            height: 360px;
+            padding-bottom: 20px;
+            display: inline-block;
+
+            &:hover {
+                box-shadow: 1px 2px 4px lightgrey;
+            }
+        }
+
+        .card > img {
+            width: 230px;
+            height: 300px;
+        }
+
+        /* 웹툰 제목이니까 h태그 써야겠다 */
+        .card > h4 {
+            font-size: 18px;
+            font-weight: 800;
+        }
+
+        .card > p {
+            font-size: 14px;
+            font-weight: 500;
+        }
+    </style>
 </head>
 <body>
     
+    <h1>배열과 객체의 활용</h1>
+
+    <h3>* 객체배열 써보기</h3>
+
+    <!-- 너낌만 보기 -->
+    <!-- 네이버 웹툰을 구경했다! 객체랑 배열이 쏙쏙 들어가있군요 비슷하게 해보자 -->
+
+    <div id="wrap"></div>
+
+    <script>
+
+        // html화면요소 로딩이 끝났다
+        window.onload = function() {
+
+            // 그러면 이 안에서
+            // 컨트롤러로 요청을 보냄~
+            // 어떻게 보내는지 모름 아직 안배웠음
+
+            /*
+            function 요청보내는함수() {
+                // 얼씨구절씨구 ~~~
+            }
+            요청보내는함수(); 이걸 이용해서 컨트롤러에 요청을 보내겠지
+            DAO까지 간 다음 DB에 가서 웹툰이라는 데이터를 SELECT 했겠지
+            타이틀 썸네일이미지 작가 조회해서
+            응답이 돌아왔다고 가정
+            */
+
+            // 컨트롤러가 반환해주는 응답데이터라고 가정
+            // 배열이 왔는데 배열의 요소로 객체가 다섯 개 왔음 -> 웹툰 테이블에서 조회해온 데이터
+            // 컬럼은 세개라고 가정하자
+            const webtoons = [
+
+                {
+                    image : "https://image-comic.pstatic.net/webtoon/842620/thumbnail/thumbnail_IMAG21_44eb7809-90e1-46da-a0ec-1ead08a8e9e9.jpg",
+                    title : "해골전령 이야기",
+                    author : "kain_y / 소라게"
+                },
+                {
+                    image : "https://image-comic.pstatic.net/webtoon/807178/thumbnail/thumbnail_IMAG21_28fcfb22-aae7-41b4-8767-05f6dd176b03.jpg",
+                    title : "캐슬 2:만인지상",
+                    author : "정연, 박만사"
+                },
+                {
+                    image : "https://image-comic.pstatic.net/webtoon/642598/thumbnail/thumbnail_IMAG21_c784c8b0-c6d3-46ca-9a02-d3c4c04a8c83.jpg",
+                    title : "조선왕조실톡",
+                    author : "무적핑크"
+                },
+                {
+                    image : "https://image-comic.pstatic.net/webtoon/747269/thumbnail/thumbnail_IMAG21_aabd9952-ff45-47a2-a543-33f19a5c6708.jpg",
+                    title : "전지적 독자 시점",
+                    author : "UMI / 슬리피-C / 싱숑"
+                },
+                {
+                    image : "https://image-comic.pstatic.net/webtoon/838002/thumbnail/thumbnail_IMAG21_aee939b2-2d3c-445f-a7d8-82414f4f9482.jpg",
+                    title : "종말이 찾아왔다",
+                    author : "전선욱"
+                },
+
+            ];
+
+            console.log(webtoons);
+
+            // 이렇게 받은 데이터로 화면을 만들어서 div에 동적인 요소로 넣어주자
+            // 구조도 잡아야할듯? 네이버는 리스트로 했네요
+            // div로 감싸고 썸네일 넣을 img 태그, 작품정보 넣을 p태그 두개
+            // 스타일도 미리해볼까?
+
+            /*
+            const skeleton = webtoons[0];
+
+            // console.log(skeleton);
+            // 객체 하나만 나온다, 이걸로 요소를 만들어주자
+
+            const webtoon1 = `<div class="card">
+                                <image src=${skeleton.image} />
+                                <h4>${skeleton.title}</h4>
+                                <p>${skeleton.author}</p>
+                              </div>`;
+            // 동적인 요소로 만들어버렸다제
+            // 이걸 이제 화면상에 출력해주자
+            document.getElementById("wrap").innerHTML = webtoon1;
+
+            // 나중에 DB에서 몇개가 오는지 모를텐데 어느세월에 개수세서 하나씩 이작업을하니
+            // 반복문을 써야겠군, for of 쓰든가 map 쓰든가 -> for of로 낙찰
+            */
+
+            // for of 반복하면서 작업해야하니까 변수선언 먼저 해두자
+            let element = "";
+            for(let webtoon of webtoons) {
+                // 동적인 요소 만들었던 코드를 여기에 만들어주고 복합대입연산자로 넣어주자
+                element += `<div class="card">
+                                <img src="${webtoon.image}" />
+                                <h4>${webtoon.title}</h4>
+                                <p>${webtoon.author}</p>
+                            </div>`;
+            };
+
+            // ??? 17:30
+            document.getElementById("wrap").innerHTML = element;
+
+            // DB에서 데이터 조회해오면 이런 모양일텐데 브라우저상에 띄워주려고 자바스크립트 하는중이에오
+            // 자바 콘솔에 띄우던걸 이뿌게 하려고 지금 이걸 배운다고여
+
+            // 실습해본거~
+            const places = [
+
+                {
+                    img : "https://a0.muscache.com/im/pictures/hosting/Hosting-1157133225923295926/original/1664a4f5-dde0-404b-abb8-75b15946d44c.jpeg?im_w=720",
+                    name : "부산의 아파트",
+                    rate : 4.95,
+                    spec : "광안 / 통유리 / 고층",
+                    stayingDays : "4월 18일 ~ 4월 19일",
+                    pricePerDay : "125,000",
+                    totalPrice : ""
+
+                },
+
+            ];
+
+        }
+    </script>
 </body>
 </html>
