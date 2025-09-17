@@ -162,10 +162,327 @@
 
             // 내가 만든 객체를 사용하기도 하고
             // 밖에 만든 객체의 데이터를 받아서 쓰는 경우도 있음
+            const phoneCase = {
+
+                // 속성명에 특문이 들어있는 경우 --> ""로 묶음
+                "price~" : 1500,
+                // 속성명에 띄어쓰기가 들어있는 경우 --> 못써! ""로 묶음
+                "product name" : "뉴제네레이션케이스",
+            };
+
+            // 근데 이렇게 해버리면
+            const area = document.getElementById("area2");
+
+            // 여기가 안됨! 객체명을 쓴다 참조를 한다 속성명을 쓴다 이게안된다고요~~
+            // 그럼 방법이 대괄호로 묶고 쌍따옴표로 감싸야지
+            area.innerHTML += phoneCase["product name"];
+            // 어쩔수없이 이걸 써야겠군요
 
         }
     </script>
 
+    <hr />
+
+    <h3>* 객체가 가지고 있는 속성에 반복문 사용하기</h3>
+
+    <p>
+        <!-- 객체는 배열과는 다르게 순서가 없음(map처럼 아무렇게나 들어감) -->
+        인덱스 개념이 존재하지 않기 때문에 for loop문, for of문은 쓰기 힘듦 <br />
+        for in문을 사용해서 속성에 순차적으로 접근할 수 있음
+    </p>
+
+    <div id="area3" class="area small"></div>
+    <button onclick="loop();">버튼</button>
+
+    <script>
+
+        function loop() {
+
+            const human = {
+                name : "홍길동",
+                age : 15,
+            };
+
+            const area = document.getElementById("area3");
+
+            // of는 안들어와지고 loop는 인덱스가 없어서 안됨
+            for(let key in human) {
+
+                // 이렇게 작성해서 key값에 어떤것들이 들어오는지 확인해보자
+                // console.log(key);
+                // 음 모범시민으로서 이걸 확인해보니 객체가 가진 속성명이 나오는군요
+
+                // 속성명이 있으니까 객체의 속성값을 얻을때는 속성명으로 값을 얻어낼 수 있으니까
+                // 객체의 속성에 접근하는 방법을 사용
+                // console.log(human.key);
+                // 오.. 얻을 수 있을 줄 알았는데 안나옴 undefined
+                // 이건 객체의 key라는 속성명을 접근한 것임
+                // 진짜 말그대로 human객체의 key라는 속성에 접근
+                // => . 사용불가
+
+                // 하지만 한가지 방법이 더 있다는 사실
+                // 반복문 밖에서 div 요소 접근해서 area에 담음
+                area.innerHTML += `${human[key]} <br>`;
+
+            }
+
+            // for in문 사용 시 객체를 이용해서 반복했다면
+            // 반복할 때마다 해당 객체의 속성명이 let 변수명에 담김
+
+        }
+
+    </script>
+
+    <hr />
+
+    <h3>* 객체의 메소드 속성</h3>
+
+    <p>
+        객체의 속성값 중 자료형이 함수자료형인 속성을 메소드라고 부른다. <br />
+    </p>
+
+    <button onclick="method();">메소드 버튼</button>
+    <div id="area4" class="area small"></div>
+
+    <script>
+
+        function method() {
+
+            const area = document.getElementById("area4");
+
+            let name = "이승철";
+
+            // dig();
+
+            const mole = {
+
+                name : "디그다",
+                kind : "두더지",
+                dig : function() { // 속성명이 함수명이 되므로 익명함수
+
+                    area.innerHTML = `${this.kind}인 ${name}(이)가
+                                      땅을팝니다.`;
+
+                    // => 메소드 속성 안에서 같은 객체 내부에 있는 속성을
+                    // 사용할 경우 this. 키워드를 붙여주어야 함.
+
+                    // => 속성명 또는 변수명이 동일한 경우 this키워드를 안붙이면
+                    // 외부에 존재하는 변수가 호출됨!
+
+                }, // 여기 function() {} <- 이게 메소드가 됨, 함수명은 dig가 된다, 익명함수를 작성하는 것
+
+            };
+
+            // 밖에서 객체가 가진 메소드 속성 호출
+            mole.dig();
+
+            // 속성값 자체가 함수라면 이것을 메소드라고 표현
+            // function 이런 이름 붙인건 특정 객체에 종속되는게 아니라 그냥 함수
+            // 메소드는 특정 객체가 가지고 있는 함수, 밖에서 호출해서 사용할수는 없음
+            // mole이 가지고 있기 때문에 mole을 참조해서 사용해야한다.
+
+        }
+
+    </script>
+
+    <hr />
+
+    <!-- ??? -->
+
+    <p>
+        in : 객체 내부에 해당 속성이 존재하는지 확인하는 키워드 <br />
+        with : 코드를 줄이는 용도
+    </p>
+
+    이름 : <input type="text" id="name"> <br />
+    국어점수 : <input type="text" id="kor"> <br />
+    영어점수 : <input type="text" id="eng"> <br />
+
+    <button onclick="info();">확인하기</button>
+    <div id="area6" class="area big"></div>
+
+    <script>
+
+        function info() {
+            // 객체 만들기 실습
+            // 속성명 : 속성값
+            // name : 사용자가 입력한 이름값
+            // kor : 사용자가 입력한 국어점수
+            // eng : 사용자가 입력한 영어점수
+            // getSum : 점수의 합계를 계산해서 반환해주는 메소드
+            // getAvg : 점수의 평균을 계산해서 반환해주는 메소드
+
+            const studentName = document.getElementById("name").value; // 한번에 input 요소의 value까지 받아오기
+            const korScore = document.getElementById("kor").value;
+            const engScore = document.getElementById("eng").value;
+
+            // value 속성값이 잘 받아와지는지 확인
+            // console.log(studentName);
+            // console.log(korScore);
+            // console.log(engScore);
+
+            // 객체만들기
+            const student = {
+
+                // 각각의 인풋요소에 사용자가 입력한 value값을 객체의 속성값으로 사용하고싶다
+                // 객체가 만들어지기 이전에 인풋요소에 접근부터 해야함
+                // 요소접근은 id속성을 다 달아뒀으니 이걸로 ㄱ
+                name : studentName,
+                kor : korScore,
+                eng : engScore,
+                getSum : function() {
+
+                    // 얘는 합계를 계산해서 반환해줘야함
+                    // 점수의 합계 계산
+                    // 그냥 this.kor + this.eng 하면 문자열더하기
+                    return Number(this.kor) + Number(this.eng); // Number로 감싸고, 반환해야하니까 앞에 return
+
+                },
+
+                getAvg : function() {
+
+                    // 더해서 갯수로 나누는데 더하는건 getSum으로 구현했음, 이걸 나눠
+                    // 나누는거니까 굳이 Number로 파싱안해도된다
+                    return this.getSum() / 2;
+
+                },
+
+                toString : function() {
+                    return `학생명 : ${this.name} <br>
+                            국어점수 : ${this.kor} <br>
+                            영어점수 : ${this.eng} <br>
+                            합계 : ${this.getSum()} <br>
+                            평균 : ${this.getAvg()} <br>`;
+                }
+
+            };
+
+            // console.log(student); 객체 잘 만들어진당, div에 출력해줘야지
+            const area = document.getElementById("area6");
+
+            // 배열이면 그냥 이렇게 해도 됨
+            const arr = [1, 2, 3];
+            console.log(typeof arr);
+            area.innerHTML = `배열 : ${arr} <br>`;
+
+            // 객체는?
+            // area.innerHTML += `객체 : ${student} <br>`; --> [object Object]
+            // 하나하나 찍으려니 굉장히 힘들군, student만 넣어도 잘 나오게 해주고싶은디요
+            // 배열도 타입이 object인걸요? 얘는 toString이 오버라이딩 되어있으니까
+            // 우리것도 만들어주자 --> 객체 내부에 작성
+            area.innerHTML += `객체 : ${student} <br>`;
+
+            // 실습해본거
+            /*
+            const name = document.getElementById("name");
+            // console.log(name.value);
+
+            const kor = document.getElementById("kor");
+            // console.log(kor.value);
+
+            const eng = document.getElementById("eng");
+            // console.log(eng.value);
+
+            const area = document.getElementById("area6");
+
+            const result = {
+
+                name : name,
+                kor : kor.value,
+                eng : eng.value,
+                getSum : function() {
+                    area.innerHTML = `합은 : ${kor+eng} <br>`;
+                },
+                
+                getAvg : function() {
+                    area.innerHTML = `평균은 : ${(kor+eng)/2} <br>`;
+                },
+
+            };
+
+            // result.getSum();
+            // result.getAvg();
+            */
+
+            // 해당 객체에 속성이 존재하는가 ? '속성명' in 객체명 : boolean
+            area.innerHTML += `student객체에 name속성이 있나요? ${"name2" in student} <br>`;
+
+            // with는 소괄호에 객체명을 씀
+            with(student) {
+
+                // with 내부에서는 객체명 쓰고 . 이걸 생략할 수 있음
+                // 속성만 써서 접근 가능
+                console.log(kor);
+                console.log(eng);
+
+            };
+
+        }
+
+    </script>
+
+    <hr />
+    
+    <h3>* 객체의 속성 추가하기 및 제거하기</h3>
+
+    <!-- 객체를 다 만들고나서 요소 넣고빼고 이걸 할 경우가 있지 -->
+    <button onclick="addProperty()">확인</button>
+    <div id="area7" class="area small"></div>
+
+    <button id="button">버튼</button>
+
+    <script>
+
+        function addProperty() {
+
+            // 배열에 요소 추가하는건 push
+            const arr = [];
+            arr.push(1);
+            console.log(arr);
+
+            // addProperty를 한번 실행(클릭)해야 이 아래가 아래쪽 버튼을 클릭했을 때 실행됨
+            const btn = document.getElementById("button");
+
+            // ??? 16:25
+            // console.dir(btn);
+            // 객체의 속성에 값을 넣어줌, btn 버튼 요소에 onclick 속성에 ???
+            btn.onclick = function() {
+                console.log("하이");
+            };
+            console.dir(btn);
+
+            // **** 객체에 속성을 추가하는 방법
+            const student = {};
+            // 빈 객체이므로
+            // console.log(student); // 속성 하나도 없고 비어있음
+
+            // 1. 객체명을 쓴다 2. 참조를 한다 3. 추가하고싶은 속성명을 쓴다(없으니까) 4. 대입연산자를 쓴다 5. 값을 대입한다
+            student.name = "홍길동";
+            student.age = 15;
+
+            // 이미 있는 속성에 이런짓을 똑같이 하면?
+            // age가 key값 역할을 함, map이랑 똑같아서 아래쪽에 위치한 코드로 덮어쓰기가 되어버림
+            // 이미 존재하는 속성명이 있다면 덮어씌워짐
+            // 결국 속성명에 접근해서 set한거죠 새로 만든게 아니고
+            student.age = 165;
+
+            console.log(student);
+
+            // 객체 속성 제거
+            // delete(객체명.속성명)
+            delete(student.age);
+            console.log(student);
+
+            // with써볼까?
+            with(student) {
+                address = "한양";
+            }; // with로 속성 추가하기는 불가능
+
+            console.log(student);
+
+        }
+
+    </script>
     
 </body>
 </html>
