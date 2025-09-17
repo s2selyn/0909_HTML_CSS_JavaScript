@@ -359,5 +359,341 @@
 
     </script>
 
+    <hr />
+
+    <h3>참고사항</h3>
+
+    <button onclick="remember();">알아두자</button>
+
+    <script>
+
+        function remember() {
+
+            // 자바스크립트에서 동등비교
+            console.log(1 == 1); // true
+            console.log("1" == 1); // true
+
+            console.log([] == 0); // 이게 대체 왜?? 둘 다 false로 취급되어서 동등하니 true가 됨
+
+            // 자바스크립트에서 동등비교는 ==를 잘 쓰지 않음
+            // === 이렇게 세개를 써보자
+            // 이러면 값이랑 자료형이 둘다 동일한지 비교하게됨
+            console.log("1" === 1); // false : 값, 자료형 둘다 일치해야만 true
+
+            // 구조분해할당
+            const array = ["Apple", "Banana", "Carrot"];
+
+            // 배열에 들어있는 요소를 하나씩 뽑아서 쓰고싶을때가 있음
+            /*
+            const el1 = array[0];
+            const el2 = array[1];
+            const el3 = array[2];
+            console.log(el1, el2, el3);
+            */
+            // 원래라면 하나씩 이렇게 뽑아서썼는데 별로 하고싶지않음 귀찮음
+
+            // 이걸 쉽게해보자, 요소 세개를 이렇게 대입하기!
+            const [el1, el2, el3] = array;
+            console.log(el1, el2, el3);
+            // 우왕 편하당 자바는 안됨 파이썬은 됨
+            // 배열의 요소를 분해해서 사용할 수 있음
+
+            /*
+            const str = [...array];
+            console.log(str);
+            이건 다음에, 지금 예제로는 조금..?
+            */
+
+        };
+
+    </script>
+
+    <hr />
+
+    <h4>2) concat(배열, 배열, 배열) : 여러 개의 배열을 합칠 때 사용</h4>
+
+    <div id="area4" class="area big"></div>
+    <div onclick="merge();">확인</div>
+
+    <script>
+
+        // ???
+        function merge() {
+
+            const array1 = ["가나다", "라마바"];
+            const array2 = ["사아자", "차카타"];
+
+            const area = document.querySelector("#area4");
+
+            area.innerHTML = `${array1} <br>
+                              ${array1.concat(array2)} <br>
+                              ${array1} <br>`;
+            // concat을 사용한다고 해서 원본 배열을 수정하는게 아니고
+            // 두개의 배열 요소를 합친것을 새로운 요소로 반환해줌
+            // 두개합친 배열을 사용하고싶다면
+            const array3 = array1.concat(array2); // 이렇게 새로운 배열 받아서 사용해야함
+            console.log(array3); // 통째로 하나의 배열을 만들어서 반환해줌
+
+            // 배열 리터럴을 이용해서 넣으면 배열의 요소로 배열이 들어간 형태를 만들 수 있음
+            // const array4 = [array1, array2];
+            // console.log(array4);
+            // 이렇게 넣는게 아니라 안에 있는 배열의 요소를 풀어서 담고싶다면 앞에 ... 추가
+            const array4 = [...array1, ...array2];
+            console.log(array4);
+            // 이방법의 좋은점은 객체도 풀어헤칠수있음
+            // concat은 배열에밖에 사용할 수 없지만
+            // ...으로 풀어헤치기는 배열요소나 객체속성 둘다 풀어헤칠때 쓸 수 있는 방법이니 기억
+
+        };
+
+    </script>
+
+    <hr />
+
+    <h4>3) reverse() : 배열의 요소 순번을 역순으로 바꿔줌</h4>
+
+    <div id="area5" class="area small"></div>
+    <button onclick="arrayReverse();">리바스</button>
+
+    <script>
+
+        // ??? 9:33 호이스팅 안되니까 먼저 선언해서 써야함
+        function arrayReverse() {
+
+            const array = ["Apple", "Banana", "Melon", "Kiwi"];
+            const area5 = document.getElementById("area5");
+            area5.innerHTML = `${array} <br>`;
+
+            array.reverse();
+            // 이건 실제 배열이 영향을 받음
+            area5.innerHTML = `${array} <br>`;
+            // 얘는 원본배열이 바뀌어버림
+
+            // 원본배열은 내버려두고싶다면? 배열을 복사해야함, 새 배열을 만들어서 작업해야함
+            // const newArray = array; 이건 주소값이 복사되니까 얕은복사가 되어버림
+            // concat, slice, map, filter reduce from 등의 방법이 많은데 보편적으로는 ... 이걸로 사용
+            const newArray = [...array]; // 깊은 복사가 필요할 때 이렇게 spread 문법으로 새배열을 만들어서 사용함
+
+        };
+
+    </script>
+
+    <hr />
+
+    <h4>4) sort() : 배열의 요소를 정렬해줌</h4>
+
+    <!-- #area6.area.small+button{정렬해야지} -->
+    <div id="area6" class="area small"></div>
+    <button onclick="sort();">정렬해야지</button>
+
+    <script>
+
+        function sort() {
+
+            const array = [
+                "Banana",
+                "Lemon",
+                "Apple",
+                "Kiwi",
+                "Mango",
+                "수박",
+                "イチジク",
+            ]; // 여러 형태의 값들을 넣어보자
+
+            const area6 = document.getElementById("area6");
+            // area6.innerHTML = `${array} <br>`;
+            // 그냥 출력해보고
+
+            // array.sort();
+            // sort 한 다음에
+            // area6.innerHTML = `${array} <br>`;
+            // 다시 출력해보자, 영어, 일어, 한글(오름차순, 국가코드 빠른거 기준)
+            // quick sort 메소드라 성능도 빠르고 좋음
+
+            array.sort().reverse();
+            // 내림차순을 하려면 reverse 사용 --> sort() 뒤에 .reverse(); 추가
+            area6.innerHTML = `${array} <br>`;
+
+            // ??? 9:45
+
+        };
+
+    </script>
+
+    <hr />
+
+    <!-- ??? -->
+
+    <h4>
+        5_1) push(추가할요소) 배열 가장 마지막에 인자로 전달된 요소를 추가하고
+             크기를 반환
+        5_2) pop() : 배열의 가장 마지막 요소를 뽑아내고 뽑은 요소를 반환
+    </h4>
+
+    <div id="area7" class="area big"></div>
+    <button id="btn7">요소추가</button>
+
+    <script>
+
+        const btn = document.querySelector("#btn7");
+
+        btn.addEventListener("click", () => {
+
+            const area = document.getElementById("area7");
+            const lunchMenu = ["샐러드", "짜장면", "김치찌개", "돈까스"];
+
+            area.innerHTML = `${lunchMenu} <br>`;
+
+            // 이 배열에 점심 메뉴를 추가하고 싶을 수 있지
+            const newMenu = prompt("추가할 메뉴를 입력해주세요~");
+
+            // newMenu가 잘 들어오는지 확인
+            // console.log(newMenu);
+
+            lunchMenu.push(newMenu);
+
+            area.innerHTML += `요소가 추가된 점심메뉴 : ${lunchMenu} <br>`;
+
+            // 시시하니까 이중에 랜덤뽑기 ㄱㄱ
+            // 배열의 index 만큼만 만들어내야함
+            const num = parseInt(Math.random() * lunchMenu.length);
+            alert(`오늘의 점심 메뉴는 ${lunchMenu[num]} 당첨~`);
+
+            // pop은 반대로 요소를 제거함, 가장 마지막 index에 있는것을 제거해버림
+            area.innerHTML += `${lunchMenu.pop()} <br>`;
+            // pop한 요소를 반환해준다
+
+            // push / pop은 배열의 마지막 요소에 작업
+
+            // 배열의 첫번째 요소에 작업하는 메소드도 있음
+            // 6_1) unshift(추가할요소) : 0번 인덱스에 요소 추가
+            // 6_2) shift() : 0번인덱스 요소 뽑아내기
+            const salad = lunchMenu.shift();
+            area.innerHTML += `풀뽑기 : ${salad} <br>`;
+            lunchMenu.unshift(newMenu);
+            area.innerHTML += `${lunchMenu} <br>`;
+
+            // 기존 배열을 그대로 두고 작업하고 싶은 경우가 많이 생긴다
+            // 새 배열을 만들어서
+            const newLunchMenu = [...lunchMenu, "제육볶음"];
+            // 기존배열의 요소는 spread 문법으로 풀어서 넣고, 새 요소를 넣어줌
+
+        });
+
+    </script>
+
+    <hr />
+
+    <!-- 배열의 문제, 요소를 제거하는 메소드가 없어서 다른 방법으로 제거해야함 -->
+    <h4>
+        7_1) slice(begin, end) : 배열의 요소를 추출해줌 <br />
+        7_2) splice(begin, count, el) : 배열의 요소를 추출해서 제거 및 추가
+        항상 인덱스를 넣어줘야함
+        시작 끝 ??? 추가할값
+    </h4>
+
+    <div id="area8" class="area big"></div>
+    <button onclick="goal();">목표</button>
+
+    <script>
+
+        function goal() {
+
+            const area = document.getElementById("area8");
+
+            const array = ["나는", "올 해", "다이어트", "하겠다"];
+
+            area.innerHTML = `올해 목표 : ${array} <br>`;
+
+            // slice를 이용하면 배열에서 특정 부분 요소만 반환받아(뽑아) 쓸 수 있음
+            // 실질적으로 중요한 다이어트 하겠다 요걸 샥샥, 시작인덱스가 2, 끝인덱스가 3일것임
+            // slice
+            area.innerHTML += `slice결과 : ${array.slice(2, 4)} <br>`;
+
+            // 올해의 목표 쉽지않군 올해가 아니라 내년으로 바꾸고싶다, 아니면 특정요소를 제거해주고싶다
+            // 근데 딱히 제거해주는 메소드는 없고 그럴 때 쓰는 게 splice
+            // splice
+            area.innerHTML += `splice : ${array.splice(1, 1)} <br>`;
+            // 두번째 인자로 몇개 자를건지, 올 해 부분만 자를거니까 요소 한개, 1
+            area.innerHTML += `${array} <br>`;
+
+            // 제거 말고 특정 위치에 뭔가 추가하고 싶음, 올해말고 내년에 해야지
+            // 똑같이 splice 쓰는데
+            area.innerHTML += `??? : 이거왜안나옴 ${array.splice(1, 0, "내년에")} <br>`;
+            // 1번 인덱스에, 하나도 안지우고(0), "내년에" 요소를 추가해야지 라고 인자전달
+            // 이러면 지우지는 않고 배열이 가진 요소가 바뀐다
+            area.innerHTML += array;
+
+            // ??? 뭔가 이상해!
+
+        };
+
+    </script>
+
+    <hr />
+
+    <h4>
+        8) join(구분자)
+        : 배열에 담긴 요소들을 하나의 string타입 문자열로 합쳐주는 메소드
+    </h4>
+
+    <div id="area9" class="area small"></div>
+    <button onclick="join();">버튼</button>
+
+    <!-- join 자체는 크게 어렵지 않은데 -->
+
+    <script>
+
+        function join() {
+
+            const area = document.querySelector("#area9");
+
+            const arr = ["A", "P", "P", "L", "E"];
+            // console.log(arr);
+
+            // 배열 작성 스타일
+            // 배열 마지막 요소 뒤에 , 를 붙이는 경우가 있음
+            // 지금처럼 초기화하면서 넣을 때 말고
+            // 요소들 세로로 한줄씩 넣을 때 마지막 요소 뒤에 붙이는 경우가 있음(아까 과일넣는거)
+            // trailing 또는 후행 comma라고 부름
+            // 가로로 쓸때는 안붙임
+            // 나중에 유지보수를 위함
+            // 깃허브에 올릴텐데
+            // 배열에 요소를 추가할수도 있음, 콤마가 없었다면 변동사항이 두줄이 되는데
+            // 이미 있던 콤마는 두고 추가한 요소 다음에 콤마만 넣으면 변동사항이 한줄이 됨
+            // 변동사항 많으면 보기 힘드니까 이렇게 작성해주면 보기 편해짐
+
+            // 얘네를 합쳐서 문자열로 쓰고싶다
+            area.innerHTML = `${arr} <br>`;
+            area.innerHTML += `${arr.join()} <br>`;
+            // 똑같아보이는데 join을 쓸 때 구분자를 쓸 수 있음, 무엇을 가지고 합쳐줄건지
+            // join메소드는 , 를 가지고 문자열로 합쳐주기 때문에
+            // 구분자를 지정해줄 수 있음
+            area.innerHTML += `${arr.join("")} <br>`;
+
+            // 자바스크립트의 객체도 배열처럼 여러개 담고싶어서 쓰는녀석
+            // 배열은 대괄호, 객체는 중괄호
+            const obj = {
+                과일: "APPLE", // key-value 쌍으로 데이터를 담음
+            };
+
+            console.log(obj); // 앞의 object는 자료형, 뒤의 Object는 어떤것을 상속받았는지의 prototype
+            area.innerHTML += `${obj} <br>`;
+
+            // 배열도 자바스크립트에서도 객체임
+            // 근데 배열은 잘 찍히는데 객체는 이상하게 찍힘?
+            // 배열을 HTML요소에 출력할 경우(innerHTML이나 alert이나 다른 요소에 넣는 경우들)
+            // div.innerHTML = arr 이런식으로 할텐데
+            // println(참조자료형변수); 자바에서 이렇게 하던거랑 똑같은거임
+            // 자바에서 무슨 일이 일어남? .toString() 메소드 결과가 나오는것
+            // 그래서 맨날 VO에도 object의 toString override 해놨지
+            // 자바스크립트도 똑같음
+            area.innerHTML += arr.toString(); // 그냥 arr 했지만 사실 이게 작동함, 내부적으로는 toString 호출결과가 찍히는것, 자바랑 똑같음
+            // 우리가 선언한 obj는 toString이 없으니 부모(Object)의 toString을 호출해서 나오니까 이렇게됨
+
+        };
+
+    </script>
+
 </body>
 </html>
