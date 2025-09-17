@@ -12,7 +12,8 @@
             box-sizing: border-box;
         }
 
-        #wrap {
+        #wrap,
+        #practice {
             width: 1200px;
             height: 400px;
             margin: auto;
@@ -57,6 +58,9 @@
     <!-- 네이버 웹툰을 구경했다! 객체랑 배열이 쏙쏙 들어가있군요 비슷하게 해보자 -->
 
     <div id="wrap"></div>
+
+    <!-- 실습한거 넣을 div -->
+    <div id="practice"></div>
 
     <script>
 
@@ -166,8 +170,71 @@
                     totalPrice : ""
 
                 },
-
+                {
+                    img : "https://a0.muscache.com/im/pictures/4978439c-932f-43de-9810-56123a7c5da9.jpg?im_w=720",
+                    name : "부산의 아파트",
+                    rate : 4.9,
+                    spec : "광안 / 바다 1초",
+                    stayingDays : "12월 17일",
+                    pricePerDay : "134,000",
+                    totalPrice : ""
+                },
+                {
+                    img : "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTQzOTA1OTM4MDUwMzg4NDc2Nw==/original/a9ef458f-316d-4b07-aa2f-324f56698fc4.jpeg?im_w=720",
+                    name : "동래구의 아파트",
+                    rate : 4.92,
+                    spec : "킹사이즈 침대 1개",
+                    stayingDays : "11월 19일",
+                    pricePerDay : "235,000",
+                    totalPrice : ""
+                },
+                {
+                    img : "https://a0.muscache.com/im/pictures/hosting/Hosting-1254611685750285523/original/5a7cbab5-d254-4068-81f2-7aeec2554cf9.jpeg?im_w=720",
+                    name : "광안리의 집",
+                    rate : 4.89,
+                    spec : "퀸사이즈 침대 2개",
+                    stayingDays : "10월 27일",
+                    pricePerDay : "142,000",
+                    totalPrice : ""
+                },
+                {
+                    img : "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6NjI4Nzk2NDc5Mzk3Nzc2NzIz/original/9328f0ad-6465-40b9-89b9-54383cbcaa7f.jpeg?im_w=720",
+                    name : "오크홀름의 아파트",
+                    rate : 4.85,
+                    spec : "엘시티뷰",
+                    stayingDays : "12월 22일",
+                    pricePerDay : "222,000",
+                    totalPrice : ""
+                },
+                
             ];
+
+            console.log(places);
+
+            /*
+            const place1 = places[0];
+
+            const placeEl = `<div class="card">
+                                <img src="${place1.img}" />
+                                <h4>${place1.name}</h4>
+                                <p>${place1.rate}</p>
+                            </div>`;
+
+            document.getElementById("practice").innerHTML = placeEl;
+            */
+
+            let placeEl = "";
+            for(let place of places) {
+
+                placeEl += `<div class="card">
+                                <img src="${place.img}" />
+                                <h4>${place.name}</h4>
+                                <p>${place.rate}</p>
+                            </div>`;
+
+            };
+
+            document.getElementById("practice").innerHTML = placeEl;
 
         }
     </script>
