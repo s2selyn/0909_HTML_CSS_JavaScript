@@ -235,15 +235,18 @@
             // event target을 알아내는 방법
             // console.log(window.event.target);
             // console.log(this.event.target);
+            // 실제 이벤트가 발생한 친구를 알아낼 수 있음, 타겟 선택 가능
             
             // 좀 귀찮아서 더 편한 방법을 선호하는데
-            // ??? 15:05 매개변수가 큰 의미가 없음?
-            // ()였던것을 e로 매개변수로 만들어줌
+            // 핸들러가 () => {}; 이렇게 달려있으면 이걸 호출하면서 뭔가 인자를 전달하거나 할 수 없음
+            // 매개변수가 큰 의미가 없음
+            // ()였던것을 e로 매개변수로 만들어줌, 매개변수 자리에 우리가 매개변수를 써주자
+            // 그리고 매개변수 출력해보기
             // console.log(e);
             // PointerEvent가 반환된다
             // 그럼 얘도 e.target으로 작성하면 똑같이 온다
-            // console.log(e.target);
-            // 작성할걸 확 줄여버림
+            // console.log(e.target); -> btn4가 선택됨
+            // 매개변수 e만 추가해서 event target을 얻기 위해 작성할걸 확 줄여버림
 
             // 그럼 방법이 세가지가 되겠죠
             window.event.target.style.background = "red";
@@ -253,23 +256,26 @@
         };
 
         // 표준 이벤트 방식
-        // 으로 접근하기
+        // 이벤트 리스너를 다는 방식으로 접근하기
         document.getElementById("btn5").addEventListener("click", function(e) {
 
-            // 위에랑 다른건 여기서 function 키워드가 붙어있음
-            // 그럼 this 키워드가 무슨일을 하는지? -> 이벤트가 발생한 그 객체를 의미함
+            // 표준 이벤트 방식에서의 this 의미는 또 다름
+
+            // 위에랑 다른건 여기서만 function 키워드가 붙어있음
+            // 그럼 this 키워드가 무슨일을 하는지? -> 이벤트가 발생한 그 객체 자체를 의미함
             console.log(this);
-            // this 키워드의 쓰임새가 여럿이다
+            // this를 어떻게 쓰냐에 따라서 돌아가는 방식이 전부 다름
             // window.event.target == e.target
-            // == this(function키워드가 붙은 함수)
-            // == this.target(=>arrow function)
-            // 인라인에서의 this는 자기자신을 의미
-            // 외우지말고 그때그때 콘솔에 출력해서 확인하고 쓰쇼
+            // == this(function키워드가 붙은 함수) : function 키워드가 붙은 함수에서는 this가 e.target의 역할을 함
+            // == this.target(=>arrow function) : 애로우 펑션이 붙은 것은 this가 그 이벤트 객체를 의미, this.target이라고 써야함
+            // 인라인에서의 this는 요소 자기자신을 의미하는 것으로 사용
+            // 자바스크립트에서의 this 키워드의 용도가 여럿이다(아직 세개 더 해야함)
+            // 다 외우지말고 그때그때 콘솔에 출력해서 확인하고 쓰쇼 그게 젤 빠름
 
             window.event.target.style.background = "black";
             e.target.innerHTML = "이벤트발생~~~";
             this.style.color = "white";
-            // ???? 15:13 보편적으로 사용하는 방법이 뭐라고여?
+            // 보편적으로 매개변수에 달아놓고 쓰는 경우가 제일 많음(e.target), 이게 제일 편함
 
         });
 
