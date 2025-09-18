@@ -321,5 +321,135 @@
     <a href="http://www.naver.com" onclick="return returnFn();">진짜 너나가~</a>
     <!-- 방법2. return 함수()호출 -->
 
+    <br /><br /><br />
+
+    <!-- HTML + CSS + JavaScript로 View를 만들고 사용자에게 값을 입력받을거란말이야 -->
+    <!-- 회원 추가하려고 id, pwd 이런것들을 입력받아서 DB에 만들어둔 table에 insert했음 -->
+    <!-- 테이블 만들 때 컬럼의 자료형, 제약조건이 있음 -->
+    USER_ID VARCHAR2(15) UNIQUE NOT NULL
+    <!--
+    insert 하기 전에 USER_ID VARCHAR2(15) UNIQUE NOT NULL 이런게 있는데
+    해당하지 않는다면 DB에 insert 안되니까 어차피 갈 필요가 없음, DB가면 돈드니까 그전에 컷해야함
+    컬럼에 들어갈 수 있는 값인지 아닌지 검증하는 작업이 개발자가 해야할 일
+    DB넣는거 insert 써서 MyBatis가 알아서 해줄텐데 insert에 100%실패할 값은 보내지 말고 개발자가 컷해야함
+    검증 두번해야하는데 화면에서 하고 서비스에서 하고
+    서비스는 나중에 하고 화면에서 하는거 먼저 할건데 HTML, CSS로는 할 수 없음
+    방법은 JavaScript뿐
+    -->
+
+    <!-- 자바스크립트를 가지고 값에 대한 유효성 검사를 해보자 -->
+
+    <form action="회원가입URL">
+
+        <fieldset>
+
+            <legend>회원가입</legend>
+
+            <!-- 많이 하지말고 아이디가지고만 한다고 가정해보자 -->
+
+            아이디 : <input type="text" name="userId" id="userId" /> <br />
+            <!-- 나중에 서버에 요청보내려면 key역할을 하는 name 속성값이 필요함
+            input요소의 value값을 검증해야하니까 얘를 선택할 수 있어야함, id 필요 -->
+
+            <label style="font-size:10px; color: lightslategray">
+
+                <!-- 개발자가 생각했을때의 조건 등 -->
+                영문자 또는 숫자로만 5 ~ 12자 사이로 입력해주세요.
+
+            </label>
+
+            <br><br><br>
+
+            <input type="submit" value="가입하기" onclick="return validate();" />
+            <!-- 애초에 DB에 못들어갈 값이면 보낼게 아니라 여기서 알려줘야함, 사용자 편의를 위해서, 어차피 실패할거니까 -->
+            <!-- submit에 유효성 검사 함수를 만들어서 추가 -->
+            
+        </fieldset>
+
+    </form>
+
+    <script>
+
+        function validate() {
+
+            // 유효성 검사 해주는 함수
+            // 사용자가 입력한 아이디값이 유효한 값인지
+            // 검사(확인)하는 함수
+            // 유효하지 않은 값이라면 요청을 못가게 할거임
+
+            // 사용자가 입력한 값을 검증하기 위해서는 사용자가 값을 입력하는 input요소에 접근하는게 제일 처음 해야할 일
+            // value까지 한번에 빼보자
+            const userId = document.getElementById("userId").value;
+
+            // console.log(userId);
+
+            // 영문자 or 숫자로만 + 5 ~ 12자 사이
+            // 뭘 보고 체크해야함?
+            // 비교대상 == 사용자가 입력한값(userId)
+            // 검사할게 두가지, 한번에는 못함
+            // 사용자가 입력한 값이 영문자 또는 숫자인가
+            // 사용자가 입력한 값이 5 ~ 12자 사이
+            // if가지고 생각하고 아니면 되돌리면되겠지?
+            // 문제가 뭐야? 사용자가 입력한 문자 전부를 영어인지 숫자인지 체크할수있나?
+            // 하나하나 뽑아서 영어인지 숫자인지 검사해서 입력한 길이(length)만큼 반복시킴
+            // 만약에 영문자숫자를 먼저 검증하면 글자 많으면 할일이 많을텐데
+            // 글자 길이수를 먼저 체크하면 암만 많아야 12번만 체크하면되겠다, 효율적일듯
+            /*
+            if(5 <= userId.length && userId.length <= 12) {
+
+                // 이 안으로 들어온다면 길이조건 통과
+                // 전체 문자열에서 한글자라도 영숫자가 아닌게 포함되면 안된다, 한글자씩 확인해야하지만 사용자가 얼마나 입력하는지 알수없음
+                // 그래도 길이는 알 수 있다 -> 반복문을 쓸 수 있음
+                for(let i = 0; i < userId.length; i++) {
+
+                    // 처음부터 마지막까지 확인해야하니까 일단 뽑아야함
+                    if(("a" <= userId.charAt(i) && userId.charAt(i) <= "z") ||
+                       ("A" <= userId.charAt(i) && userId.charAt(i) <= "Z") ||
+                       ("0" <= userId.charAt(i) && userId.charAt(i) <= "9")
+                    ) {
+                        return true;
+                    }
+
+                };
+
+            };
+            */
+
+            // 아 좀 번거로운데?
+            // 아이디 값에 대한 유효성 검사
+            // 복잡하고 머리아픔 => 코드 읽을때도 힘들다(조건이 많고 반복도 낌)
+            // 값에 대한 유효성 검사를 위해 정규표현식을 사용해보자
+            // 동일한 로직을 돌리고 싶다
+            // 영문자 또는 숫자로만 5 ~ 12자 사이
+
+            // 변수 하나 선언, regular expression(정규표현식)
+            // 슬래시 두개 사이에
+            // 대문자 A부터 Z까지는 A-Z
+            // 소문자 a부터 z까지는 a-z
+            // 숫자 0부터 9까지는 0-9
+            // 쭉 이어서 쓰고(구분자 없음) 대괄호로 묶음
+            // 글자수 조건은 중괄호를 묶고 5글자부터 12글자 사이를 5,12로 작성(띄우면안됨)
+            // 시작 슬래시 다음 캐럿, 끝 슬래시 앞에 달러사인
+            const regExp = /^[A-Za-z0-9]{5,12}$/;
+            // ??? 16:00 \w로도 가능??
+            // console.log(regExp);
+            // console.log(userId);
+            // console.log(regExp.test(userId));
+
+            // 패턴을 만족하는지 검사 => test()
+            if(regExp.test(userId)) {
+                return true;
+            };
+
+            // 중간에 확인하고싶은데 submit 당해버림 form 태그 요청 못하게 막으려면
+            alert("엣헴!!! 어디 감히 조건을 만족하지 않고 보내려고 하느냐!");
+            return false;
+            // 이러고 함수호출부에 return 추가로 작성해둠
+            // 유효한 값이면 나중에 return true; 하면된다
+
+        }
+
+    </script>
+
 </body>
 </html>
