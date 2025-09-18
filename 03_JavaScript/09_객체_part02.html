@@ -46,6 +46,12 @@
             font-size: 14px;
             font-weight: 500;
         }
+
+        .area {
+            background-color: lemonchiffon;
+            border: 1px solid blanchedalmond;
+            height: 300px;
+        }
     </style>
 </head>
 <body>
@@ -238,5 +244,137 @@
 
         }
     </script>
+
+    <hr />
+
+    <h3>* 생성자 함수</h3>
+
+    <p>
+        new 키워드를 사용해서 객체를 생성할 수 있는 함수를 의미 <br />
+    </p>
+    <!-- 자바의 constructor와 동일 -->
+
+    <button onclick="con();">실행</button>
+    
+    <script>
+        function con() {
+
+            // 웹툰 객체를 만들고 싶음
+            // 썸네일, 제목, 작가명
+            const webtoon1 = {
+                image : "",
+                title : "",
+                author : ""
+            };
+            // 원래 이렇게 하던걸
+
+            // 이런식으로 하고싶음
+            const webtoon2 = new Webtoon("이미지경로", "재밌는웹툰", "이승철");
+            // 이걸 하려면 생성자 함수를 정의해서 써야함
+
+            // 생성자 만들어서 객체 여러개 만들 수 있게됨
+            const webtoon3 = new Webtoon("하하", "호호", "히히");
+
+            // 생성자 함수 정의(선언할 때 첫 글자를 대문자로 만들면됨)
+            function Webtoon(image, title, author) {
+                // 생성자 함수를 호출할 때 넘겨주는 인자값을 받아줄 매개변수가 필요함
+                // 자바스크립트 매개변수는 자료형 없이 이름만!
+
+                // 자바에서 값 대입해서 필드 초기화 작업했음, 여기도 똑같아요
+                this.image = image;
+                this.title = title;
+                this.author = author;
+
+                // 우리는 어차피 DB에서 가져올거라 쓸일이 없을 것 같네요
+                // 자바스크립트 내용 설명하기는 좋겠군요
+                // 근데 이거 왜 되나요? property가 없는데 this가 말이 되나?
+                // 얘는 어떻게 동작하는가?
+                // 객체 안의 this는 자기자신
+                // 자기자신을 참조해서 객체명 + 점 + 속성명 + 대입 -> 객체에 뭐하는 작업? 객체에 속성을 추가하는 방법
+                // 생성자 함수를 호출하면 내부적으로 this라는 이름의 빈 객체를 만든다
+                /*
+                this = {
+                    image : "이미지경로",
+                    title : "재밌는웹툰",
+                    author : "이승철"
+                }
+                */
+                // 그리고 image 속성을 추가하고 "이미지경로"라는 값을 대입할래 이런식
+                // this 빈객체를 생성하는 이 작업은 최상단에서 일어남
+                // 그리고 생성자 끝나는 마지막에 this를 반환함
+                // return this;
+
+            };
+
+            console.log(webtoon2);
+            console.log(webtoon3);
+
+            // front-end 개발자라면 쓸일이 있을지도 몰라요
+
+        }
+    </script>
+
+    <hr />
+
+    <h3>* Date 객체</h3>
+
+    <button onclick="dateFn();">날짜날짜 사용</button>
+    <div id="area1" class="area"></div>
+
+    <!-- 개발자가 잘 다뤄야할 세가지 : 문자, 숫자, 날짜(자바, 자바스크립트, SQL 어디서든 각 언어에서) -->
+    <!-- 그래야 연산하거나 출력할 때 문제가 없음 -->
+
+    <script>
+        function dateFn() {
+
+            const area = document.getElementById("area1");
+
+            // Date객체 : 자바스크립트에서 날짜를 다루는 객체
+            // 생성자함수로 만든다
+            const date1 = new Date();
+            // Number, new Array 이런것들도 생성자함수였음
+            area.innerHTML = `현재 날짜 및 시간 :  ${date1} <br>`;
+
+            // Date로 날짜 세팅할수도 있음
+            // 2026년 2월 12일로 세팅
+            const date2 = new Date(2026, 2 - 1, 12);
+            area.innerHTML += `종강일 : ${date2} <br>`;
+            // ...? 뭔가 이상한데
+            // 연도랑 날짜는 변할 수 있음(지구멸망은 알수없고 월마다 날짜수가 다름)
+            // 월은 고정값임, 그래서 월을 배열로 관리함
+            // 배열이니까 0번부터 시작해버림, 1월이 0번인덱스, 그래서 월이 들어갈 자리에 월이 들어가는 인덱스를 써줌
+            // 직관적으로 보기에는 잘못 만들었지, 나머지는 그대로 값을 쓰는데 여기만 인덱스를 넣어야한다는게 좀 직관적으로 통일성이 없네
+            // 데이터 관리적 측면에서는 나머지는 왔다갔다하고 월은 고정된 길이겠구나
+            // 월의 경우 인덱스를 의미하기 때문에 해당 월에 -1을 해줘야함
+
+            // 시간도 정해볼까?
+            // 2026년 2월 12일 17시 50분으로 세팅
+            const date3 = new Date(2026, 2 - 1, 12, 17, 50, 0);
+            area.innerHTML += `종강일(시간) : ${date3} <br>`;
+
+            // milisecond까지도 가능
+            // ms까지 세팅??
+            // 1초는 1000ms니까 5초 잔소리타임 추가해서 5000ms
+            const date4 = new Date(2026, 2 - 1, 12, 17, 50, 0, 5000);
+            area.innerHTML += `찐종강일(시간) : ${date4} <br>`;
+
+            // 종강일까지 디데이 구하기
+            const endDay = new Date(2026, 2 - 1, 12);
+            const today = new Date();
+            area.innerHTML += `종강일까지 디데이 : ${endDay - today} <br>`;
+            // 단위가 ms단위로 바뀌어서 출력됨
+
+            // 일자 단위로 바꿔주자
+            // MS ==> Day
+            // 1s == 1000ms
+            // 1m == 60s == 60 * 1000ms
+            // 1h == 60m == 60 * 60s == 60 * 60 * 1000ms
+            // 1d == 24h == 24 * 60m == 24 * 60 * 60s == 24 * 60 * 60 * 1000ms
+            const dDay = (endDay - today) / (24 * 60 * 60 * 1000);
+            alert(`종강까지 ${Math.ceil(dDay)}일 남았습니다.`);
+
+        }
+    </script>
+
 </body>
 </html>
