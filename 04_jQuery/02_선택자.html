@@ -2,10 +2,201 @@
 <html lang="en">
 <head>
     <title>선택자</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 <body>
 
     <h1>기본선택자</h1>
+
+    <!-- jQ도 결국 선택자 중요, 선택못하면 적용 못하니까, CSS랑 똑같음
+    jQuery는 CSS, HTML, VAL(value) 메소드 세개 호출하면 끝
+    선택자로 선택하는게 중요
+    ??? 10:30 도입 -->
+
+    <!--
+        아이디선택자, 클래스선택자, 태그선택자
+    -->
+
+    <p>
+        현재 이 HTML문서에서 고유한 아이디 속성값을 가진 요소 하나만 선택
+    </p>
+
+    <!-- 자바스크립트와 비교하면서 두개정도 해보자 -->
+    <!-- h3#id${ID$}*2 -->
+    <h3 id="id1">ID1</h3>
+    <h3 id="id2">ID2</h3>
+
+    <script>
+
+        // 문서전체 DOM요소 다 로딩되면 jQ 써야겠다면? -> $(); 호출 == jQuery();
+        $(function() {
+
+            // 이렇게 쓰면 jQ 사용 시 가장 많이 만나는 에러를 만날것이다
+            // Uncaught ReferenceError: $ is not defined
+            // $를 쓰려면 존 레식씨가 만든 스크립트 파일이 필요하다고여~
+            // 이 문서에 head 태그 내부에 아까 01에서 가져왔던 CDM 방식의 스크립트 태그를 추가해야함
+            // 그럼 없어지죠
+
+            // 바닐라 자바스크립트 방식
+            // id가 ID1인 요소의 컨텐트값과 스타일을 바꿔야겠다는 계획
+            // 1. 요소 선택
+            // document.getElementById("아이디값");
+            // 2. 속성에 값 대입
+            // style.color = "머시기"; / innerHTML = "머시기";
+            // 한 친구에 대한 두가지 속성을 바꾸겠다면 변수에 요소를 대입해주는게 좋겠지, 안그러면 두번 선택해야하니까
+            const h3El = document.getElementById("id1");
+            h3El.style.color = "red";
+            h3El.innerHTML = "안뇽";
+
+            // jQuery방식
+            // 똑같이 컨텐트 내용이랑 컨텐트 속성값도 바꾸고싶은 상황
+            // CSS랑 똑같이 아이디 선택자 # 로 선택
+            // 스타일 속성을 바꾸고 싶으면 css 메소드를 호출해서 첫번째 인자로 스타일 속성명 + 두번째 인자로 스타일 속성값
+            $("#id2").css("color", "green")
+                     .html("잘가~");
+            // innerHTML 속성값을 바꿔야 컨텐트 내용이 바뀜, 똑같이 선택해서 작업해야할텐데?
+            // ??? 10:42 제작자의 의도와 메소드 동작방식
+            // 그렇게 하지 않고 메소드 체이닝 방식을 고려해서 jQ를 만들었음
+            // 선택된 친구를 그대로 반환하기 때문에 이 뒤에 메소드를 호출해서 추가작업이 가능
+
+            // $("#아이디속성값")
+            // ??? 10:44 CSS는?
+            // .html() : innerHTML속성과 관련된 기능을 수행하는 메소드
+
+        });
+
+    </script>
+
+    <hr />
+
+    <h3>* 태그 선택자</h3>
+
+    <p>
+        문서상 태그 전체를 선택할 때 사용
+    </p>
+
+    <!-- p*3+pre*3+div*2 -->
+    <p>Java</p>
+    <p>Oracle</p>
+    <p>JDBC</p>
+    <pre>HTML</pre>
+    <pre>CSS</pre>
+    <pre>JavaScript</pre>
+    <div>MyBatis</div>
+    <div>jQuery</div>
+
+    <script>
+        $(function() {
+
+            // 태그 종류별로 선택해서 배경색 바꾸고싶다
+            // 태그명으로 선택하려면?
+            // 자바스크립트는 태그 명마다 선택
+            /*
+            document.getElementsByTagName("p");
+            document.getElementsByTagName("pre");
+            document.getElementsByTagName("div");
+            */
+            // 각각 반복문 돌리고(요소개수가 다르니 반복문은 또 따로해야함)
+
+            // jQuery방식
+            // $("태그명")
+            console.log($("p, pre, div, #id1"));
+            // jQuery는 여기에 콤마를 써서 여러개 한꺼번에 선택가능
+            // 선택자가 혼합되어도 상관없음
+
+            // 스타일 부여할 때 스타일 부여하고 싶은 요소 다 선택하고 css 메소드 호출해서 한번에 가능
+            $("p, pre, div").css("background", "pink");
+
+            // 솔직히 편하다 잘만들었다 좋다 인정, 자바스크립트 몰라도 된다는게 어떤 의미인지 알겠군
+            // 얘보다 리액트가 좋고 그땐 바닐라 자바스크립트 쓸거임
+            // 리액트 쓰면서 jQ 같이 쓸수있긴함, 일반적인 리액트 사용자에게 별로인건 또 아님
+            // 지금 돌아가는 웹사이트 천만개 있다면 팔백만개는 jQ가 들어가있음, 그만큼 광범위
+            // jQ를 대체하는 다른애들이 또 있다, 그래서 어마어마하게 매력적인 선택지는 아니라서
+
+        });
+    </script>
+
+    <hr />
+
+    <h3>* 클래스 선택자</h3>
+
+    <p>
+        특정 클래스 속성값을 가진 요소들을 선택할 때 사용 <br />
+    </p>
+
+    <!-- h4.item.select{class$}*3 -->
+    <h4 class="item select">class1</h4>
+    <h4 class="item select">class2</h4>
+    <h4 class="item select">class3</h4>
+
+    <script>
+        $(function() {
+
+            // 순수 자바스크립트
+            // 글자색 => orangered
+            // 클릭 시 => alert();
+
+            // 1. 요소들 선택
+            const items = document.getElementsByClassName("item");
+
+            // 2. 반복문을 통해 속성에 접근해서 대입해주기
+            for(let item of items) {
+
+                item.style.color = "orangered";
+                item.onclick = function() {
+                    alert("안뇽~");
+                };
+
+            };
+            
+            // jQuery 방식
+            // 선택이랑 ???을 한번에 한다
+            // 클릭했을때 뭔가 하고싶다면 클릭 메소드 호출
+            $(".select").css("background", "lightgrey")
+                        .click(function() {
+                            console.log("나여~");
+                        });
+
+            // click() : 클릭 이벤트 발생 시 이벤트 핸들러 대입
+
+        });
+    </script>
+
+    <hr />
+
+    <br />
+
+    <h3>*자식요소와 후손요소 선택자</h3>
+
+    <div style="border: 1px solid pink">
+
+        <!-- ul>li*2>li -->
+        <ul>안녕나는 부모요소 ul
+            <li>안녕나는 자식요소 li 부모요소 li
+                <li>안녕나는 자식요소 & 후손요소 li</li>
+            </li>
+            <li>안녕나는 자식요소 li 부모요소 li
+                <li>안녕나는 자식요소 & 후손요소 li</li>
+            </li>
+        </ul>
+
+    </div>
+
+    <script>
+        $(function() {
+
+            // ??? 전부 선택되어버림
+            // 특정 요소의 자식요소만 선택하고싶다면?
+            $("div > ul > li").css("color", "skyblue");
+            // 부모요소를 상속받아서 4개가 바뀜? ㄴㄴ 선택자 우선순위에서 밀림
+
+            // 전체 후손요소 선택하고싶다면?
+            $("div li").css("background", "white");
+
+        });
+    </script>
+
+    <!-- 요소가 많아서 새파일에서 작업 -> 03 -->
     
 </body>
 </html>
