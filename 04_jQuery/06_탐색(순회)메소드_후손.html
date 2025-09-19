@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>호잇</title>
+
+    <!-- jQuery 할거니까 복붙해주기~ -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <style>
+
+        #wrap, #wrap * {
+            display: block;
+            border: 2px dotted orangered;
+            margin: 15px;
+            padding: 5px;
+            color: orange;
+        }
+
+    </style>
+
+</head>
+<body>
+
+    <h1>탐색순회메소드</h1>
+
+    <h3>* 후손요소 탐색 메소드 : 기준점으로부터 후손요소들을 선택</h3>
+
+    <div id="wrap">div(기준점)
+        <div>div
+            <ul>ul
+                <li>li
+                    <span>span</span>
+                </li>
+            </ul>
+        </div>
+        <div>div
+            <p>p
+                <span>span</span>
+            </p>
+        </div>
+    </div>
+
+    <script>
+
+        $(function() {
+
+            // 
+
+        });
+
+    </script>
+    
+</body>
+</html>
