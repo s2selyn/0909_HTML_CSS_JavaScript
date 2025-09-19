@@ -44,7 +44,70 @@
 
         $(function() {
 
-            // 
+            // 스타일 객체 미리 만들어서 해보자
+            const style1 = {
+
+                // key-value를 객체형태로
+                color : "gold",
+                border : "2px solid gold"
+
+            };
+
+            const style2 = {
+
+                color : "silver",
+                border : "2px solid silver"
+
+            };
+
+            const style3 = {
+
+                color : "aqua",
+                border : "2px solid aqua"
+
+            };
+
+            const style4 = {
+
+                color : "aquamarine",
+                border : "2px solid aquamarine"
+
+            };
+
+            const style5 = {
+
+                color : "forestgreen",
+                border : "2px solid forestgreen"
+
+            };
+
+            /*
+                $("선택자").children()
+                선택된 요소를 기준으로 모든 자식(바로 하위)요소들을 선택하는 메소드
+            */
+            $("#wrap").children().css(style1);
+            // 자식 요소들이 선택됨
+
+            $("#wrap").children().children().css(style2);
+            // 자식들의 자식요소가 각각 선택됨
+
+            /*
+                $("선택자").children("선택자")
+                children 메소드를 호출할 때 인자값을 전달할 수 있음
+                선택된 요소를 기준으로 모든 자식 중 선택자만 선택
+            */
+            // ul요소만 골라봐야지
+            $("#wrap").children().children("ul").css(style3);
+
+            /*
+                뭐 찾을 때 쓰는 1등 메소드, 이름부터 find
+                $("선택자").find("선택자")
+                선택된 요소를 기준으로 모든 후손요소들 중 선택자와 일치하는
+                요소를 선택
+            */
+            // 기준점을 기준으로 보면 span요소가 멀리 있고 두 span 요소의 레벨(??? 15:14)도 다름, 위치가 어디든지 자신의 후손인 span이 선택됨
+            $("#wrap").find("span").css(style4);
+            $("#wrap").find("li").css(style5);
 
         });
 
