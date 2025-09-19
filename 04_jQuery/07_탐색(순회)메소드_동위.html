@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <style>
+
+        #wrap, #wrap * {
+
+            border: 1px solid salmon;
+            display: block;
+            margin: 15px;
+            padding: 5px;
+            color: brown;
+
+        }
+
+    </style>
+</head>
+<body>
+
+    <h3>동위 메소드 : 같은 위치에 있는 요소들을 선택하는 메소드</h3>
+
+    <!-- #wrap>p+div+span+h2+h3+p -->
+    <div id="wrap">
+        <p>p</p>
+        <div>div</div>
+        <span>span</span>
+        <h2>h2</h2>
+        <!-- 기준점 h2 -->
+        <h3>h3</h3>
+        <p>p</p>
+    </div>
+
+    <script>
+
+        $(function() {
+
+            // siblings();
+            // 선택된 요소를 기준으로 동위에 있는 모든 요소를 선택
+            // h2요소를 선택하고 siblings 사용하면 형제요소들을 전부 선택
+            $("h2").siblings().css("color", "silver");
+            // 기준이 되는 h2 요소는 제외하고 나랑 같은 위치에 있는 모든 요소 선택
+
+            // 이것도 메소드를 호출하면서 인자값을 전달할 수 있음, 동위의 친구들 중 인자로 전달한 선택지에 부합하는 것들만 선택됨
+            $("h2").siblings("p").css("color", "gold");
+
+            // next계열
+            // 나를 기준으로 내 다음에 있는 요소들 선택
+
+            $("h2").next().css("color", "aqua");
+            // next()는 다음거 딱 하나만 선택
+
+            $("h2").nextAll().css("font-size", "3em");
+            // nextAll()은 나랑 동위에 있는데 내 다음에 있는거 전부 선택
+
+            $("h2").nextUntil("p").css("color", "violet");
+            // 이전까지 라는 의미로 선택할 수 있음, "p"라고 적었으니 h2와 p 사이의 요소인 h3 선택됨
+
+            // prev계열
+            $("h2").prev().css("background", "orangered");
+            // prev()는 선택자 기준으로 나랑 동위 중에서 내 바로 이전친구
+
+            // 바로전게 있으니까 prevAll도 있겠져?
+            $("h2").prevAll().css("color", "black");
+            // 내 동위에 있는거 중에 앞에있는거 전부
+
+            $("h2").prevUntil("p").css("border", "5px inset magenta");
+
+        });
+
+    </script>
+    
+</body>
+</html>
