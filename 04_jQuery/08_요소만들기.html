@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>요소 만들기</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <style>
+        .item {
+
+            background-color: gold;
+            width: 100px;
+            height: 100px;
+            margin: 5px;
+            border: 2px solid goldenrod;
+            line-height: 51px;
+            text-align: center;
+
+        }
+    </style>
+</head>
+<body>
+
+    <h1>오늘은 금요일이니까</h1>
+
+    <h3>Content영역과 관련된 메소드</h3>
+
+    <pre>
+        <!-- 요소객체 innerHTML / innerText 관련 속성 -->
+        선택된 요소의 content영역(여는태그와 닫는태그사이)을 반환해주거나
+        또는 변경해주는 메소드들 <br />
+
+        - $("선택자").html()
+        - $("선택자").text()
+        - 선택된 요소의 content영역 값을 반환해줌 <br />
+        - $("선택자").html("인자값")
+        - $("선택자").text("인자값")
+        - 선택된 요소의 content영역의 값을 전달한 인자값으로 바꿔줌 <br />
+
+        => 이때, html()는 HTML태그를 인식
+    </pre>
+
+    <h3 id="test1">
+        <a href="http://www.naver.com">네이버로 이동~</a>
+    </h3>
+
+    <h3 id="test2"></h3>
+
+    <button id="btn1">뻐튼</button>
+
+    <script>
+
+        $(function() {
+
+            $("#btn1").click(function() {
+
+                // 시시하니까 버튼 클릭하면 프롬프트를 하나 띄워보자
+                const url = prompt("이동할 URL를 입력해주세요.");
+                // id test2에 바뀔 a태그 경로를 사용자가 입력한 url로 바꿔주자
+                // 지금은 안에 있는 a태그가 없으니 선택할수가 없음
+                // 이건 html 메소드 사용해야 생김
+                // id test2 친구에 a태그 추가되는 코드 아래쪽에서 url 속성값 추가할 코드 작성함
+
+                // 처음엔 없다가 버튼을 눌러야 생기는 a태그이므로 이런것을 동적인 요소라고 한다
+
+                // id가 test1인 h3요소의 content 영역을 가져와서 console에 출력해보자
+                const test1Content = $("#test1").html();
+                // console.log(test1Content);
+
+                // console에 출력되는 녀석을 id가 test2인 content 영역에 붙여넣고싶다
+                $("#test2").html(test1Content);
+                // 똑같이 메소드 호출하는데 인자로 test1Content 넣어줌
+                // html 메소드가 getter / setter 역할을 할 수 있음
+
+                // 자식요소로 선택해서 속성추가메소드 호출
+                $("#test2").children("a").attr("href", url);
+                // 선택된 자식요소의 href 속성의 값을 사용자가 입력한 URL로 바꿔주겠다
+                // 방금배운거 써먹는거죠
+
+            });
+
+        });
+
+    </script>
+
+    <hr />
+
+    <h2>요소 생성 및 제거</h2>
+
+    <h3>* 동적으로 요소 생성</h3>
+
+    <div id="area1"></div>
+
+    <button id="btn2">요소 생성하기</button>
+
+    <script>
+
+        $(function() {
+
+            // btn2에 클릭이벤트 추가
+            // 자바스크립트로 따지면 addEL 같은친구, 첫번째인자로 어떤이벤트, 두번째 인자로 이벤트핸들러 전달
+            // 이벤트 여러개 한번에 추가가능한게 장점
+            $("#btn2").on("click", function() {
+
+                // <p> ~~~ </p>
+                // 1. 문자열로 만드는 방법
+                // ??? 15:47 무슨 방식이 제일 쉬운지
+                const el1 = "<p>CreateElement By Text</p>";
+                document.getElementById("area1").innerHTML = el1;
+
+                // 2. jQuery방식
+                // 선택자를 이용해서 p태그를 넣으면 태그가 만들어지고
+                // 컨텐트는 텍스트 메소드 호출해서 넣고싶은거 넣으면됨
+                const el2 = $("<p></p>").text("CreateElement By jQuery");
+
+                // 16:00 뭐지? 클릭할때마다 추가되는거 안됨
+                
+                // id로 선택해서 append 메소드 호출해서 넣으면 된다
+                /*
+                $("#area1").append(el2);
+                $("#area1").append(el1);
+                */
+                $("#area1").append(el1, el2);
+
+                $("#area1").append(createMyElement("h1", "하이하이"));
+
+            });
+
+            function createMyElement(element, content) {
+                return `<${element}>${content}</${element}>`;
+            }
+
+        });
+
+    </script>
+
+    <hr />
+    <!-- jQuery에 append같은 친구들이 많으니까 한번 알아봅시다 -->
+
+    <h3>* 추가 관련 메소드</h3>
+
+    <pre>
+        선택된 요소를 기준으로 새롭게 생성된 요소를 추가해주는 메소드
+
+        $(A).append(B) : A요소 내부에 가장 뒷부분에 B를 추가(자식) <br />
+        $(A).prepend(B) : A요소 내부에 가장 앞부분에 B를 추가(자식) <br />
+        $(A).before(B) : A요소 앞 부분에 B를 추가(동위) <br />
+        $(A).after(B) : A요소 뒷 부분에 B를 추가(동위) <br />
+        <!-- 기준은 선택자로 선택한 A가 됨 -->
+
+        <hr />
+
+        $(B).appendTo(A) : B를 A요소 내부에 뒷부분에 추가(자식) <br />
+        $(B).prependTo(A) : B를 A요소 내부에 앞부분에 추가(자식) <br />
+        $(B).insertBefore(A) : B를 A요소 앞부분에 추가(동위) <br />
+        $(B).insertAfter(A) : B를 A요소 뒷부분에 추가(동위) <br />
+    </pre>
+
+    <!-- A == h2 (기준을 h2로 잡음) -->
+    <!-- B == span -->
+
+    <!-- (h2#test$>div)*4 -->
+    <h2 id="test4">A
+        <div>div</div>
+        <!-- B -->
+    </h2>
+
+    <h2 id="test5">A
+        <!-- B -->
+        <div>div</div>
+    </h2>
+
+    <!-- B -->
+    <h2 id="test6">A
+        <div>div</div>
+    </h2>
+
+    <h2 id="test7">A
+        <div>div</div>
+    </h2>
+    <!-- B -->
+
+    <script>
+
+        $(function() {
+
+            const span = '<span style="color:red">나는span이다</span>';
+
+            // console.log(span);
+            // console.log($("#test1"));
+            $("#test4").append(span);
+            // ??? 16:18 어디생긴거지
+
+            $("#test5").prepend(span);
+            // 텍스트 노드보다 앞에, 제일 앞에 붙어버림
+
+            // append / prepend는 자식요소로 추가할때 쓴다
+
+            $("#test6").before(span);
+            // 내 동위레벨 앞에
+
+            $("#test7").after(span);
+            // 내 동위레벨 뒤에
+
+        });
+
+    </script>
+
+    <hr />
+
+    <h3>* 요소 객체 복제하는 메소드</h3>
+
+    <p>
+        $("선택자").clone(true / false); <br />
+        (clone 메소드를 호출하면서 인자값으로)복제한 요소 이벤트도 복제할건지 지정(생략 시 false)
+    </p>
+
+    <button id="clone">복제</button>
+
+    <div id="clone-area">
+
+        <!-- 복제할 요소 -->
+        <div class="item">
+            <p>골드바</p>
+        </div>
+
+    </div>
+
+    <div id="clone-result">
+
+    </div>
+
+    <script>
+
+        $(function() {
+
+            // 골드바에게 이벤트를 주자
+            // 부모요소는 id 속성값이 있으니 이걸 이용해서 선택
+            $("#clone-area")
+                .children()
+                .click(function() {
+                    $(this).css("color", "goldenrod");
+            });
+
+            // 복제 버튼을 클릭하면 골드바를 복제해서 clone-result에 붙여넣기를 해보자
+            // 복제 버튼 클릭 시 해당 요소를 복사해서
+            // clone-result의 자식요소로 추가
+            $("#clone").click(function() {
+
+                const $copyEl = $("#clone-area>.item").clone(true);
+                // jQuery 선택자와 메소드로 뽑은 jQuery객체이기 때문에 변수이름 앞에 $를 붙이는 편
+                // 일반 자바스크립트 변수와 혼동방지
+                $("#clone-result").append($copyEl);
+
+            });
+
+        });
+
+    </script>
+
+    <hr />
+
+    <h3>* 요소객체 제거 / 잘라내기 메소드</h3>
+
+    <p>
+        $("선택자").empty() : 선택된 요소의 모든 후손요소 제거 <br /><br />
+        <!-- 후손요소 싹 몽땅 다날리기 -->
+
+        $("선택자").remove() / detach() : remove는 제거하는거고 detach는 해당 요소 잘라내기 <br />
+        - remove : 요소의 이벤트가 날아가버림 <br />
+        - detach : 이벤트가 같이 잘라내짐
+    </p>
+
+    <!-- btn#empty+btn#remove+btn#detach -->
+    <button id="empty">empty</button> <br />
+    <button id="remove">remove</button> <br />
+    <button id="detach">detach</button> <br /><br /><br />
+
+    <div id="remove-area">
+        <div id="item1" class="item">
+            <span>날 제거해라</span>
+        </div>
+    </div>
+
+    <hr />
+
+    <div id="remove-result"></div>
+
+    <script>
+
+        $(function() {
+
+            // remove-area를 선택
+            $("#empty").click(function() {
+
+                // 부모요소를 선택
+                $("#remove-area").empty();
+                // div 요소를 선택했는데 이친구의 모든 후손요소가 싹 사라짐
+                // div 요소는 남아있음
+
+            });
+
+            $("#remove").click(function() {
+
+                // id가 item1인 요소 remove -> remove한 요소가 반환된다
+                const $el = $("#item1").remove(); // 제거 == 제거된 요소를 반환
+                // 다른데 붙여넣기 가능
+                $("#remove-result").append($el);
+
+            });
+            // 사실 잘라내기 메소드는 따로 있음, 진짜는 이게 아니지
+
+            // 잘라내기할 요소에 이벤트 부여 먼저
+            $("#item1").mouseenter(function() {
+                $(this).css("color", "red");
+            });
+            // remove로 테스트 했을때는 이벤트가 따라가지 않음
+            // 이벤트 발생시키지 않고 remove 클릭해야함, 발생시키면 발생한 상태(style입혀진 상태)가 복제되어서
+            // 이벤트 발생하는지 구분이 안된다
+
+            $("#detach").click(function() {
+
+                const $el = $("#item1").detach();
+                $("#remove-result").append($el);
+
+            });
+            // detach는 이벤트가 같이 잘라내기 되어서 넘어감
+
+        });
+
+    </script>
+
+    <hr />
+
+    <!-- bootstrap 써보자 -->
+
+    <h3>시각적인 효과 메소드</h3>
+
+    <p>
+        페이지 내부에서 애니메이션 효과를 만들기 위해 사용하는 메소드 <br /><br />
+    </p>
+    
+</body>
+</html>
