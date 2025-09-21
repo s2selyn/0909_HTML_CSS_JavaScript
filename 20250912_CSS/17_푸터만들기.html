@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>푸터다 푸터</title>
 
@@ -17,6 +18,7 @@
             width: 1000px;
             height: 160px;
         }
+
         /* 따로 작업해서 다 만든 다음에 한꺼번에 붙여넣는 식으로 작업할것임 */
 
         /* 틀 역할 하는 친구부터 크기를 지정하는 작업부터 하고 내용을 작업함 */
@@ -25,7 +27,8 @@
         /* footer를 두개로 나누었음 */
         #footer_1,
         #footer_2 {
-            width: 100%; /* 부모요소 길이만큼 */
+            width: 100%;
+            /* 부모요소 길이만큼 */
         }
 
         #footer_1 {
@@ -41,7 +44,7 @@
 
         /* 나중에 갖다붙이러 갈건데 거기에도 a태그가 있을 수 있음 */
         /* footer_1의 자식요소 a태그만 선택 */
-        #footer_1 > a {
+        #footer_1>a {
             text-decoration: none;
             color: rgb(255, 255, 255);
             margin: 33px;
@@ -57,12 +60,13 @@
 
         /* p 태그에 대한 세부스타일 설정 */
         /* footer_2의 자식요소인 p 태그만 선택 */
-        #footer_2 > p{
+        #footer_2>p {
             width: 100%;
-            margin: 0; /* 0을 주면 있던걸 없애줌 */
+            margin: 0;
+            /* 0을 주면 있던걸 없애줌 */
             background-color: rgb(146, 202, 174);
         }
-        
+
         /* 안쪽 p 태그에 대한 세로길이를 지정 안해줘서 튀어나오고 그런다.. 부모에 대한 비율로 height 지정 */
         #p_1 {
             height: 80%;
@@ -87,6 +91,7 @@
         }
     </style>
 </head>
+
 <body>
     <footer>
         <!-- 웹디자인 저작권때문에 함부로 갖다쓰면 안된다요, 그래서 학원거 보면서 함 -->
@@ -121,4 +126,5 @@
         </div>
     </footer>
 </body>
+
 </html>

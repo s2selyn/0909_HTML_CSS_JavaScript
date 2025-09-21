@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>정표</title>
 
@@ -12,8 +13,9 @@
         }
     </style>
 </head>
+
 <body>
-    
+
     <h1>정규표현식</h1>
 
     <p>
@@ -85,9 +87,9 @@
             area.innerHTML += `regExp.test(str1) : ${regExp.test(str1)} <br>
                                ${regExp.test("asdfasdf")}`;
             // 정규표현식을 만족시키니까 true가 반환된다, 만족시키지 못하면 false
-            
+
         }
-        
+
     </script>
 
     <!-- 자바의 contains랑 비슷한데 어따쓸거임?
@@ -138,7 +140,7 @@
             regExp = /[abc]/; // 문자열 중 a또는 b또는 c가 하나라도 존재할 경우
             area.innerHTML += `/[abc]/ : ${regExp.test(str)} <br>
                                /[abc]/ : ${regExp.test("pppvvvfff")} <br>`;
-                               
+
             // 이런것들을 잘 섞어서 쓰면 됨
             // 문자열의 시작 문자가 j또는 s또는 a인가
             // if(str.charAt(0) === 'j' || str.charAt(0) === 's' || str.charAt(0) === 'a')
@@ -173,7 +175,7 @@
             // 이런 상황에서는 어떤것이 앞에 먼저오든 상관없다는 의미로 대괄호로 묶음
             // 대괄호 뒤에 +를 붙여 -> 숫자의 개수는 상관이 없고 무조건 한 글자 이상이어야함
             regExp = /^[0123456789]+$/; // 숫자의 개수는 상관없음
-                                        // 무조건 1글자 이상이어야 패턴 만족
+            // 무조건 1글자 이상이어야 패턴 만족
             // 보통은 시작부터 끝까지 검사하고 싶을 때(모든 숫자를 다 검사하고 싶을 때)
             // 0123456789를 풀어서 쓰지 않고 [0-9], 0부터 5까지 보고싶다면 [0-5] 이런식
             regExp = /^[0-9]+$/; // 한글자 이상은 +, 0부터 9까지는 [0-9]
@@ -352,4 +354,5 @@
     </script>
 
 </body>
+
 </html>

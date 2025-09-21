@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>이거 좀 어려울지도..?</title>
 
@@ -28,6 +29,7 @@
         }
     </style>
 </head>
+
 <body>
 
     <h1>브라우저 인터페이스</h1>
@@ -176,11 +178,11 @@
                 // 값이 바뀌어야하니까 const로 쓸수는 없음, let으로 해야함
 
                 // 한자리수 앞에 0을 붙여서 항상 두자리로 표시하게 하고싶은데? -> 조건
-                if(min < 10) {
+                if (min < 10) {
                     min = "0" + min;
                 };
 
-                if(sec < 10) {
+                if (sec < 10) {
 
                     // 정순데 0 붙이는거 의미없음, 문자열로 붙여야함
                     sec = "0" + sec;
@@ -188,7 +190,7 @@
                 };
 
                 // 오전/오후 표시 -> 이것도 조건, 변수가 하나 있어야겠다 -> let ap 선언
-                if(hour > 12) {
+                if (hour > 12) {
 
                     // 24시간 표기니까 예쁘게 바꿔줌
                     hour -= 12;
@@ -371,11 +373,11 @@
 
             // 리액트는 실제로 이런식으로 동작하지는 않고 가상 돔으로 동작, 문자열도 아니고
             // 우리가 나중에 배우게 될 React는 가상 DOM이라는 개념을 사용함
-            
+
             // 2_2) textNode만들기 : document.createTextNode('텍스트');
             const textNode = document.createTextNode(userId);
             console.log(textNode);
-            
+
             // 3. 두 개의 노드를 연결
             // elementNode의 자식으로 textNode를 추가해야함
             // a의 자식으로 b를 추가
@@ -408,4 +410,5 @@
     </script>
 
 </body>
+
 </html>

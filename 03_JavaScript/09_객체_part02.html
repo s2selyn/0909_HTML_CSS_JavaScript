@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>써보자써보자하게요</title>
     <style>
@@ -31,18 +32,18 @@
             }
         }
 
-        .card > img {
+        .card>img {
             width: 230px;
             height: 300px;
         }
 
         /* 웹툰 제목이니까 h태그 써야겠다 */
-        .card > h4 {
+        .card>h4 {
             font-size: 18px;
             font-weight: 800;
         }
 
-        .card > p {
+        .card>p {
             font-size: 14px;
             font-weight: 500;
         }
@@ -54,8 +55,9 @@
         }
     </style>
 </head>
+
 <body>
-    
+
     <h1>배열과 객체의 활용</h1>
 
     <h3>* 객체배열 써보기</h3>
@@ -71,7 +73,7 @@
     <script>
 
         // html화면요소 로딩이 끝났다
-        window.onload = function() {
+        window.onload = function () {
 
             // 그러면 이 안에서
             // 컨트롤러로 요청을 보냄~
@@ -93,29 +95,29 @@
             const webtoons = [
 
                 {
-                    image : "https://image-comic.pstatic.net/webtoon/842620/thumbnail/thumbnail_IMAG21_44eb7809-90e1-46da-a0ec-1ead08a8e9e9.jpg",
-                    title : "해골전령 이야기",
-                    author : "kain_y / 소라게"
+                    image: "https://image-comic.pstatic.net/webtoon/842620/thumbnail/thumbnail_IMAG21_44eb7809-90e1-46da-a0ec-1ead08a8e9e9.jpg",
+                    title: "해골전령 이야기",
+                    author: "kain_y / 소라게"
                 },
                 {
-                    image : "https://image-comic.pstatic.net/webtoon/807178/thumbnail/thumbnail_IMAG21_28fcfb22-aae7-41b4-8767-05f6dd176b03.jpg",
-                    title : "캐슬 2:만인지상",
-                    author : "정연, 박만사"
+                    image: "https://image-comic.pstatic.net/webtoon/807178/thumbnail/thumbnail_IMAG21_28fcfb22-aae7-41b4-8767-05f6dd176b03.jpg",
+                    title: "캐슬 2:만인지상",
+                    author: "정연, 박만사"
                 },
                 {
-                    image : "https://image-comic.pstatic.net/webtoon/642598/thumbnail/thumbnail_IMAG21_c784c8b0-c6d3-46ca-9a02-d3c4c04a8c83.jpg",
-                    title : "조선왕조실톡",
-                    author : "무적핑크"
+                    image: "https://image-comic.pstatic.net/webtoon/642598/thumbnail/thumbnail_IMAG21_c784c8b0-c6d3-46ca-9a02-d3c4c04a8c83.jpg",
+                    title: "조선왕조실톡",
+                    author: "무적핑크"
                 },
                 {
-                    image : "https://image-comic.pstatic.net/webtoon/747269/thumbnail/thumbnail_IMAG21_aabd9952-ff45-47a2-a543-33f19a5c6708.jpg",
-                    title : "전지적 독자 시점",
-                    author : "UMI / 슬리피-C / 싱숑"
+                    image: "https://image-comic.pstatic.net/webtoon/747269/thumbnail/thumbnail_IMAG21_aabd9952-ff45-47a2-a543-33f19a5c6708.jpg",
+                    title: "전지적 독자 시점",
+                    author: "UMI / 슬리피-C / 싱숑"
                 },
                 {
-                    image : "https://image-comic.pstatic.net/webtoon/838002/thumbnail/thumbnail_IMAG21_aee939b2-2d3c-445f-a7d8-82414f4f9482.jpg",
-                    title : "종말이 찾아왔다",
-                    author : "전선욱"
+                    image: "https://image-comic.pstatic.net/webtoon/838002/thumbnail/thumbnail_IMAG21_aee939b2-2d3c-445f-a7d8-82414f4f9482.jpg",
+                    title: "종말이 찾아왔다",
+                    author: "전선욱"
                 },
 
             ];
@@ -148,7 +150,7 @@
 
             // for of 반복하면서 작업해야하니까 변수선언 먼저 해두자
             let element = "";
-            for(let webtoon of webtoons) {
+            for (let webtoon of webtoons) {
                 // 동적인 요소 만들었던 코드를 여기에 만들어주고 복합대입연산자로 넣어주자
                 element += `<div class="card">
                                 <img src="${webtoon.image}" />
@@ -167,52 +169,52 @@
             const places = [
 
                 {
-                    img : "https://a0.muscache.com/im/pictures/hosting/Hosting-1157133225923295926/original/1664a4f5-dde0-404b-abb8-75b15946d44c.jpeg?im_w=720",
-                    name : "부산의 아파트",
-                    rate : 4.95,
-                    spec : "광안 / 통유리 / 고층",
-                    stayingDays : "4월 18일 ~ 4월 19일",
-                    pricePerDay : "125,000",
-                    totalPrice : ""
+                    img: "https://a0.muscache.com/im/pictures/hosting/Hosting-1157133225923295926/original/1664a4f5-dde0-404b-abb8-75b15946d44c.jpeg?im_w=720",
+                    name: "부산의 아파트",
+                    rate: 4.95,
+                    spec: "광안 / 통유리 / 고층",
+                    stayingDays: "4월 18일 ~ 4월 19일",
+                    pricePerDay: "125,000",
+                    totalPrice: ""
 
                 },
                 {
-                    img : "https://a0.muscache.com/im/pictures/4978439c-932f-43de-9810-56123a7c5da9.jpg?im_w=720",
-                    name : "부산의 아파트",
-                    rate : 4.9,
-                    spec : "광안 / 바다 1초",
-                    stayingDays : "12월 17일",
-                    pricePerDay : "134,000",
-                    totalPrice : ""
+                    img: "https://a0.muscache.com/im/pictures/4978439c-932f-43de-9810-56123a7c5da9.jpg?im_w=720",
+                    name: "부산의 아파트",
+                    rate: 4.9,
+                    spec: "광안 / 바다 1초",
+                    stayingDays: "12월 17일",
+                    pricePerDay: "134,000",
+                    totalPrice: ""
                 },
                 {
-                    img : "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTQzOTA1OTM4MDUwMzg4NDc2Nw==/original/a9ef458f-316d-4b07-aa2f-324f56698fc4.jpeg?im_w=720",
-                    name : "동래구의 아파트",
-                    rate : 4.92,
-                    spec : "킹사이즈 침대 1개",
-                    stayingDays : "11월 19일",
-                    pricePerDay : "235,000",
-                    totalPrice : ""
+                    img: "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTQzOTA1OTM4MDUwMzg4NDc2Nw==/original/a9ef458f-316d-4b07-aa2f-324f56698fc4.jpeg?im_w=720",
+                    name: "동래구의 아파트",
+                    rate: 4.92,
+                    spec: "킹사이즈 침대 1개",
+                    stayingDays: "11월 19일",
+                    pricePerDay: "235,000",
+                    totalPrice: ""
                 },
                 {
-                    img : "https://a0.muscache.com/im/pictures/hosting/Hosting-1254611685750285523/original/5a7cbab5-d254-4068-81f2-7aeec2554cf9.jpeg?im_w=720",
-                    name : "광안리의 집",
-                    rate : 4.89,
-                    spec : "퀸사이즈 침대 2개",
-                    stayingDays : "10월 27일",
-                    pricePerDay : "142,000",
-                    totalPrice : ""
+                    img: "https://a0.muscache.com/im/pictures/hosting/Hosting-1254611685750285523/original/5a7cbab5-d254-4068-81f2-7aeec2554cf9.jpeg?im_w=720",
+                    name: "광안리의 집",
+                    rate: 4.89,
+                    spec: "퀸사이즈 침대 2개",
+                    stayingDays: "10월 27일",
+                    pricePerDay: "142,000",
+                    totalPrice: ""
                 },
                 {
-                    img : "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6NjI4Nzk2NDc5Mzk3Nzc2NzIz/original/9328f0ad-6465-40b9-89b9-54383cbcaa7f.jpeg?im_w=720",
-                    name : "오크홀름의 아파트",
-                    rate : 4.85,
-                    spec : "엘시티뷰",
-                    stayingDays : "12월 22일",
-                    pricePerDay : "222,000",
-                    totalPrice : ""
+                    img: "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6NjI4Nzk2NDc5Mzk3Nzc2NzIz/original/9328f0ad-6465-40b9-89b9-54383cbcaa7f.jpeg?im_w=720",
+                    name: "오크홀름의 아파트",
+                    rate: 4.85,
+                    spec: "엘시티뷰",
+                    stayingDays: "12월 22일",
+                    pricePerDay: "222,000",
+                    totalPrice: ""
                 },
-                
+
             ];
 
             console.log(places);
@@ -230,7 +232,7 @@
             */
 
             let placeEl = "";
-            for(let place of places) {
+            for (let place of places) {
 
                 placeEl += `<div class="card">
                                 <img src="${place.img}" />
@@ -255,16 +257,16 @@
     <!-- 자바의 constructor와 동일 -->
 
     <button onclick="con();">실행</button>
-    
+
     <script>
         function con() {
 
             // 웹툰 객체를 만들고 싶음
             // 썸네일, 제목, 작가명
             const webtoon1 = {
-                image : "",
-                title : "",
-                author : ""
+                image: "",
+                title: "",
+                author: ""
             };
             // 원래 이렇게 하던걸
 
@@ -389,4 +391,5 @@
     </script>
 
 </body>
+
 </html>
