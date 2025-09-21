@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>3번이다 3번~~~</title>
     <style>
-
         /* 눈이 아파서 다크모드작업! */
         body {
             background-color: black;
@@ -20,6 +20,7 @@
         #vis1 {
             background: red;
         }
+
         /* background-color 라고 안써도 됩니다요 */
 
         #vis2 {
@@ -50,7 +51,8 @@
 
         .outer {
             border: 1px solid white;
-            position: relative; /* 얘가 이제 자식요소들의 기준점 */
+            position: relative;
+            /* 얘가 이제 자식요소들의 기준점 */
 
             /*
                 1단계 : 기준이 될 요소에 position: relative;
@@ -74,11 +76,14 @@
             width: 200px;
             height: 200px;
             background: aquamarine;
-            position: absolute; /* 기준점을 기준으로 배치하겠음 */
+            position: absolute;
+            /* 기준점을 기준으로 배치하겠음 */
             /* 여기까지 그냥두면 기준점부터 어디에서 시작할지를 정해주지 않아서 이상한데 가있음 */
 
-            top: 50px; /* 기준점에서부터 위에서 얼마나 떨어진 곳에 배치할것인지 */
-            left: 70px; /* 기준점에서부터 왼쪽에서 얼마나 떨어진 곳에 배치할건지 */
+            top: 50px;
+            /* 기준점에서부터 위에서 얼마나 떨어진 곳에 배치할것인지 */
+            left: 70px;
+            /* 기준점에서부터 왼쪽에서 얼마나 떨어진 곳에 배치할건지 */
 
             /* 그냥 끝내기 아쉬우니 변화구, 기울일 수 있음 */
             transform: rotate(10deg);
@@ -142,12 +147,14 @@
             border: 1px solid white;
             float: left;
         }
+
         /* 둥둥 띄우기, left / right 지정 가능 */
         /* 조심해야할것들, 아래에 다른 요소를 추가하면? 아래로 가지 않고 옆에 다음요소가 붙어버림
         떠있는걸 해제해줘야 다음것이 제대로 아래로 내려감
         */
     </style>
 </head>
+
 <body>
 
     <h1>배치 관련 스타일</h1>
@@ -228,6 +235,7 @@
     <br clear="both" />
 
     <div>안녕하세요</div>
-    
+
 </body>
+
 </html>

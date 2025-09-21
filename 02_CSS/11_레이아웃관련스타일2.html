@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>레이아웃잡기</title>
     <style>
@@ -29,8 +30,9 @@
         }
     </style>
 </head>
+
 <body>
-    
+
     <!-- inline-block도 좋은 속성이지만 좀 더 편한 방법 -->
 
     <h1>요소를 배치해보자</h1>
@@ -110,14 +112,11 @@
 
     <!-- 가로세로 전부 center로 지정하면 부모요소의 정중앙에 위치시킴 -->
     <!-- 나중에 position으로 지정하려면 조금 번거로움, flex를 사용하면 쉽게 가운데에 배치가능 -->
-    <div
-        class="container"
-        style="display: flex;
+    <div class="container" style="display: flex;
               justify-content: center;
               height: 300px;
               align-items: center
-        "
-    >
+        ">
         <div class="box red" style="order: 3">나는 1번</div>
         <div class="box blue" style="order: 1">나는 2번</div>
         <div class="box green" style="order: 2">나는 3번</div>
@@ -125,4 +124,5 @@
     </div>
 
 </body>
+
 </html>
