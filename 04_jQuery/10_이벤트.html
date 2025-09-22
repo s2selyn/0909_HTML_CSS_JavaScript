@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>jQuery에서 이벤트</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+
+<body>
+
+    <h1>이벤트 달자~~</h1>
+
+    <h3>* 방법 1. 이벤트 메소드 호출해서 연결</h3>
+
+    <pre>
+        $("선택자").이벤트메소드(function () {
+            이벤트 발생 시 실행할 코드;
+        });
+    </pre>
+
+    <p id="test1">클릭해보세요 ~</p>
+
+    <script>
+        $(function () {
+
+            // 요소에 접근(선택)해서 메소드 호출
+            $("#test1").dblclick(function () {
+
+                // dblclick처럼 이벤트에 해당하는 메소드가 전부 존재하니까 그걸 호출하는것임
+                alert("더블클릭~");
+
+            });
+
+        });
+    </script>
+
+    <h3>* 방법 2. on메소드를 호출하는 방법</h3>
+
+    <pre>
+        [표현식]
+        <!-- 선택자로 선택해서 첫번째 인자로 이벤트타입, 두번째 인자로 이벤트 핸들러 -->
+        $("선택자").on("이벤트타입", function () {
+            이벤트 발생시 실행할 코드;
+        });
+    </pre>
+
+    <p id="test2">마우스로 클릭도 해보고 ~ 올려도 보고~</p>
+    <!-- 여러개의 이벤트를 달아보자 -->
+
+    <script>
+        $(function () {
+
+            // 이걸 1번 방식으로 하려면 메소드 여러번 호출해서 따로 달아야함
+            // $("#test2").click().mouseenter()
+
+            // on메소드는 한꺼번에 달 수 있음
+            // 여러개 속성, 여러개 값을 달고싶다면 자바스크립트에서는 객체 형태로 값을 전달
+            $("#test2").on({
+
+                mouseenter: function () {
+                    $(this).css("color", "yellow").text("올라감");
+                },
+                mouseout: function () {
+                    $(this).css("color", "red").text("나감");
+                },
+                click: function () {
+
+                    // 클릭 이벤트가 발생한 경우 달려있는 이벤트 핸들러 제거
+                    $(this).off("mouseenter").off("mouseout").text("제거");
+
+                },
+                // on으로 이벤트 달 수 있고, off로 없앨 수 있음
+
+            });
+
+        })
+    </script>
+    <!-- 이벤트 여러개 달려면 1번(이벤트 메소드 호출)보다 on메소드를 권장하는 편! -->
+
+    <hr />
+
+    <h3>* 방법 3. ☆★on 메소드를 사용하는 방법☆★</h3>
+
+    <!-- 직접 선택하는게 아니라 상위 요소를 선택함, 인자로 하위 요소를 선택해서 전달 -->
+    <pre>
+        [ 표현법 ]
+        $("상위요소선택자").on("이벤트타입", "하위요소선택자", function () {
+            이벤트 발생 시 실행할 내용;
+        });
+    </pre>
+
+    <div id="wrap">
+        <h4>h4요소를 클릭해보세요.</h4>
+        <!-- 이친구를 선택했을 때 alert을 띄우려면 일반적으로 id를 부여해서 했겠지만 그거안할거임 -->
+    </div>
+
+    <script>
+        $(function () {
+
+            $("#wrap").on("click", "h4", function () {
+                alert("날 클릭했니??");
+            });
+            // 왜 이렇게 쓸까?
+
+        })
+    </script>
+
+    <hr />
+
+    <h3>* 동적으로 만든 요소에 이벤트 적용</h3>
+    <!-- 이때 방법 3의 의미가 생김 -->
+
+    <!-- 동적으로 만든 요소는 어떤걸 동적으로 만들었다고 표현하더라...? -->
+    <!--
+        처음 HTML문서상에서는 존재하지 않다가
+        나중에 새롭게 만들어지는 요소 : 동적요소
+    -->
+
+    <div id="wrap2" style="border: 1px solid skyblue">
+        <h6>기존에 존재하는 요소</h6>
+        <!-- 바로 여기에 -->
+    </div>
+
+    <!-- h6요소를 클릭하면 바로 아래에 h6요소을 동적으로 만들어주자, div의 자식요소 h6을 클릭하면 바로 뒤에 새로운 자식요소 생성ㄱㄱ -->
+    <script>
+        $(function () {
+
+            // 방법 1. 이벤트 메소드 호출
+            /*
+            $("#wrap2 > h6").click(function () {
+                $("#wrap2").append("<h6>새로 만든 요소</h6>");
+            });
+            */
+            // 새롭게 만들어진 요소는 이벤트가 동작하지 않는다.
+            // 기존것 클릭했을 때만 요소가 생김
+
+            // 방법 2. on메소드
+            /*
+            $("#wrap2 > h6").on("click", function () {
+                $("#wrap2").append("<h6>새로 만든 요소</h6>");
+            });
+            */
+            // 이것도 새것 눌렀을때는 이벤트가 없음(동적으로 만든 요소에는 이벤트가 동작하지 않는다)
+
+            // 방법 3. on메소드
+            $("#wrap2").on("click", "h6", function () {
+                $("#wrap2").append("<h6>새로 만든 요소</h6>");
+            });
+            // 이건 원래것도, 새로운것도 이벤트가 동작한다!
+
+            // 1, 2번 방법과 3번 방법의 근본적인 차이?
+            // 이벤트리스너를 달아주는것은 문서전체 로딩이 끝났을때 달아줌, 요소가 다 생겼을 때
+            // 1, 2는 정확히 기존요소에 이벤트가 달림
+            // 새로 만들어진 친구는 이벤트 달때 존재하지 않았기때문에 이벤트 달릴 수 없음
+            // 3은 직접 지정해서 이벤트를 다는게 아니고 원래 존재했던 부모요소에 이벤트를 달아서
+            // 자식에게 달아주겠따 라고 선택했음
+            // 문서 로딩이 끝난 시점에...?
+            // ??? 11:28 요약
+            // 동적으로 만들어진 요소에 기존에 존재하는 이벤트를
+            // 달아주고 싶다면 3번 방법을 이용해야함 ~ !
+
+        })
+    </script>
+
+    <hr />
+
+    <h3>* 일회성 이벤트</h3>
+
+    <p>
+        이벤트를 딱 한번만 수행하고 싶을 때
+    </p>
+
+    <h6 id="test3">한 번 만 클 릭 하 세 요</h6>
+
+    <script>
+        $(function () {
+
+            // 이름도 one인 메소드 호출
+            $("#test3").one("click", function () {
+                alert("딱 한 번!");
+            });
+            // 새로고침해야 또 수행할 수 있음
+
+        })
+    </script>
+
+    <hr />
+
+    <h3>* 키보드 관련 이벤트</h3>
+
+    <pre>
+        키가 눌렸을 때 발생하는 이벤트
+        - keydown : 키보드의 모든 키가 눌리면 발생
+        - keypress : 키보드의 function키(mac의 Fn, Ctrl, Alt 등), 기능키, 한글을 제외한
+                     나머지가 눌릴 때 발생 <br /><br />
+
+        키가 떼어질 때 발생하는 이벤트
+        - keyup
+    </pre>
+    <!-- keydown은 한글자씩 밀리는 현상이 있어서 보통 keyup으로 구현함 -->
+
+    <input type="text" id="test4" />
+
+    <script>
+        $(function () {
+            $("#test4").keydown((e) => {
+
+                // console.log("키보드 눌렸당 ㅎ");
+                // 보통은 입력한 value값을 사용하는 경우가 많으니까
+                // console.log(e.target); // 이벤트 발생한 타겟 찾아가는 방법
+                // 사용자가 입력한 input요소의 값이 필요하니까
+                // console.log(e.target.value);
+                // 근데 keydown은 하나 없는게 나온다
+                // value는 string이니까 length확인가능
+                console.log(e.target.value.length);
+                // 이걸 이용해서 글자수 세기 만들기 가능!
+
+            });
+        })
+    </script>
+
+    <hr />
+
+    <h3>* 글자수 세기 예제</h3>
+
+    <div style="border: 1px solid rgba(0, 0, 0, 0.2)">
+        <br />
+        30자 이내로 입력하세요. <br />
+        <textarea id="content" cols="40" rows="10" style="resize: none" maxlength="30"></textarea>
+        <!-- 여기에 들어간 글자수 세고싶으니까 id속성 부여 -->
+        <br />
+        <hr />
+        <span id="count">0</span>/30
+    </div>
+
+    <script>
+        $(function () {
+
+            $("#content").keyup((e) => {
+
+                console.log(e.target.value.length);
+                // console출력이 아니라 span요소의 0을 글자수대로 바꿔주고싶은거니까 id를 부여하고
+                $("#count").text(e.target.value.length);
+                // text 속성에 넣어줌
+
+                // ??? 11:45 왜 31까지 카운트될까?
+
+            });
+
+        })
+    </script>
+
+</body>
+
+</html>
