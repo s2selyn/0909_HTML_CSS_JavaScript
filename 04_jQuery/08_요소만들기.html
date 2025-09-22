@@ -416,6 +416,63 @@
         </div>
     </div>
 
+    <hr />
+
+    <h2>월요일 다시 시~~작~!</h2>
+
+    <h4>* show(), hide(), toggle()</h4>
+    <h4>* fadeIn(), fadeOut(), fadeToggle()</h4>
+
+    <!-- button[class="btn btn-sm"]*6 -->
+    <button class="btn btn-sm btn-primary" id="show">보이기</button>
+    <button class="btn btn-sm btn-warning" id="hide">숨기기</button>
+    <button class="btn btn-sm btn-info" id="toggle">토글</button>
+    <button class="btn btn-sm btn-success" id="fadeIn">보이기</button>
+    <button class="btn btn-sm btn-secondary" id="fadeOut">숨기기</button>
+    <button class="btn btn-sm btn-danger" id="fadeToggle">토글</button>
+    <!-- 부트스트랩에서 가져온 클래스 속성 추가하면 버튼 스타일 입혀진다, id도 메소드명이랑 똑같이 추가 -->
+
+    <img src="https://file.bodnara.co.kr/logo/insidelogo.php?image=%2Fhttp%3A%2F%2Ffile.bodnara.co.kr%2Fwebedit%2Fnews%2F2010%2F1403651148-mba_12.jpg"
+        width="450" height="200" id="macBook" />
+
+    <script>
+        $(function () {
+
+            // 숨기기(hide), id가 hide인 버튼을 클릭하면,
+            $("#hide").click(function () {
+
+                // 이벤트 핸들러 추가해서 id가 "macBook"인 친구를 숨겨야징~
+                $("#macBook").hide(3000);
+                // 인자값으로 숨겨지는 속도 조절 가능, ms 단위
+
+            });
+
+            // 보이기(show)
+            $("#show").click(function () {
+                $("#macBook").show(3000);
+            });
+
+            // 토글은 왔다갔다
+            $("#toggle").click(function () {
+                $("#macBook").toggle(1000);
+            });
+
+            // fade 삼총사도 같은데 애니메이션 효과가 조금 다름
+            $("#fadeOut").click(function () {
+                $("#macBook").fadeOut(3000);
+            });
+
+            $("#fadeIn").click(function () {
+                $("#macBook").fadeIn(3000);
+            });
+
+            $("#fadeToggle").click(function () {
+                $("#macBook").fadeToggle(1000);
+            });
+
+        });
+    </script>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>
