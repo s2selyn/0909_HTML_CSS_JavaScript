@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>이벤트</title>
     <!-- 아무래도 자바스크립트 이용하는 이유의 대부분을 차지하지않을까? -->
@@ -16,8 +17,9 @@
         }
     </style>
 </head>
+
 <body>
-    
+
     <h1>이벤트</h1>
 
     <!-- 자바스크립트입장에서도브라우저에서이벤트를하면좋아요? -->
@@ -93,7 +95,7 @@
         // 팀작업이라면 팀작업에서는 통일
 
         // eventtype을 지정
-        btn1.onclick = function() { // eventHandler 대입
+        btn1.onclick = function () { // eventHandler 대입
 
             // eventHandler 안에는 eventtype이 일어났을 때 어떤 작업을 할건지 작성
             area1.innerHTML += "btn1클릭<br>";
@@ -194,7 +196,7 @@
 
     <button onclick="exFn(this);">인라인 이벤트 방식 1</button>
     <button onclick="exFn(this);">인라인 이벤트 방식 2</button>
-    
+
     <script>
 
         // 각 이벤트 방식에 따라 이벤트핸들러에서 타겟에 접근하는 방법
@@ -213,7 +215,7 @@
             // 함수는 문제가 없고 둘중에 부르는 곳에서 잘못불렀다는 뜻이겠죠
             // 문제 발생했을 때 일어날 수 있는 원인 생각하기, 차곡차곡 찾아가서 고치기
             // 문제 발생한거 정리해서 자산으로 만드세요
-            
+
             // 요소가 잘 넘어오니까 이 요소의 innerHTML 속성을 바꿔줌
             e.innerHTML = "클릭됨!";
 
@@ -236,7 +238,7 @@
             // console.log(window.event.target);
             // console.log(this.event.target);
             // 실제 이벤트가 발생한 친구를 알아낼 수 있음, 타겟 선택 가능
-            
+
             // 좀 귀찮아서 더 편한 방법을 선호하는데
             // 핸들러가 () => {}; 이렇게 달려있으면 이걸 호출하면서 뭔가 인자를 전달하거나 할 수 없음
             // 매개변수가 큰 의미가 없음
@@ -257,7 +259,7 @@
 
         // 표준 이벤트 방식
         // 이벤트 리스너를 다는 방식으로 접근하기
-        document.getElementById("btn5").addEventListener("click", function(e) {
+        document.getElementById("btn5").addEventListener("click", function (e) {
 
             // 표준 이벤트 방식에서의 this 의미는 또 다름
 
@@ -312,7 +314,7 @@
     <script>
         function returnFn() {
 
-            if(1) { // if문 여기가 true이기 때문에
+            if (1) { // if문 여기가 true이기 때문에
                 return false; // 무조건 false가 반환된다
             } else {
                 return true;
@@ -369,7 +371,7 @@
             <input type="submit" value="가입하기" onclick="return validate();" />
             <!-- 애초에 DB에 못들어갈 값이면 보낼게 아니라 여기서 알려줘야함, 사용자 편의를 위해서, 어차피 실패할거니까 -->
             <!-- submit에 유효성 검사 함수를 만들어서 추가 -->
-            
+
         </fieldset>
 
     </form>
@@ -443,7 +445,7 @@
             // console.log(regExp.test(userId));
 
             // 패턴을 만족하는지 검사 => test()
-            if(regExp.test(userId)) {
+            if (regExp.test(userId)) {
                 return true;
             };
 
@@ -458,4 +460,5 @@
     </script>
 
 </body>
+
 </html>

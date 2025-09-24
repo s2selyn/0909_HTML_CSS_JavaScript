@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>jQuery</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
+
 <body>
-    
+
     <h1>이히히히히ㅣ히 ㅎ이히잏잏이ㅣㅇ히</h1>
 
     <a href="https://jquery.com" target="_blank">jQuery란 무엇인가</a>
@@ -152,19 +154,19 @@
     <script>
 
         /* 위에서 했던 window.onload = function(){실행내용} 이걸 jQuery 버전으로 바꿔보자 */
-        $(function() {
+        $(function () {
             console.log("문서 로딩완료~");
         });
         // window.onload랑 똑같이 동작
 
         // window.onload는 한번만 동작(맨아래걸로 덮어쓰기됨)
-        $(function() {
+        $(function () {
             console.log("문서로딩완료 끝 ~ ");
         });
         // jQuery는 둘 다 동작함
 
         // 문서에 많은 pre 요소가지고 놀아보자
-        $(function() {
+        $(function () {
 
             // 현재 HTML문서에 존재하는 모든 pre요소를 선택해서
             // 배경색을 노란색으로 변경
@@ -241,4 +243,5 @@
     <pre>하하 더생겼다 ~</pre>
 
 </body>
+
 </html>

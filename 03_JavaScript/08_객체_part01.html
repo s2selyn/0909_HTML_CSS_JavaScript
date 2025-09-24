@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>하나도 안어려움</title>
 
@@ -25,6 +26,7 @@
         }
     </style>
 </head>
+
 <body>
     <h1>객체</h1>
 
@@ -87,13 +89,13 @@
 
                 // 각각의 값에 속성명을 정해서 값을 넣어주자
                 // map도 key-value로 했음
-                "newStatus" : true,
+                "newStatus": true,
                 // 콜론(:)으로 속성명과 값을 구분하고 각각의 속성명과 값의 짝을 콤마로 구분
-                "productName" : "스피릿다이어리케이스GS",
-                "realPrice" : 23500,
-                "price" : 22400,
-                "fee" : 3000,
-                "model" : ["갤럭시", "아이폰", "샤오미"]
+                "productName": "스피릿다이어리케이스GS",
+                "realPrice": 23500,
+                "price": 22400,
+                "fee": 3000,
+                "model": ["갤럭시", "아이폰", "샤오미"]
 
                 // 배열과 목적은 같음, 여러개의 값을 저장할 저장소
                 // 배열은 순수하게 값을 나열해서 index로 관리해야했지만
@@ -165,9 +167,9 @@
             const phoneCase = {
 
                 // 속성명에 특문이 들어있는 경우 --> ""로 묶음
-                "price~" : 1500,
+                "price~": 1500,
                 // 속성명에 띄어쓰기가 들어있는 경우 --> 못써! ""로 묶음
-                "product name" : "뉴제네레이션케이스",
+                "product name": "뉴제네레이션케이스",
             };
 
             // 근데 이렇게 해버리면
@@ -199,14 +201,14 @@
         function loop() {
 
             const human = {
-                name : "홍길동",
-                age : 15,
+                name: "홍길동",
+                age: 15,
             };
 
             const area = document.getElementById("area3");
 
             // of는 안들어와지고 loop는 인덱스가 없어서 안됨
-            for(let key in human) {
+            for (let key in human) {
 
                 // 이렇게 작성해서 key값에 어떤것들이 들어오는지 확인해보자
                 // console.log(key);
@@ -256,9 +258,9 @@
 
             const mole = {
 
-                name : "디그다",
-                kind : "두더지",
-                dig : function() { // 속성명이 함수명이 되므로 익명함수
+                name: "디그다",
+                kind: "두더지",
+                dig: function () { // 속성명이 함수명이 되므로 익명함수
 
                     area.innerHTML = `${this.kind}인 ${name}(이)가
                                       땅을팝니다.`;
@@ -327,10 +329,10 @@
                 // 각각의 인풋요소에 사용자가 입력한 value값을 객체의 속성값으로 사용하고싶다
                 // 객체가 만들어지기 이전에 인풋요소에 접근부터 해야함
                 // 요소접근은 id속성을 다 달아뒀으니 이걸로 ㄱ
-                name : studentName,
-                kor : korScore,
-                eng : engScore,
-                getSum : function() {
+                name: studentName,
+                kor: korScore,
+                eng: engScore,
+                getSum: function () {
 
                     // 얘는 합계를 계산해서 반환해줘야함
                     // 점수의 합계 계산
@@ -339,7 +341,7 @@
 
                 },
 
-                getAvg : function() {
+                getAvg: function () {
 
                     // 더해서 갯수로 나누는데 더하는건 getSum으로 구현했음, 이걸 나눠
                     // 나누는거니까 굳이 Number로 파싱안해도된다
@@ -347,7 +349,7 @@
 
                 },
 
-                toString : function() {
+                toString: function () {
                     return `학생명 : ${this.name} <br>
                             국어점수 : ${this.kor} <br>
                             영어점수 : ${this.eng} <br>
@@ -408,7 +410,7 @@
             area.innerHTML += `student객체에 name속성이 있나요? ${"name2" in student} <br>`;
 
             // with는 소괄호에 객체명을 씀
-            with(student) {
+            with (student) {
 
                 // with 내부에서는 객체명 쓰고 . 이걸 생략할 수 있음
                 // 속성만 써서 접근 가능
@@ -422,7 +424,7 @@
     </script>
 
     <hr />
-    
+
     <h3>* 객체의 속성 추가하기 및 제거하기</h3>
 
     <!-- 객체를 다 만들고나서 요소 넣고빼고 이걸 할 경우가 있지 -->
@@ -446,7 +448,7 @@
             // ??? 16:25
             // console.dir(btn);
             // 객체의 속성에 값을 넣어줌, btn 버튼 요소에 onclick 속성에 ???
-            btn.onclick = function() {
+            btn.onclick = function () {
                 console.log("하이");
             };
             console.dir(btn);
@@ -470,11 +472,11 @@
 
             // 객체 속성 제거
             // delete(객체명.속성명)
-            delete(student.age);
+            delete (student.age);
             console.log(student);
 
             // with써볼까?
-            with(student) {
+            with (student) {
                 address = "한양";
             }; // with로 속성 추가하기는 불가능
 
@@ -483,6 +485,7 @@
         }
 
     </script>
-    
+
 </body>
+
 </html>

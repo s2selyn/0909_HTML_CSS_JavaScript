@@ -9,7 +9,8 @@
     height: 40%;
 
     /* 부모에게 relative를 부여하고 아래처럼 작성하면 정가운데로 온다 */
-    position: absolute; /* 상대적으로 지정 */
+    position: absolute;
+    /* 상대적으로 지정 */
     top: 0px;
     bottom: 0px;
     left: 0px;
@@ -28,10 +29,11 @@
 /* form 태그 안의 div를 inline 요소로, 근데 이러려면 뗐다 붙이기 해야함 */
 /* float로 띄워버리기 이걸로 가보자 */
 /* 검색창 form태그 내부 div속성 */
-#search-form > div {
+#search-form>div {
     height: 100%;
     float: left;
 }
+
 /* 이 아래에 올 다른 요소가 없어서 clear 생략도 가능함 */
 
 /* div 요소 두개 가로길이 설정 */
@@ -43,6 +45,7 @@
 #search-btn {
     width: 20%;
 }
+
 /* 틀을 다 잡았으니 안쪽에 있는 친구들의 스타일 입히기 */
 
 /* input 요소 스타일 바꾸기, id 달아서 선택하면 좋겠지만 안써본거 해보기 */

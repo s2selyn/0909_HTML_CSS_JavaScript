@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>입출력하잣</title>
 
@@ -12,6 +13,7 @@
         }
     </style>
 </head>
+
 <body>
 
     <!--
@@ -86,7 +88,7 @@
 
     <h3>3) document.write('문서에 출력할 문구')</h3>
     <!-- document 객체에 접근해서 메소드 호출하면서 문서에 출력할 문구를 인자로 전달 -->
-    
+
     <!-- 버튼을 클릭했을때! -->
     <button onclick="documentWrite();">문서에 출력이라는건 뭘까?</button>
     <!-- 이렇게만 작성하면 클릭해도 아무일도 일어나지않음, 개발자도구 열어서 콘솔창 확인
@@ -114,12 +116,12 @@
 
             // 문자열로 table 요소를 만들어서 document.write의 인자로 대입해줌
             const table =
-            '<table border="1">' +
-            "<tr>" +
-            "<td>하하</td>" +
-            "<td>이 데이터가 DB에서 조회해온 값이라면?</td>" +
-            "</tr>" +
-            "</table>";
+                '<table border="1">' +
+                "<tr>" +
+                "<td>하하</td>" +
+                "<td>이 데이터가 DB에서 조회해온 값이라면?</td>" +
+                "</tr>" +
+                "</table>";
 
             // 화면에 출력할 문자열에 HTML태그가 존재할 경우
             // 동적인 요소로 만들어줌
@@ -149,7 +151,7 @@
         가지고 온다거나(자바에서 getter 쓰는 방법) <br />
         또는 값(Content)를 변경하려고 할 때(자바에서 setter 쓰는 방법), <b>innerHTML, innerText</b>
         라는 속성을 이용 <br />
-    
+
         => 가지고 올때 : 요소객체.innerHTML / innerText <br />
         => 변경할 때 : 요소객체.innerHTML / innerText = '변경할 값';
     </div>
@@ -174,7 +176,7 @@
         // 이벤트를 붙일 방법이 많이 있음
 
         // 2. 선택된 버튼 요소의 이벤트 속성에 함수 대입
-        btnEl.onclick = function() {
+        btnEl.onclick = function () {
 
             // alert("버튼 클릭함");
             // 클릭할때마다 onclick 속성에 대입된 function의 코드블럭이 위에서부터 순차적으로 동작
@@ -286,7 +288,7 @@
         const btn2 = document.querySelector("#btn2");
         // 클릭했을 때 뭔가 하고싶으니 변수에 담고
         // btn2가 가지고 있는 속성 중에 onclick 속성에 아무 이름 없는 함수를 대입
-        btn2.onclick = function() {
+        btn2.onclick = function () {
             // onclick했을 때 하고싶은 일을 코드로 나열
             const value = confirm("졸리면 확인, 아니면 취소를 눌러보세요~");
             // 인자로 전달한 메세지가 alert에 보인다!
@@ -315,7 +317,7 @@
             // 상황에 맞게 innerHTML / innerText를 선택해서 사용
 
             // 확인을 눌렀을 때, 취소를 눌렀을 때 출력할 내용이 다르다 --> 조건문! if 써보자~
-            if(value) { // value가 논리값을 가지므로 value만 작성
+            if (value) { // value가 논리값을 가지므로 value만 작성
                 divEl.innerHTML = '<div style="color:red">정신차렷!!!</div>';
             } else { // value가 false일 때
                 divEl.innerHTML = "<div>안졸린데용?</div>";
@@ -351,7 +353,7 @@
         // 문서(HTML)의 정보가 필요할 것 같은데? -> document
         // document가 가진 button 요소를 가져오고싶음, 메소드 호출 -> querySelector(얘가 범용성이 높음)
         // 인자로 '#minus > div' 이렇게 사용 가능, querySelect는 하나밖에 못고르니까 id 선택할 때 좋음
-        document.querySelector("#minus").onclick = function() {
+        document.querySelector("#minus").onclick = function () {
             // 이러면 이제 이 버튼을 클릭하면 까지 된 것
 
             // 뭐하기로했음? span요소의 conent 영역의 정수를 -1하게 해주기로했음
@@ -380,7 +382,7 @@
         // 이 botton에 찾아가려면 문서 전체의 정보를 가지고 있는 document에 먼저 접근해야하고, 이 친구가 가진 메소드를 써야함
         // querySelect의 메소드에 인자로 CSS 선택자로 작성 -> #plus
         // 클릭했을 때의 일을 만들고싶으니 이벤트 속성 작성
-        document.querySelector("#plus").onclick = function() {
+        document.querySelector("#plus").onclick = function () {
             // 클릭했을 때 content 값을 1 증가한 값으로 바꿔주고싶음
             // 먼저 span 요소에 접근해야하고, 인자값으로 id를 전달하고 메소드를 호출해서 변수에 담음
             const spanEl = document.querySelector("#num");
@@ -442,7 +444,7 @@
     <script>
 
         // id가 btn3인 요소를 클릭했을 때
-        document.getElementById("btn3").onclick = function() {
+        document.getElementById("btn3").onclick = function () {
 
             const num = prompt('숫자를 입력해주세요~');
             // 사용자가 입력한 값을 쓰기 위해서는 변수로 받아야겠지
@@ -489,7 +491,7 @@
 
         // 버튼을 클릭 했을 때
         // alert창이 뜨게 만드시오 시작!
-        document.querySelector("#input-btn").onclick = function() {
+        document.querySelector("#input-btn").onclick = function () {
 
             alert("하잉~");
             // 이번에 갖고싶은건 사용자가 input 요소에 쓴(입력한) 값
@@ -506,8 +508,9 @@
             // 사용자가 input요소에 입력한 값을 내가 사용해야겠다면? 변수명(객체명)을 쓰고 참조연산자 + 속성명
             console.log(inputEl.value);
         };
-        
+
     </script>
 
 </body>
+
 </html>

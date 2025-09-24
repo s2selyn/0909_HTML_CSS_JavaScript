@@ -1,19 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>웹페이지에 이미지를 넣어볼게요~</title>
 
     <style>
-        #omurice:hover{
-            cursor : pointer;
-            transition : transform 2000ms ease-in-out;
-            transform : scale(1.1);
+        /* 스타일 요소에 아까 아이디 속성값으로 작성해본다, 마우스 올리면 커지기 구현가능,
+        크기 키우고 줄이고 이런건 html이 아니라 이렇게 스타일 따로 작성해서 해줘야함 */
+        #omurice:hover {
+            cursor: pointer;
+            transition: transform 2000ms ease-in-out;
+            transform: scale(1.1);
         }
     </style>
 
 </head>
+
 <body>
     <h2>이미지 관련 태그</h2>
     <!-- 웹페이지에 이미지 엄청 많이 넣는다, 어떻게 넣는지 알아보자 -->
@@ -23,20 +27,14 @@
     -->
 
     <h3>src속성, alt속성</h3>
-    <img
-      src="https://i.namu.wiki/i/ghO-SJbA8qu5Iys-4OrkJqHfcTd7yFG7H42XDzgHx0UmLcOBgmdZCO-LeFT2-RcP57PES-plmalkJzB2H54Wjdy3CUogk_06O2978OB_n3GA6sIU4x8GzenBiFIOof6p-H_vbMSyBvExP5saGs_kuA.webp"
-      alt="오므라이스"
-    />
+    <img src="https://i.namu.wiki/i/ghO-SJbA8qu5Iys-4OrkJqHfcTd7yFG7H42XDzgHx0UmLcOBgmdZCO-LeFT2-RcP57PES-plmalkJzB2H54Wjdy3CUogk_06O2978OB_n3GA6sIU4x8GzenBiFIOof6p-H_vbMSyBvExP5saGs_kuA.webp"
+        alt="오므라이스" />
     <!-- 웹사이트에서 보이는건 거의 이미지, 이미지태그를 써서 -->
-    <img
-      src="https://i.namu.wiki/i/lD_HFW7Tc9PjSZLFeG2_Blp5dpOus7Rt1QyCWpAqc49bGCShCNUpv33RWlqBRo5BI3B0jYfDd6it8KcoCN6QObQ7qQnyUWpU093lKx3fW4sCJcVt51kHW-t-mHHixDiTriOqsF9NqvYOwhYhjXsz7g.webp"
-      alt="오므라이스"
-      width="300"
-      height="190"
-      id="omurice"
-    /><!-- html로 속성 조절하는게 아니고 css로 스타일 따로 줘야함 -->
-    <!-- 웹상의 이미지 링크를 넣을 수도 있고 내가 작업하는 로컥의 이미지를 파일로 넣을 수 있음 -->
-    <!-- ??? 아직 스타일 부여하는 법 안배웠음 -->
+    <img src="https://i.namu.wiki/i/lD_HFW7Tc9PjSZLFeG2_Blp5dpOus7Rt1QyCWpAqc49bGCShCNUpv33RWlqBRo5BI3B0jYfDd6it8KcoCN6QObQ7qQnyUWpU093lKx3fW4sCJcVt51kHW-t-mHHixDiTriOqsF9NqvYOwhYhjXsz7g.webp"
+        alt="오므라이스" width="300" height="190" id="omurice" /><!-- html로 속성 조절하는게 아니고 css로 스타일 따로 줘야함 -->
+    <!-- 웹상의 이미지 링크를 넣을 수도 있고 내가 작업하는 로컬의 이미지를 파일로 넣을 수 있음 -->
+    <!-- 크기같은건 스타일 부여해서 하는건데 아직 스타일 부여하는 법 안배웠음, 요소의 속성을 이용해서 크기 조절 가능, width 가로길이속성, height 세로길이속성 -->
+    <!-- CSS 아직 안배웠지만 아이디 줘서 마우스 가져다대면 커지는것도 해보자, 헤드로 감 -->
     <!-- 작업하고 있는 파일에서부터 이미지가 있는 경로까지를 작성해서 이미지를 띄워줄 수 있음 -->
     <!-- 하위로 가려면 폴더명을 적고 슬래시(/)를 입력 -->
     <img src="resources/image/p1.jpg" alt="버섯탕수육" />
@@ -62,13 +60,13 @@
         가능한 최대한 많은 사용자가 불편함 없이 이용할 수 있도록 웹을 만드는 것
     </p>
 
-    <hr>
+    <hr />
 
     <h4>* width와 height 속성</h4>
 
     <p>
-      요소의 가로, 세로길이를 조정할 수 있는 속성 <br />
-      고정길이(px), 가변길이(%)로 지정이 가능하다.
+        요소의 가로, 세로길이를 조정할 수 있는 속성 <br />
+        고정길이(px), 가변길이(%)로 지정이 가능하다.
     </p>
 
     <h5>고정길이 단위(px) == 기본값</h5>
@@ -80,7 +78,7 @@
     행 삭제 : Ctrl + x(사실 삭제아님 잘라내기임, 행 삭제는 키가 복잡해서 이게 훨씬 편함)
     -->
 
-    <img src="resources/image/bonobono.jpg" alt="보노보노" height="150" width="150"/>
+    <img src="resources/image/bonobono.jpg" alt="보노보노" height="150" width="150" />
     <img src="resources/image/cha.jpg" alt="차은우" height="150" width="80" />
     <img src="resources/image/hambag.jpg" alt="함박스테이크" height="150" width="200" />
     <img src="resources/image/han.jpg" alt="한가인" height="150" width="230" />
@@ -88,10 +86,10 @@
 
     <!-- 이런 경우에는 Emmet 쓰면 훨씬 편하긴 하지만 천천히 배워보자, 처음부터 날로먹으면 좀ㅎ -->
     <!-- Emmet 문법 쓰면 파일 경로 직접 쓰는 대신 한번에 할 수도 있음 -->
-    
+
     <!-- 기본값 : 화면 사이즈가 바뀌더라도 크기의 변동이 일어나지 않음 -->
 
-    <hr>
+    <hr />
 
     <h4>가변길이 단위(%)</h4>
     <image src="resources/image/p1.jpg" alt="이미지" height="150" width="15%"></image>
@@ -99,7 +97,7 @@
     <image src="resources/image/p3.jpg" alt="이미지" height="150" width="15%"></image>
     <image src="resources/image/p4.jpg" alt="이미지" height="150" width="15%"></image>
     <image src="resources/image/p5.jpg" alt="이미지" height="150" width="15%"></image>
-    
+
     <!-- 고정길이 가변길이에 따라 이미지가 다르게 띄울 수 있음
     나중에 이미지를 로컬에 보관하지 않고 클라우드에 이미지를 올려놓고 거기서 사용할 것
     이미지 저장소의 용도를 Amazon S3를 배워서 여기에 올려서 사용할 것
@@ -123,4 +121,5 @@
     <audio src="resources/audio/major.mp3" controls autoplay />
 
 </body>
+
 </html>

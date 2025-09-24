@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>여섯가지방법</title>
 
     <style>
-
         .area {
             width: 350px;
             height: 150px;
             border: 1px solid lavenderblush;
         }
-
     </style>
 
 </head>
+
 <body>
-    
+
     <h1>HTML요소 접근해봅시당</h1>
 
     <h3>1) 아이디 속성값을 이용해서 접근하기</h3>
@@ -114,7 +114,7 @@
             // <div class="area" style="background: yellowgreen"></div>
 
         }
-        
+
     </script>
 
     <br /><br /><br />
@@ -138,8 +138,8 @@
     <script>
 
         const colorBtn = document.querySelector("#color-btn");
-     
-        colorBtn.onclick = function() {
+
+        colorBtn.onclick = function () {
 
             const colorDiv = document.querySelector("#colorDiv");
             // console.log(colorDiv); 여기까지 하면 버튼을 클릭할때마다 div요소가 선택된것
@@ -147,7 +147,7 @@
             // 요소의 스타일에 배경색 property에 값을 대입해서 색을 바꾸는 것
             // 색깔 바꾸기
             // colorDiv.style.backgroundColor = "yellow"; 여기까지 하면 오늘 배운걸로 할수있음
-            
+
             // 일곱빛깔 돌리기는 자바의 조건문 생각해야 할 수 있음
             // if(colorDiv.style.backgroundColor)
             // colorDiv.style.backgroundColor = "greenyellow";
@@ -155,15 +155,15 @@
 
             // yellowgreen이면 yellow로 바꾸고, yellow면 greenyellow로 바꾸고싶은거니까 if문을 씀
             // console.log(colorDiv.style.backgroundColor); 이걸 확인하면 텍스트로 들어가있는거 볼수있음
-            if(colorDiv.style.backgroundColor == "yellowgreen") {
+            if (colorDiv.style.backgroundColor == "yellowgreen") {
                 colorDiv.style.backgroundColor = "yellow";
-            } else if(colorDiv.style.backgroundColor == "yellow") {
+            } else if (colorDiv.style.backgroundColor == "yellow") {
                 colorDiv.style.backgroundColor = "lightyellow";
-            } else if(colorDiv.style.backgroundColor == "lightyellow") {
+            } else if (colorDiv.style.backgroundColor == "lightyellow") {
                 colorDiv.style.backgroundColor = "gold";
-            } else if(colorDiv.style.backgroundColor == "gold") {
+            } else if (colorDiv.style.backgroundColor == "gold") {
                 colorDiv.style.backgroundColor = "beige";
-            } else if(colorDiv.style.backgroundColor == "beige") {
+            } else if (colorDiv.style.backgroundColor == "beige") {
                 colorDiv.style.backgroundColor = "greenyellow";
             } else {
                 colorDiv.style.backgroundColor = "yellowgreen";
@@ -190,7 +190,7 @@
     </ul>
 
     <!-- li라는 태그명을 선택해서 요소를 조작해보자, 잘 쓰진 않음(화면 전체의 요소를 선택하기 때문), 그래도 알아둬야지 -->
-    
+
     <button onclick="tag();">태그명으로 접근하기</button>
 
     <script>
@@ -232,10 +232,10 @@
             array[2].style.backgroundColor = "rgb(60, 180, 180)";
             array[3].style.backgroundColor = "rgb(60, 180, 210)";
             array[4].style.backgroundColor = "rgb(60, 180, 240)";
-            
+
             // 반복문 돌릴 수 있겠다!
             let redColor = 100;
-            for(let i = 0; i < array.length; i++) {
+            for (let i = 0; i < array.length; i++) {
                 array[i].style.backgroundColor = `rgb(${redColor}, 180, 180)`;
                 redColor += 30;
             }
@@ -254,9 +254,9 @@
 
     <h3>3) name속성값으로 요소객체 접근해보기</h3>
     <!-- name 속성 어떨 때 썼더라? form 태그 안의 input요소일 때 key-value로 submit 해야하는데 key의 역할로 name 속성 -->
-    
+
     <form action="요청받아줄서버" method="GET">
-    <!-- form 태그의 속성 중 action에 URL(이것도 맞긴한데 지금은 서버)
+        <!-- form 태그의 속성 중 action에 URL(이것도 맞긴한데 지금은 서버)
     method는 두개 있었음, get이랑...?
     -->
         <fieldset>
@@ -293,7 +293,7 @@
 
         // 요소에 접근해서 onclick 했었는데 오늘은 메소드로 해보자 -> addEventListener
         // 인자 두개 : 첫번째로 이벤트 속성 두번째로 익명함수를 넣는 자리
-        btnEl.addEventListener('click', function() {
+        btnEl.addEventListener('click', function () {
             // btnEl에서 click이 발생하면 function을 호출하겠다는 뜻이 됨
 
             // name속성값을 이용해서 요소객체들 접근하기
@@ -345,9 +345,9 @@
             */
 
             // 해보니 중복이니까 반복해보자 -> for
-            for(let i = 0; i < menus.length; i++) {
+            for (let i = 0; i < menus.length; i++) {
 
-                if(menus[i].checked) {
+                if (menus[i].checked) {
                     checkMenu += " " + menus[i].value;
                 }
 
@@ -382,13 +382,13 @@
             */
 
             // 하나라도 체크됐을때만 하고싶다면? -> if
-            if(checkMenu != "") { // checkMenu가 초기값과 다르다면 뭔가 하나 생긴것일테니까
+            if (checkMenu != "") { // checkMenu가 초기값과 다르다면 뭔가 하나 생긴것일테니까
                 alert(`선택하신 메뉴는 ${selected}입니다.`);
             }
             // 자바스크립트는 if 조건문 안에 checkMenu만 작성해도 동작함
             // true / false만 들어가는 자리 아니었던가?
             // 아무거나 넣어도 alert 띄우는 동작은 함...!? 0.0을 넣으면 동작 안하고 "0.0"은 동작함.. 뭐야이거
-            
+
             // 자바스크립트의 논리값
 
             // 자바의 논리값 == true / false
@@ -452,10 +452,11 @@
             // querySelector는 하나밖에 선택하지 못함
             // 여러개를 선택할때는 querySelector를 사용할 수 없음(제일 위의 요소 하나만 선택.. 이거 어제 들은것같음)
             // 여러개를 선택해야 할 때에는 querySelectorAll를 사용
-            
+
         }
 
     </script>
 
 </body>
+
 </html>

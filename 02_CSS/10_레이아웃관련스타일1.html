@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>1번이다 1번</title>
     <style>
-
         body {
             background-color: gray;
         }
@@ -50,6 +50,7 @@
             height: 150px;
             border: 1px solid black;
         }
+
         /* border 색상 지정 안하면 기본색은 black */
 
         .inline {
@@ -62,9 +63,9 @@
         .inline-block {
             display: inline-block;
         }
-
     </style>
 </head>
+
 <body>
     <!-- 화면에 요소를 배치할 때 구상(생각)해야함, 구조잡을때 필요한 친구들 공부하기 -->
     <!-- 앞의것들은 생각안해도되고 정리해뒀다가 필요할때 찾아보기만 하면 됨 -->
@@ -81,7 +82,7 @@
 
     <p>content영역의 크기를 조절하는 속성</p>
     <!-- padding이나 border를 만들었을 때, content 영역만 조절하니까 가변길이를 속성으로 부여한다면 조심해야함 -->
-    
+
     <p>고정길이</p>
     <div id="test1" class="size-test"></div>
     <h4>가변길이</h4>
@@ -114,7 +115,7 @@
     <div class="nemo pink"></div>
     <!-- div는 block 요소니까 하나의 요소가 한 줄씩 영역을 차지하니까 붙어있는 요소지만 아래로 내려가버림 -->
     <!-- 옆의 공간을 낭비하게 되니까 display 속성으로 옆으로 나란히 붙여서 배치하게 바꿔보자 -->
-    
+
     <hr />
 
     <!-- div 요소 다섯개를 inline 요소로 변경해보기, class 속성값에 inline 추가 -->
@@ -134,9 +135,10 @@
     <hr />
 
     <!-- 클래스 속성을 inline-block으로 추가 -->
-    <div class="nemo inline-block red"></div
-    ><div class="nemo inline-block blue"></div><!--
-    --><div class="nemo inline-block green"></div>
+    <div class="nemo inline-block red"></div>
+    <div class="nemo inline-block blue"></div><!--
+    -->
+    <div class="nemo inline-block green"></div>
     <div class="nemo inline-block yellow"></div>
     <div class="nemo inline-block pink"></div>
     <!-- 마참내 우리가 원하던 한줄나열 -->
@@ -148,4 +150,5 @@
     <!-- 아니면 주석으로 이어버리기 -->
 
 </body>
+
 </html>

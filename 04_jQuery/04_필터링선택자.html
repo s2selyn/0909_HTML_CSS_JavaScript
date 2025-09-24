@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>필터필터</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
+
 <body>
-    
+
     <!-- CSS랑 jQ에서 했는데 JS에서 안한것같은거 하고가자 -->
     <div id="area1">
         <div id="p1"></div>
@@ -17,7 +19,7 @@
 
     <script>
 
-        window.onload = function() {
+        window.onload = function () {
 
             const area1 = document.getElementById("area1");
             console.log(area1.children); // 모든 자식 요소 선택
@@ -74,7 +76,7 @@
 
     <script>
 
-        $(function() {
+        $(function () {
 
             // table의 자식요소인 tr요소 선택
             // 각 tr의 뒤에 :first, :last, :even, :odd를 붙여서 선택해보자
@@ -118,7 +120,7 @@
 
     <script>
 
-        $(function() {
+        $(function () {
 
             // .first() : 기준중에서 가장 첫 번째 요소를 선택
             // 항상 기준이 있어야함, h4 기준으로 선택
@@ -149,4 +151,5 @@
     </script>
 
 </body>
+
 </html>

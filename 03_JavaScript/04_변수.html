@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>변수해야지</title>
 </head>
+
 <body>
-    
+
     <h1>안녕 나는 변수야</h1>
 
     <!-- 똑같음, 값을 저장하는 메모리상의 공간 -->
     <!-- 자바와의 차이점만 알면 된다 -->
-    
+
     <!--
         자바 == 명확한 자료형(물론 자바도 타입추론이 가능함)
 
@@ -35,7 +37,7 @@
         // 버튼을 클릭하면 변수를 선언도 하고 출력도 하는걸 만들어보자
         // 클릭했을 때! 뭔가를 하고싶다 -> 버튼 요소에 접근을 먼저 해야함
 
-        document.querySelector("#var-btn").onclick = function() {
+        document.querySelector("#var-btn").onclick = function () {
 
             var userId = "user01"; // var 하고 변수 선언하고 대입연산자 오른쪽의 값 대입
             console.log(userId);
@@ -68,20 +70,20 @@
             // 특정 상황에서만 let을 사용
 
             console.log("--------------------------------------------------");
-            
+
             let userPwd = "pass01";
             console.log(userPwd);
-            
+
             // let도 재할당 가능(변수 값 넣는거)
             userPwd = "pass02";
             console.log(userPwd);
-            
+
             // var와 의 차이점은 동일한 이름으로 userPwd를 선언하려고 하면 안됨
             // let userPwd;
             // Cannot redeclare block-scoped variable 'userPwd'.javascript
             // 브라우저 개발자도구에서도 Uncaught SyntaxError: Identifier 'userPwd' has already been declared
             // 2) let 키워드는 중복선언이 불가능 / 재할당은 가능
-            
+
             console.log("--------------------------------------------------");
 
             const userName = "고길동";
@@ -110,18 +112,18 @@
 
             // 무조건 JS에서는 const, 반드시 초기화 진행
 
-            
+
         };
 
         function scope() {
-            
+
             // var로 선언하면 호이스팅? 끌어올려짐? 이라는게 일어남
             // ??? 11:19 나중에 선언과 값을 대입하면 선언은 scope 시작할 때 생성되고 ...?
             // 무슨 일이 일어났나요 ㅠㅠ?
 
             // var variable;
             // console.log(variable);
-            
+
             // console.log(name); undefined 출력되는 이유???
             // var name = "홍길동";
 
@@ -134,10 +136,10 @@
             // var는 살아가는 영역이 함수 스코프 내부
             // 1) var는 functionScope == 변수가 선언된 함수영역에서 사용할 수 있음
             // 예시로 for문을 돌릴 때, 초기식에 넣는 제어변수는 for 스코프가 끝나면 죽어야함
-            for(var i = 0; i < 5; i++) {}
+            for (var i = 0; i < 5; i++) { }
             console.log(i); // for문 밖인데 쓸 수 있음
 
-            if(1) {
+            if (1) {
                 console.log(i);
                 var userName = "홍길동";
             }
@@ -147,7 +149,7 @@
 
             // var의 이런 성격때문에 문제가 많이 되었으니까
             // 2) let, const는 blockScope == 자기 선언된 블록에서만 사용가능
-            if(2) {
+            if (2) {
                 let age = 20;
                 const hobby = "취미당 ㅎ";
             }
@@ -198,7 +200,7 @@
 
         // window.onload = 현재 이 HTML문서가 전부 다 로딩되고나서(== 전부다 읽고 나면)
         // 곧바로 실행할 이벤트 핸들러(익명함수)를 대입
-        window.onload = function() {
+        window.onload = function () {
 
             // alert("하잉");
             // 얘는 쿄쿜보다 위에있다고 먼저 수행되는게 아니라
@@ -218,7 +220,7 @@
             // 자바스크립트에서 변수가 선언되었다는 것은 얘도 어딘가에 어떤 형태로 들어가있다는거지?
             // 자바스크립트의 모든것은 property-value로 이루어진다. 그게 아닌게 없음. 단하나도.
             // 변수가 선언되었다는것은 어딘가에 property-value가 쌍으로 만들어졌다는 것인데, 어느 객체에 들어가있는거임?
-            
+
             console.dir(window);
             // 이거 브라우저 개발자도구에서 확인함
             // 자바스크립트에서 전역변수의 의미, 이친구들을 다른데서 쓰겠다면 어딘가에 있음
@@ -248,7 +250,7 @@
 
             console.log("----------str2----------");
             console.log(str2); // window, this키워드 붙일 수 있음(웬만하면 붙여주는 편이 전역변수다 보여주고 의미가 명확함)
-                               // 붙여주는편이 조금 더 명확하긴함
+            // 붙여주는편이 조금 더 명확하긴함
             // 순수 전역변수, 지역에 동일한 이름이 없음
 
             console.log("----------str3----------");
@@ -284,7 +286,7 @@
     <!-- 선언하고 나중에 계속 쓸텐데 다른사람이 봤을 때 애매해짐, 다형성을 쓰려고 한건지 뭘쓰려고 한건지..?
     얘를 써버리면 자바의 가장 큰 특징인 다형성이 없어져버림 -->
     <!-- 웬만한 경우에는 안전성을 추구해야하니까 사용할 일이 많지는 않음, int나 boolean은 쉽겠지만 근데 뭐 그래도 잘 안씀 -->
-    
+
     <!-- 아무튼 자바스크립트는 전부 타입추론으로 받아버리니까 좋아보이지만 사실은 단점.. 문제임 -->
     <!-- 그래서 나온 게 타입스크립트 -->
     <!-- 이걸 해결할수가 없음, 앞에 짜놓은 코드를 쓸수가 없게됨, 개발은 항상 앞의 코드가 문제가 생겨도 엎을 수 없음, 걔를 다 고치면 만들어놓은 프로그램 못쓰게되니까 결국 안고가야함 -->
@@ -305,14 +307,13 @@
     </ul>
 
     <button id="type-btn">자료형</button>
-    <div id="area" style="border: 1px solid beige; height: auto; min-height: 150px"
-    ></div>
+    <div id="area" style="border: 1px solid beige; height: auto; min-height: 150px"></div>
 
     <script>
 
         // 버튼을 클릭하면 div 요소에 내용을 출력해줄것이다!
         // 버튼 요소에 접근하는것부터 해야겠군
-        document.querySelector("#type-btn").onclick = function() {
+        document.querySelector("#type-btn").onclick = function () {
 
             // 여러 자료형의 변수를 선언해보자
             const name = "홍길동";
@@ -321,11 +322,11 @@
             const hobby = ["운동", "공부"]; // 자바스크립트의 배열을 써보자, 대괄호 안에 요소 추가
 
             const family = {
-                "아빠" : "홍준표",
-                "형" : "홍석천",
+                "아빠": "홍준표",
+                "형": "홍석천",
             }; // 자바스크립트 객체는 중괄호로 만들어줌
 
-            const testFn = function() {
+            const testFn = function () {
                 alert("가족 못부름");
             };
 
@@ -372,13 +373,13 @@
             // 아무튼 얘네가 어떤 타입으로 값이 되었는지 확인해보자
             // 자료형 출력해보기
             // 자료형을 확인할 때 필요한 함수 typeof(인자값);
-            area.innerHTML += `${typeof(name)} <br>
-                               ${typeof(age)} <br>
-                               ${typeof(isGoodThief)} <br>
-                               ${typeof(hobby)} <br>
-                               ${typeof(family)} <br>
-                               ${typeof(testFn)} <br>
-                               ${typeof(noVal)} <br><hr>`;
+            area.innerHTML += `${typeof (name)} <br>
+                               ${typeof (age)} <br>
+                               ${typeof (isGoodThief)} <br>
+                               ${typeof (hobby)} <br>
+                               ${typeof (family)} <br>
+                               ${typeof (testFn)} <br>
+                               ${typeof (noVal)} <br><hr>`;
             // 배열의 type도 object로 나오고 나머지는 다 똑같음
 
         };
@@ -386,4 +387,5 @@
     </script>
 
 </body>
+
 </html>

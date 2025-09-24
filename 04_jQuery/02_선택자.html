@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>선택자</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
+
 <body>
 
     <h1>기본선택자</h1>
@@ -29,7 +31,7 @@
     <script>
 
         // 문서전체 DOM요소 다 로딩되면 jQ 써야겠다면? -> $(); 호출 == jQuery();
-        $(function() {
+        $(function () {
 
             // 이렇게 쓰면 jQ 사용 시 가장 많이 만나는 에러를 만날것이다
             // Uncaught ReferenceError: $ is not defined
@@ -53,7 +55,7 @@
             // CSS랑 똑같이 아이디 선택자 # 로 선택
             // 스타일 속성을 바꾸고 싶으면 css 메소드를 호출해서 첫번째 인자로 스타일 속성명 + 두번째 인자로 스타일 속성값
             $("#id2").css("color", "green")
-                     .html("잘가~");
+                .html("잘가~");
             // innerHTML 속성값을 바꿔야 컨텐트 내용이 바뀜, 똑같이 선택해서 작업해야할텐데?
             // ??? 10:42 제작자의 의도와 메소드 동작방식
             // 그렇게 하지 않고 메소드 체이닝 방식을 고려해서 jQ를 만들었음
@@ -86,7 +88,7 @@
     <div>jQuery</div>
 
     <script>
-        $(function() {
+        $(function () {
 
             // 태그 종류별로 선택해서 배경색 바꾸고싶다
             // 태그명으로 선택하려면?
@@ -130,7 +132,7 @@
     <h4 class="item select">class3</h4>
 
     <script>
-        $(function() {
+        $(function () {
 
             // 순수 자바스크립트
             // 글자색 => orangered
@@ -140,22 +142,22 @@
             const items = document.getElementsByClassName("item");
 
             // 2. 반복문을 통해 속성에 접근해서 대입해주기
-            for(let item of items) {
+            for (let item of items) {
 
                 item.style.color = "orangered";
-                item.onclick = function() {
+                item.onclick = function () {
                     alert("안뇽~");
                 };
 
             };
-            
+
             // jQuery 방식
             // 선택이랑 ???을 한번에 한다
             // 클릭했을때 뭔가 하고싶다면 클릭 메소드 호출
             $(".select").css("background", "lightgrey")
-                        .click(function() {
-                            console.log("나여~");
-                        });
+                .click(function () {
+                    console.log("나여~");
+                });
 
             // click() : 클릭 이벤트 발생 시 이벤트 핸들러 대입
 
@@ -173,17 +175,17 @@
         <!-- ul>li*2>li -->
         <ul>안녕나는 부모요소 ul
             <li>안녕나는 자식요소 li 부모요소 li
-                <li>안녕나는 자식요소 & 후손요소 li</li>
+            <li>안녕나는 자식요소 & 후손요소 li</li>
             </li>
             <li>안녕나는 자식요소 li 부모요소 li
-                <li>안녕나는 자식요소 & 후손요소 li</li>
+            <li>안녕나는 자식요소 & 후손요소 li</li>
             </li>
         </ul>
 
     </div>
 
     <script>
-        $(function() {
+        $(function () {
 
             // ??? 전부 선택되어버림
             // 특정 요소의 자식요소만 선택하고싶다면?
@@ -197,6 +199,7 @@
     </script>
 
     <!-- 요소가 많아서 새파일에서 작업 -> 03 -->
-    
+
 </body>
+
 </html>
