@@ -408,6 +408,8 @@
 
             // 해당 객체에 속성이 존재하는가 ? '속성명' in 객체명 : boolean
             area.innerHTML += `student객체에 name속성이 있나요? ${"name2" in student} <br>`;
+            // name으로 확인가능
+            // 만약에 없는 속성명을 넣어서 체크하면(name2) false가 나온다.
 
             // with는 소괄호에 객체명을 씀
             with (student) {
